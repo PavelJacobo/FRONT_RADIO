@@ -1,0 +1,22 @@
+<ul [ngClass]="{'slideOutLeft': isOpen, 'slideInLeft': !isOpen }" class="sidebar navbar-nav animated">
+    <li routerLinkActive="active" class="nav-item pointer">
+        <a class="nav-link" routerLink="dashboard">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span> Dashboard</span>
+        </a>
+    </li>
+    <li class="nav-item dropdown pointer" *ngFor="let menu of _sidebar.menu; let i = index">
+        <a class="nav-link dropdown-toggle" [id]="i" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span> {{ menu.titulo }}</span>
+        </a>
+        <div class="animated dropdown-menu dropdown-menu-right fadeIn" aria-labelledby="pagesDropdown" (click)="$event.stopPropagation()">
+            <ul>
+                <li routerLinkActive="active" *ngFor="let submenu of menu.submenu" class="dropdown-item pointer">
+                    <i [class]="submenu.icon"></i>
+                    <span class="pl-2" [routerLink]="submenu.url">{{ submenu.titulo }}</span>
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,16 @@
+<app-navbar [sideBar]="sideBar"></app-navbar>
+<div id="wrapper">
+    <app-sidebar #sideBar></app-sidebar>
+    <div id="content-wraper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <app-breadcrumb></app-breadcrumb>
+
+            <div class="row mb-3">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+
+</div>

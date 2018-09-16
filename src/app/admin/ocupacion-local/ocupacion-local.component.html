@@ -1,0 +1,33 @@
+<div class="row">
+    <h3>ReservarLocal</h3>
+    <div #fullcalendarRef appFullcalendar [config]="calendarOptions"></div>
+</div>
+<div class="row">
+    <form class="w-100" ngNativeValidate #formulario="ngForm" (ngSubmit)="onSubmit(formulario)">
+        <div class="row w-100">
+            <mat-form-field class="col-md-4">
+                <input required [(ngModel)]="fecha" name="fecha" matInput [matDatepicker]="picker" placeholder="Elije fecha">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-hint>Día</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-3">
+                <input required matInput [(ngModel)]="start" name="start" class="form-control ml-2" type="time">
+                <mat-hint>Desde las ...</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-3">
+                <input required matInput [(ngModel)]="end" name="end" class="form-control ml-2" type="time">
+                <mat-hint>Hasta las ...</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="col-md-1">
+                <input matInput [(ngModel)]="color" name="color" class="form-control ml-2" type="color">
+                <mat-hint>Elije Color</mat-hint>
+            </mat-form-field>
+            <div class="col-md-1">
+                <button [disabled]="formulario.invalid" class="btn btn-success mr-2">Reservar</button>
+            </div>
+
+        </div>
+    </form>
+
+</div>
