@@ -1,3 +1,30 @@
-<p>
-  noticias works!
-</p>
+<div class="row">
+    <div class="col-md-10 ml-5 mt-5">
+        <img width="333" height="333" [src]=" 'default image' | imagen" alt="imagen de usuario" class=" mx-auto mr-3 rounded-circle">
+        <hr>
+    </div>
+    <div class="col-md-10 ml-5 mt-5">
+
+        <form ngNativeValidate [formGroup]="forma">
+
+            <mat-form-field class="w-100 p-2">
+                <input formControlName="titulo" type="text" required matInput placeholder="Titulo">
+            </mat-form-field>
+
+            <mat-form-field class="w-100 p-2">
+                <input formControlName="resumen" type="text" required matInput placeholder="Resumen">
+            </mat-form-field>
+
+            <mat-form-field class="w-100 p-2">
+                <textarea formControlName="contenido" type="text" required matInput placeholder="Contenido"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="w-100 p-2">
+                <input formControlName="tags" type="text" required matInput placeholder="tags">
+            </mat-form-field>
+
+            <button class="w-100 p-2" mat-raised-button color="primary">Actualizar Noticia</button>
+
+        </form>
+    </div>
+</div>

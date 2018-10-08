@@ -1,10 +1,11 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
     { path: '', loadChildren: './pages/pages.module#PagesModule'},
     { path: 'login', loadChildren: './login/login.module#LoginModule'},
-    { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
+    { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [LoginGuard] }
     // { path: '', loadChildren: './pages/pages.module#PagesModule'},
 ];
 

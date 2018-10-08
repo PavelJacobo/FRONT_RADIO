@@ -47,7 +47,7 @@ export class OcupacionLocalComponent implements OnInit {
         list:     'lista'
       },
       editable: true,
-      selectable: true,
+      selectable: false,
       selectHelper: true,
       allDayText: 'el día',
       timeFormat: 'HH:mm',
@@ -59,11 +59,14 @@ export class OcupacionLocalComponent implements OnInit {
         if (event._userId !== this._usuarioService.usuario._id) {
           revertFunc();
         }
+        this.updateEvent(event);
       },
       eventResize: (event, delta, revertFunc) => {
         if (event._userId !== this._usuarioService.usuario._id) {
           revertFunc();
         }
+
+        this.updateEvent(event);
       },
       eventRender: (event, element) =>  {
         if (event._userId === this._usuarioService.usuario._id) {
@@ -107,6 +110,17 @@ export class OcupacionLocalComponent implements OnInit {
       this.fullcalendarRef.renderEvent(evento);
       form.reset();
     });
+  }
+
+  updateEvent(event: any) {
+    const evento = {
+      start: event.start.format().replace('T', ' '),
+      end : event.end.format().replace('T', ' '),
+      _id: event._id
+    };
+
+    this._usuarioService.updateEvento(evento).subscribe();
+
   }
 
 

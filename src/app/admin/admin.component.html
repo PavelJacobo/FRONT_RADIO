@@ -1,16 +1,38 @@
-<app-navbar [sideBar]="sideBar"></app-navbar>
-<div id="wrapper">
-    <app-sidebar #sideBar></app-sidebar>
-    <div id="content-wraper">
-        <div class="container-fluid">
-            <!-- Breadcrumbs-->
-            <app-breadcrumb></app-breadcrumb>
-
-            <div class="row mb-3">
-                <router-outlet></router-outlet>
-            </div>
+<!-- <div id="contenido_de_todo">
+    <app-navbar [sideBar]="sideBar">
+    </app-navbar>
+    <div class="row">
+        <div id="sidebar-content" class="col-md-2" [class.d-none]="sideBar.isOpen">
+            <app-sidebar #sideBar></app-sidebar>
         </div>
+        <div class="col-md-10 prime-content" [class.col-md-12]="sideBar.isOpen">
+            <app-breadcrumb></app-breadcrumb>
+            <div class="row pl-2 pr-2">
+                <div class="container">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row mt-3 pb-0">
         <app-footer></app-footer>
     </div>
-
-</div>
+</div> -->
+<main>
+    <nav>
+        <app-navbar [sideBar]="sideBar"></app-navbar>
+    </nav>
+    <aside>
+        <app-sidebar #sideBar></app-sidebar>
+    </aside>
+    <section>
+        <div class="container pt-3 pb-3">
+            <app-breadcrumb></app-breadcrumb>
+            <router-outlet></router-outlet>
+        </div>
+    </section>
+    <footer class="pt-3 mifooter pb-5">
+        <app-footer></app-footer>
+    </footer>
+</main>

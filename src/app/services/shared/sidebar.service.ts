@@ -9,8 +9,8 @@ menu: any = [
       titulo: 'Perfil',
       icono: 'far fa-user',
       submenu: [
-        { titulo: 'Salir' },
-        { titulo: 'Mi usuario', url: 'perfil' }
+        { titulo: 'Salir', icon: 'fas fa-sign-out-alt' },
+        { titulo: 'Mi usuario', url: 'perfil', icon: 'far fa-user' }
       ]
     },
     {
@@ -19,8 +19,8 @@ menu: any = [
       submenu: [
         { titulo: 'Noticias', url: 'noticias', icon : 'far fa-newspaper'},
         { titulo: 'Programación', url: 'programacion', icon : 'far fa-clock'},
-        { titulo: 'Reserva', url: 'ocupacion', icon : 'far fa-calendar-alt'},
-        { titulo: 'Programa', url: 'perfil_programa', icon : 'fas fa-broadcast-tower'}
+        { titulo: 'Reservar', url: 'ocupacion', icon : 'far fa-calendar-alt'},
+        { titulo: 'Perfil Programas', url: 'perfil_programa', icon : 'fas fa-broadcast-tower'}
       ]
     }
   ];

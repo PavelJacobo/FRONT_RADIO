@@ -1,3 +1,10 @@
-<p>
-  perfil-programa works!
-</p>
+<div class="row">
+    <div class="col-6">
+        <button *ngFor="let programa of programasDeUsuario" (click)="datoAHijo(programa)" type="button" class="btn btn-secondary mr-2 mt-2">{{ programa.nombre }}</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <app-gestion-programas [colaboradores]="colaboradores" [programa]="programa" (actualizar)="SubmitPrograma(programa)" (crear)="crearPrograma($event)"></app-gestion-programas>
+    </div>
+</div>

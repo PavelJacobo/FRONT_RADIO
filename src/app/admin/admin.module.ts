@@ -16,6 +16,10 @@ import { PerfilProgramaComponent } from './perfil-programa/perfil-programa.compo
 import { OcupacionLocalComponent } from './ocupacion-local/ocupacion-local.component';
 import { ProgramacionComponent } from './programacion/programacion.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { GestionProgramasComponent } from './gestion-programas/gestion-programas.component';
+
+// Custom Module
+import { PipesModule } from '../pipes/pipes.module';
 
 // Directives
 import { DirectiveModule } from '../directives/directive.module';
@@ -25,6 +29,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Angular Material Module
 import { AngularMaterialModule } from '../angular-material.module';
+
+
+
 
 @NgModule({
     declarations: [
@@ -38,7 +45,8 @@ import { AngularMaterialModule } from '../angular-material.module';
         PerfilProgramaComponent,
         OcupacionLocalComponent,
         ProgramacionComponent,
-        DashboardComponent
+        DashboardComponent,
+        GestionProgramasComponent
     ],
     imports: [
          CommonModule,
@@ -46,7 +54,8 @@ import { AngularMaterialModule } from '../angular-material.module';
          DirectiveModule,
          FormsModule,
          ReactiveFormsModule,
-         AngularMaterialModule
+         AngularMaterialModule,
+         PipesModule
          ],
     exports: [],
     providers: [],

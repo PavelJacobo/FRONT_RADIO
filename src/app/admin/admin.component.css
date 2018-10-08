@@ -1,0 +1,30 @@
+main {
+    height: 100vh;
+    display: grid;
+    grid-template-areas: "nav" "aside" "contenido" "footer";
+    grid-template-rows: 1fr 8fr 1fr;
+}
+
+nav {
+    grid-area: nav;
+}
+
+aside {
+    grid-area: aside;
+}
+
+section {
+    grid-area: contenido;
+}
+
+footer {
+    grid-area: footer;
+}
+
+@media (min-width: 548px) {
+    main {
+        grid-template-areas: "nav nav" "aside contenido" "footer footer";
+        grid-template-columns: 1fr 6fr;
+        grid-template-rows: 1fr 18fr 1fr;
+    }
+}

@@ -154,6 +154,14 @@ export class UsuarioService {
         }));
     }
 
+    updateEvento(evento) {
+        let url = URL_SERVICE + '/eventocup/' + evento._id  ;
+        url += '?token=' + this.token;
+        return this.http.put(url, evento).pipe(map((response: any) => {
+            return response.evento;
+        }));
+    }
+
     removeEvento(eventId) {
         let url = URL_SERVICE + '/eventocup/' + eventId ;
         url += '?token=' + this.token;

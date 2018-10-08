@@ -1,0 +1,27 @@
+ul li:hover {
+    cursor: pointer;
+}
+
+.active {
+    background-color: white;
+}
+
+.active>* {
+    color: black;
+}
+
+a:visited {
+    border: none;
+}
+
+.active:visited {
+    border: none;
+}
+
+.active:link {
+    border: none;
+}
+
+.active:focus {
+    border: none;
+}

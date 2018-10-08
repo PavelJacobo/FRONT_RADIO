@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { Usuario } from '../../modelos/usuario.modelo';
+import { UsuarioService } from '../../services/admin/usuario.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,15 +9,17 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  public usuario: Usuario;
   @Input() sideBar: SidebarComponent;
 
   click() {
     this.sideBar.toggle();
   }
 
-  constructor(
-
-  ) { }
+  constructor(public _usuarioService: UsuarioService) {
+    this.usuario = this._usuarioService.usuario;
+   }
 
   ngOnInit() {
   }
