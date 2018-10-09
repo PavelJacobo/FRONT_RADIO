@@ -14,7 +14,7 @@ export class AdminService {
         public http: HttpClient
     ) {}
 
-    subirArchivo( archivo: File, tipo: string, id: string) {
+    subirArchivo( archivo: File, tipo: string, id?: string) {
 
         // tslint:disable-next-line:no-shadowed-variable
         return new Promise(( resolve, reject) => {

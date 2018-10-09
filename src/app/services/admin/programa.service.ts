@@ -51,10 +51,10 @@ export class ProgramaService  {
         return new Promise ((resolvedor, reject) => {
 
             const progs = [];
+            const observableBatch = [];
             const programasQueTienenAlUsuario = this.programas.filter((programa: Programa) => {
             return programa.colaboradores.includes(idDeUsuario);
             });
-            const observableBatch = [];
             if (programasQueTienenAlUsuario.length >= 0) {
                 programasQueTienenAlUsuario.forEach((programa: Programa) => {
                                     const index = programa.colaboradores.indexOf(idDeUsuario);
@@ -95,12 +95,12 @@ export class ProgramaService  {
         let url = URL_SERVICE + '/programa/' + programa._id;
         url += '?token=' + token;
        return this.http.put(url, programa).pipe(map((res) => {
-              return res;
               if ( <any>false) {
                 this.optenerProgramas().subscribe( (resp: any) => {
                     this.programas = resp.programas;
                 });
               }
+              return res;
             }));
     }
 

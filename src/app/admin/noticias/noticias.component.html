@@ -1,11 +1,13 @@
 <div class="row">
     <div class="col-md-10 ml-5 mt-5">
-        <img width="333" height="333" [src]=" 'default image' | imagen" alt="imagen de usuario" class=" mx-auto mr-3 rounded-circle">
+        <img *ngIf="!imagenTemp" #upload (click)="file.click()" [src]=" 'default'| imagen" alt="imagen de usuario" class="img-fluid mr-3 cambiar pointer">
+        <img *ngIf="imagenTemp" #upload (click)="file.click()" [src]="imagenTemp" alt="imagen de usuario" class="img-fluid mr-3 cambiar pointer">
+        <input #file type="file" accept="image/*" (change)="seleccionImagen( $event.target.files[0] )" hidden>
         <hr>
     </div>
     <div class="col-md-10 ml-5 mt-5">
 
-        <form ngNativeValidate [formGroup]="forma">
+        <form ngNativeValidate [formGroup]="forma" #f="ngForm" (ngSubmit)="onSubmit(f.value)">
 
             <mat-form-field class="w-100 p-2">
                 <input formControlName="titulo" type="text" required matInput placeholder="Titulo">
@@ -15,15 +17,15 @@
                 <input formControlName="resumen" type="text" required matInput placeholder="Resumen">
             </mat-form-field>
 
-            <mat-form-field class="w-100 p-2">
-                <textarea formControlName="contenido" type="text" required matInput placeholder="Contenido"></textarea>
-            </mat-form-field>
+
+            <ngx-wig formControlName="contenido" [content]="" [placeholder]="'Describe el evento....'"></ngx-wig>
+
 
             <mat-form-field class="w-100 p-2">
                 <input formControlName="tags" type="text" required matInput placeholder="tags">
             </mat-form-field>
 
-            <button class="w-100 p-2" mat-raised-button color="primary">Actualizar Noticia</button>
+            <button class="w-100 p-2" mat-raised-button color="primary">Crear Noticia</button>
 
         </form>
     </div>

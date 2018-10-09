@@ -30,8 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Angular Material Module
 import { AngularMaterialModule } from '../angular-material.module';
 
+// Editor
 
-
+import { NgxWigModule } from 'ngx-wig';
 
 @NgModule({
     declarations: [
@@ -55,7 +56,8 @@ import { AngularMaterialModule } from '../angular-material.module';
          FormsModule,
          ReactiveFormsModule,
          AngularMaterialModule,
-         PipesModule
+         PipesModule,
+         NgxWigModule
          ],
     exports: [],
     providers: [],
