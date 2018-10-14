@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ProgramaService } from 'src/app/services/admin/programa.service';
 import { MatSnackBar } from '@angular/material';
+import { Noticia } from '../../modelos/noticia.modelo';
+import { NoticiaService } from '../../services/admin/noticia.service';
 
 @Component({
   selector: 'app-noticias',
@@ -19,6 +21,8 @@ export class NoticiasComponent implements OnInit {
   constructor(public router: Router,
               public fb: FormBuilder,
               public _programaService: ProgramaService,
+              public _noticiaService: NoticiaService,
+              public _usuarioService: UsuarioService,
               public snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -26,7 +30,7 @@ export class NoticiasComponent implements OnInit {
       titulo: [ '', [
         Validators.required
       ]],
-      resumen: [ '', [
+      resume: [ '', [
         Validators.required
       ]],
       contenido: [ '', [
@@ -38,11 +42,17 @@ export class NoticiasComponent implements OnInit {
     });
   }
 
-  onSubmit(value) {
+  onSubmit(form) {
+    const value = form.value;
     if (this.imagenSubir !== undefined) {
 
       this.subirImagen().then((res: any) => {
-
+        const date = new Date();
+        const noticia = new Noticia(value.titulo, value.resume, value.contenido, value.tags, res.img, date );
+        this._noticiaService.crearNoticia(noticia, this._usuarioService.token).subscribe((data) => {
+          console.log('DATA', data);
+        });
+        form.reset();
       }).catch((err) => console.log(err));
     } else {
       console.log('Imagen no definida');
