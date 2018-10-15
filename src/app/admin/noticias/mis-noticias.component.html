@@ -22,7 +22,7 @@
                     <td>{{ noticia.resume }}</td>
                     <td>{{ noticia.date | date: 'dd-MM-yyyy'}}</td>
                     <td><i (click)="eraseNotica( noticia._id )" class="fas fa-trash-alt text-danger pointer"></i></td>
-                    <td><i (click)="updateNoticia( noticia._id )" class="far fa-edit text-success pointer"></i></td>
+                    <td><i [routerLink]="['../detalle_noticia', noticia._id]" class="far fa-edit text-success pointer"></i></td>
                 </tr>
             </tbody>
         </table>

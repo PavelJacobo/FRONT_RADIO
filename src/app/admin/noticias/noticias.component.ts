@@ -50,7 +50,7 @@ export class NoticiasComponent implements OnInit {
         const date = new Date();
         const _id = this._usuarioService.usuario._id;
         const noticia = new Noticia(value.titulo, value.resume, value.contenido, value.tags, res.img, _id, date );
-        this._noticiaService.crearNoticia( noticia, this._usuarioService.token ).subscribe((data) => {
+        this._noticiaService.crearNoticia( noticia).subscribe((data) => {
           console.log('DATA', data);
         });
         form.reset();

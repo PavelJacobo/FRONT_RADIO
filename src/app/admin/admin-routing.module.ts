@@ -8,6 +8,7 @@ import { ProgramacionComponent } from './programacion/programacion.component';
 import { PerfilProgramaComponent } from './perfil-programa/perfil-programa.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MisNoticiasComponent } from './noticias/mis-noticias.component';
+import { DetalleNoticiaComponent } from './noticias/detalle-noticia.component';
 
 const routes: Routes = [
     {
@@ -43,6 +44,11 @@ const routes: Routes = [
                 path: 'mis_noticias',
                 component: MisNoticiasComponent,
                 data: { titulo: 'Mis Noticias'}
+            },
+            {
+                path: 'detalle_noticia/:id',
+                component: DetalleNoticiaComponent,
+                data: { titulo: 'Mi Noticia'}
             },
             {
                 path: 'ocupacion',

@@ -17,6 +17,8 @@ import { OcupacionLocalComponent } from './ocupacion-local/ocupacion-local.compo
 import { ProgramacionComponent } from './programacion/programacion.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GestionProgramasComponent } from './gestion-programas/gestion-programas.component';
+import { MisNoticiasComponent } from './noticias/mis-noticias.component';
+import { DetalleNoticiaComponent } from './noticias/detalle-noticia.component';
 
 // Custom Module
 import { PipesModule } from '../pipes/pipes.module';
@@ -31,9 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angular-material.module';
 
 // Editor
-
 import { NgxWigModule } from 'ngx-wig';
-import { MisNoticiasComponent } from './noticias/mis-noticias.component';
+
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import { MisNoticiasComponent } from './noticias/mis-noticias.component';
         ProgramacionComponent,
         DashboardComponent,
         GestionProgramasComponent,
-        MisNoticiasComponent
+        MisNoticiasComponent,
+        DetalleNoticiaComponent
     ],
     imports: [
          CommonModule,

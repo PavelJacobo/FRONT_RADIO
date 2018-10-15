@@ -18,18 +18,14 @@ export class MisNoticiasComponent implements OnInit {
   }
 
   eraseNotica(id) {
-    this._noticiaService.removeNoticia(id, this._usuarioService.token).subscribe((res: any) => {
+    this._noticiaService.removeNoticia(id).subscribe((res: any) => {
       this.getMisNoticias();
     });
   }
 
-  updateNoticia (id) {
-
-  }
-
   getMisNoticias() {
 
-    this._noticiaService.getUsersNoticias(this._usuarioService.usuario._id, this._usuarioService.token)
+    this._noticiaService.getUsersNoticias()
      .subscribe((noticias: any) => {
        this.noticias = noticias;
        console.log(this.noticias);
