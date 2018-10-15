@@ -48,8 +48,9 @@ export class NoticiasComponent implements OnInit {
 
       this.subirImagen().then((res: any) => {
         const date = new Date();
-        const noticia = new Noticia(value.titulo, value.resume, value.contenido, value.tags, res.img, date );
-        this._noticiaService.crearNoticia(noticia, this._usuarioService.token).subscribe((data) => {
+        const _id = this._usuarioService.usuario._id;
+        const noticia = new Noticia(value.titulo, value.resume, value.contenido, value.tags, res.img, _id, date );
+        this._noticiaService.crearNoticia( noticia, this._usuarioService.token ).subscribe((data) => {
           console.log('DATA', data);
         });
         form.reset();
@@ -75,8 +76,8 @@ export class NoticiasComponent implements OnInit {
 
     if ( archivo.type.indexOf('image') < 0 ) {
       Swal('Solo imágenes', 'El archivo seleccionado no es una imagen', 'error');
-      return;
       this.imagenSubir = null;
+      return;
     }
 
     this.imagenSubir = archivo;

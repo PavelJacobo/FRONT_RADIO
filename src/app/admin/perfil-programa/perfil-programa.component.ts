@@ -24,15 +24,16 @@ export class PerfilProgramaComponent implements OnInit {
   ngOnInit() {
     this.usuario = this._usuarioService.usuario;
     this.programas = this._programaService.programas;
-    this.getProgramasDelUsuario();
+      if (this.programas) {
+        console.log(this.programas);
+        this.getProgramasDelUsuario();
+      }
    }
 
    getProgramasDelUsuario() {
-     if (this.programas) {
       this.programasDeUsuario = this.programas.filter((programa) => {
         return programa.colaboradores.includes(this.usuario._id);
       });
-     }
      console.log(this.programasDeUsuario);
    }
 

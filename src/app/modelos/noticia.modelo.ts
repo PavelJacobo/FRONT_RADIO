@@ -5,6 +5,8 @@ export class Noticia {
                public contenido: string,
                public tags: string,
                public img: string,
-               public date: Date
+               public author: string,
+               public date: Date,
+               public _id?: string
                ) {}
 }

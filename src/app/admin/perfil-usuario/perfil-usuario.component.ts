@@ -81,8 +81,8 @@ export class PerfilUsuarioComponent implements OnInit {
 
     if ( archivo.type.indexOf('image') < 0 ) {
       Swal('Solo imágenes', 'El archivo seleccionado no es una imagen', 'error');
-      return;
       this.imagenSubir = null;
+      return;
     }
 
     this.imagenSubir = archivo;

@@ -33,6 +33,7 @@ import { AngularMaterialModule } from '../angular-material.module';
 // Editor
 
 import { NgxWigModule } from 'ngx-wig';
+import { MisNoticiasComponent } from './noticias/mis-noticias.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ import { NgxWigModule } from 'ngx-wig';
         OcupacionLocalComponent,
         ProgramacionComponent,
         DashboardComponent,
-        GestionProgramasComponent
+        GestionProgramasComponent,
+        MisNoticiasComponent
     ],
     imports: [
          CommonModule,

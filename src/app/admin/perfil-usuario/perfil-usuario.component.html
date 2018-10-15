@@ -8,7 +8,7 @@
 
             <mat-form-field class="w-100 p-2">
                 <mat-select formControlName="programas" placeholder="Colaborando en..." [compareWith]="compareWithFunc" multiple>
-                    <mat-option selected *ngFor="let programa of _programaService.programas; let i=index" [value]="programa._id">{{ programa.nombre }}</mat-option>
+                    <mat-option selected="selected" *ngFor="let programa of _programaService.programas; let i=index" [value]="programa._id">{{ programa.nombre }}</mat-option>
                 </mat-select>
             </mat-form-field>
 
@@ -27,4 +27,19 @@
         <hr>
     </div>
 
+</div>
+
+<div class="row pt-5">
+    <div class="col-md-12 text-center">
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary" routerLink="../mis_noticias">
+                <input type="radio" name="options"> Mis Noticias
+            </label>
+            <label class="btn btn-secondary" routerLink='../perfil_programa'>
+                <input type="radio" name="options"> Mis Programas
+            </label>
+        </div>
+
+    </div>
 </div>

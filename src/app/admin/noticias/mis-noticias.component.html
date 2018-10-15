@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-me-6 pt-5 ml-auto mr-auto">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Resumen</th>
+                    <th scope="col">Fecha</th>
+                    <th class="text-danger">Borrar</th>
+                    <th class="text-success">Editar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let noticia of noticias; let i = index">
+                    <th scope="row">{{ i }}</th>
+                    <td>
+                        <img [src]="noticia.img | imagen: 'programa' " class="img img-fluid img-thumbnail " style="max-width: 35px;">
+                    </td>
+                    <td>{{ noticia.titulo }}</td>
+                    <td>{{ noticia.resume }}</td>
+                    <td>{{ noticia.date | date: 'dd-MM-yyyy'}}</td>
+                    <td><i (click)="eraseNotica( noticia._id )" class="fas fa-trash-alt text-danger pointer"></i></td>
+                    <td><i (click)="updateNoticia( noticia._id )" class="far fa-edit text-success pointer"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

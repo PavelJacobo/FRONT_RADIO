@@ -94,8 +94,8 @@ export class GestionProgramasComponent implements OnInit {
 
     if ( archivo.type.indexOf('image') < 0 ) {
       Swal('Solo imágenes', 'El archivo seleccionado no es una imagen', 'error');
-      return;
       this.imagenSubir = null;
+      return;
     }
 
     this.imagenSubir = archivo;
@@ -176,13 +176,8 @@ export class GestionProgramasComponent implements OnInit {
           this.fechas,
           res.img
         );
-        // programa.colaboradores = [];
-        // programa.fecha = [];
-        // programa.colaboradores.push(this._usuarioService.usuario._id);
-        // programa.img = res.img;
-        // programa.fecha.push(this.fechas);
         console.log(prog);
-        this.crear.emit(programa);
+        this.crear.emit(prog);
         this.imagenTemp = null;
         this.fechas = [];
         programa = null;

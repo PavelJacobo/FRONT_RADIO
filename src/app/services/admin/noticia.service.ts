@@ -8,12 +8,30 @@ import { map } from 'rxjs/internal/operators/map';
 })
 export class NoticiaService {
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {
+
+   }
 
   crearNoticia(noticia: Noticia, token) {
     let url = URL_SERVICE + '/noticia';
     url += '?token=' + token;
     return this.http.post(url, noticia).pipe(map((res) => {
+      return res;
+    }));
+  }
+
+  getUsersNoticias(id, token) {
+    let url = URL_SERVICE + '/noticia/' + id;
+    url += '?token=' + token;
+    return this.http.get(url).pipe(map((res: any) => {
+      return res.noticias;
+    }));
+  }
+
+  removeNoticia(id, token) {
+    let url = URL_SERVICE + '/noticia/' + id;
+    url += '?token=' + token;
+    return this.http.delete(url).pipe(map((res: any) => {
       return res;
     }));
   }

@@ -7,16 +7,8 @@ import { OcupacionLocalComponent } from './ocupacion-local/ocupacion-local.compo
 import { ProgramacionComponent } from './programacion/programacion.component';
 import { PerfilProgramaComponent } from './perfil-programa/perfil-programa.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MisNoticiasComponent } from './noticias/mis-noticias.component';
 
-// const routes: Routes = [
-//     { path: '', component: AdminComponent },
-//     { path: '**', component: DashboardComponent },
-//     { path: 'noticias', component: NoticiasComponent },
-//     { path: 'perfil', component: PerfilUsuarioComponent },
-//     { path: 'perfil_programa', component: PerfilProgramaComponent },
-//     { path: 'programacion', component: ProgramacionComponent },
-//     { path: 'reservar', component: OcupacionLocalComponent }
-// ];
 const routes: Routes = [
     {
         path: '',
@@ -46,6 +38,11 @@ const routes: Routes = [
                 path: 'perfil_programa',
                 component: PerfilProgramaComponent,
                 data: { titulo: 'Perfil Programa'}
+            },
+            {
+                path: 'mis_noticias',
+                component: MisNoticiasComponent,
+                data: { titulo: 'Mis Noticias'}
             },
             {
                 path: 'ocupacion',
