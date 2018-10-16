@@ -35,6 +35,9 @@ import { AngularMaterialModule } from '../angular-material.module';
 // Editor
 import { NgxWigModule } from 'ngx-wig';
 
+// FROALA
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+
 
 @NgModule({
     declarations: [
@@ -61,7 +64,8 @@ import { NgxWigModule } from 'ngx-wig';
          ReactiveFormsModule,
          AngularMaterialModule,
          PipesModule,
-         NgxWigModule
+         NgxWigModule,
+         FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
          ],
     exports: [],
     providers: [],

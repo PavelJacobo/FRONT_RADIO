@@ -15,7 +15,7 @@ import { NoticiaService } from '../../services/admin/noticia.service';
 })
 export class NoticiasComponent implements OnInit {
 
-  forma: FormGroup;
+  public forma: FormGroup;
   public imagenSubir: File;
   public imagenTemp: string | ArrayBuffer | null;
   constructor(public router: Router,

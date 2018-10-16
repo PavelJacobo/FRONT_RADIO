@@ -1,3 +1,25 @@
 <div class="row">
+    <div class="col-md-10 ml-auto mr-auto">
+        <form ngNativeValidate [formGroup]="forma" #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+            <mat-form-field class="w-100 p-2">
+                <input formControlName="titulo" type="text" required matInput placeholder="Titulo">
+            </mat-form-field>
+
+            <mat-form-field class="w-100 p-2">
+                <input formControlName="resume" type="text" required matInput placeholder="Resumen">
+            </mat-form-field>
+
+            <textarea formControlName="contenido" [froalaEditor]='options' [(froalaModel)]="getContenido"></textarea>
+
+
+            <mat-form-field class="w-100 p-2">
+                <input formControlName="tags" type="text" required matInput placeholder="tags">
+            </mat-form-field>
+
+            <button class="w-100 p-2" mat-raised-button color="primary">Actualizar Noticia</button>
+
+        </form>
+    </div>
 
 </div>
