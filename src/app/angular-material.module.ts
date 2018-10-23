@@ -8,7 +8,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
-
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   imports: [
     MatFormFieldModule,
@@ -19,7 +19,8 @@ import { MatNativeDateModule } from '@angular/material';
     MatChipsModule,
     MatSnackBarModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule
 
   ],
   exports: [
@@ -31,7 +32,8 @@ import { MatNativeDateModule } from '@angular/material';
     MatChipsModule,
     MatSnackBarModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatIconModule
 
   ],
   declarations: []

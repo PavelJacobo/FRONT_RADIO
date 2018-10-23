@@ -7,6 +7,13 @@ import { ProgramaService } from 'src/app/services/admin/programa.service';
 import { MatSnackBar } from '@angular/material';
 import { Noticia } from '../../modelos/noticia.modelo';
 import { NoticiaService } from '../../services/admin/noticia.service';
+// MATCHIPS
+import { COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material';
+
+export interface Fruit {
+  name: string;
+}
 
 @Component({
   selector: 'app-noticias',
@@ -15,9 +22,16 @@ import { NoticiaService } from '../../services/admin/noticia.service';
 })
 export class NoticiasComponent implements OnInit {
 
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
   public forma: FormGroup;
   public imagenSubir: File;
   public imagenTemp: string | ArrayBuffer | null;
+  public tagArray = [];
   constructor(public router: Router,
               public fb: FormBuilder,
               public _programaService: ProgramaService,
@@ -49,7 +63,7 @@ export class NoticiasComponent implements OnInit {
       this.subirImagen().then((res: any) => {
         const date = new Date();
         const _id = this._usuarioService.usuario._id;
-        const noticia = new Noticia(value.titulo, value.resume, value.contenido, value.tags, res.img, _id, date );
+        const noticia = new Noticia(value.titulo, value.resume, value.contenido, this.tagArray , res.img, _id, date );
         this._noticiaService.crearNoticia( noticia).subscribe((data) => {
           console.log('DATA', data);
         });
@@ -89,10 +103,32 @@ export class NoticiasComponent implements OnInit {
 
   subirImagen() {
     if (this.imagenSubir !== undefined) {
-      return this._programaService.subirImagen(this.imagenSubir);
+      return this._programaService.subirImagen(this.imagenSubir, 'noticia');
     } else {
       console.log('La imagen no está definida');
       return;
+    }
+  }
+
+  addTag(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.tagArray.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removeTag(tag: string): void {
+    const index = this.tagArray.indexOf(tag);
+    if (index >= 0) {
+      this.tagArray.splice(index, 1);
     }
   }
 

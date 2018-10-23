@@ -112,7 +112,7 @@ export class GestionProgramasComponent implements OnInit {
 
   subirImagen() {
     if (this.imagenSubir !== undefined) {
-      return this._programaService.subirImagen(this.imagenSubir);
+      return this._programaService.subirImagen(this.imagenSubir, 'programa');
     } else {
       console.log('La imagen no está definida');
       return;

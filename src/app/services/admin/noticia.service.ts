@@ -49,4 +49,12 @@ export class NoticiaService {
       return res;
     }));
   }
+
+  updateNoticia(noticia) {
+    let url = URL_SERVICE + '/noticia/' + noticia._id;
+    url += '?token=' + this.token;
+    return this.http.put(url, noticia).pipe(map((res: any) => {
+      return res;
+    }));
+  }
 }

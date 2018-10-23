@@ -130,11 +130,11 @@ export class ProgramaService  {
        return this._adminService.subirArchivo( archivo, coleccion , id );
        }
 
-    subirImagen( archivo: File ) {
+    subirImagen( archivo: File, tipo: string ) {
         if (!archivo || archivo === undefined ) {
             return;
         }
-        return this._adminService.subirImagen(archivo);
+        return this._adminService.subirImagen(archivo, tipo);
     }
 
 

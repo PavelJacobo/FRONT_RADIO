@@ -42,7 +42,7 @@ export class AdminService {
         });
       }
 
-      subirImagen( archivo: File ) {
+      subirImagen( archivo: File, tipo: string ) {
         return new Promise(( resolve, reject) => {
         const formData = new FormData();
         const xhr = new XMLHttpRequest();
@@ -59,7 +59,7 @@ export class AdminService {
             }
           }
         };
-        const url = URL_SERVICE + '/upload/imagen';
+        const url = URL_SERVICE + '/upload/imagen?tipo=' + tipo;
             xhr.open('POST', url, true);
             xhr.send( formData );
       });

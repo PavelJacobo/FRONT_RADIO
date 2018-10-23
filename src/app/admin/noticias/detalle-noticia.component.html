@@ -1,4 +1,12 @@
 <div class="row">
+    <div class="col-md-10 ml-5 mt-5 text-center">
+        <img *ngIf="!imagenTemp" #upload (click)="file.click()" [src]=" noticia?.img | imagen: 'noticia'" alt="imagen de usuario" class="img-fluid mr-3 cambiar pointer">
+        <img *ngIf="imagenTemp" #upload (click)="file.click()" [src]="imagenTemp" alt="imagen de usuario" class="img-fluid mr-3 cambiar pointer">
+        <input #file type="file" accept="image/*" (change)="seleccionImagen( $event.target.files[0] )" hidden>
+        <hr>
+    </div>
+</div>
+<div class="row">
     <div class="col-md-10 ml-auto mr-auto">
         <form ngNativeValidate [formGroup]="forma" #f="ngForm" (ngSubmit)="onSubmit(f)">
 
@@ -10,11 +18,17 @@
                 <input formControlName="resume" type="text" required matInput placeholder="Resumen">
             </mat-form-field>
 
-            <textarea formControlName="contenido" [froalaEditor]='options' [(froalaModel)]="getContenido"></textarea>
 
+            <ngx-wig formControlName="contenido"></ngx-wig>
 
-            <mat-form-field class="w-100 p-2">
-                <input formControlName="tags" type="text" required matInput placeholder="tags">
+            <mat-form-field class="example-chip-list w-100 p-2">
+                <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let tag of noticia?.tags" [selectable]="selectable" [removable]="removable" (removed)="removeTag(tag)">
+                        {{ tag }}
+                        <mat-icon matChipRemove *ngIf="removable"><i class="fas fa-times"></i></mat-icon>
+                    </mat-chip>
+                    <input placeholder="Tags..." [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addTag($event)">
+                </mat-chip-list>
             </mat-form-field>
 
             <button class="w-100 p-2" mat-raised-button color="primary">Actualizar Noticia</button>
@@ -23,3 +37,5 @@
     </div>
 
 </div>
+
+<!-- <textarea formControlName="contenido" [froalaEditor]='options' [(froalaModel)]="getContenido"></textarea> -->
