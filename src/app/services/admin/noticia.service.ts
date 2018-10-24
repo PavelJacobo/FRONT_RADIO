@@ -10,6 +10,8 @@ import { UsuarioService } from './usuario.service';
 })
 export class NoticiaService {
 
+
+  public noticias: Noticia[];
   private token: string;
   private userId: string;
   constructor(public http: HttpClient, public _usuarioService: UsuarioService) {
@@ -23,6 +25,13 @@ export class NoticiaService {
     url += '?token=' + this.token;
     return this.http.post(url, noticia).pipe(map((res) => {
       return res;
+    }));
+  }
+
+  getNoticias() {
+    const url = URL_SERVICE + '/noticia';
+    return this.http.get(url).pipe(map((res: any) => {
+      return res.noticias;
     }));
   }
 

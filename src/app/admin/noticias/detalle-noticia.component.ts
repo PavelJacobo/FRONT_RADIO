@@ -87,14 +87,23 @@ export class DetalleNoticiaComponent implements OnInit {
       this.subirImagen().then((res: any) => {
           this.noticia.img = res.img;
           this.noticia.titulo = this.forma.get('titulo').value;
-        this._noticiaService.updateNoticia(this.noticia).subscribe((data: any) => {
-          console.log(data);
-        });
-        form.reset();
+          this.noticia.contenido = this.forma.get('contenido').value;
+          this.noticia.resume = this.forma.get('resume').value;
+          console.log(this.noticia);
+          this._noticiaService.updateNoticia(this.noticia).subscribe((data: any) => {
+                        console.log(data);
+          });
+       // form.reset();
       }).catch((err) => console.log(err));
     } else {
-      console.log('Imagen no definida');
-      this.openSnackBar('Imagen no definida', 'Aceptar');
+
+          this.noticia.titulo = this.forma.get('titulo').value;
+          this.noticia.contenido = this.forma.get('contenido').value;
+          this.noticia.resume = this.forma.get('resume').value;
+          console.log(this.noticia);
+          this._noticiaService.updateNoticia(this.noticia).subscribe((data: any) => {
+                        console.log(data);
+          });
     }
   }
 

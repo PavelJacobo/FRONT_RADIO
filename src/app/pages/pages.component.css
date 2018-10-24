@@ -1,0 +1,18 @@
+main {
+    height: 100vh;
+    display: grid;
+    grid-template-areas: "nav" "section" "footer";
+    grid-template-rows: 1fr 8fr 1fr;
+}
+
+nav {
+    grid-area: nav;
+}
+
+section {
+    grid-area: section;
+}
+
+footer {
+    grid-area: footer;
+}

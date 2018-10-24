@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-8 bg-light">
+        <ng-container *ngIf="noticias">
+            <div class="card">
+                <img class="card-img-top img-fluid" [src]=" noticias[0].img | imagen: 'noticia'" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ noticias[0].titulo }}</h5>
+                    <p class="card-text">{{ noticias[0].resume}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+
+        </ng-container>
+
+    </div>
+    <div class="col-md-4 bg-dark">ASIDE</div>
+</div>

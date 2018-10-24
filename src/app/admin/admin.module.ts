@@ -4,10 +4,8 @@ import { AdminComponent } from './admin.components';
 import { AdminRoutingModule } from './admin-routing.module';
 
 // Shared Components
-import { SidebarComponent } from '../shared/sidebar/sidebar.component';
-import { NavbarComponent } from '../shared/navbar/navbar.component';
-import { FooterComponent } from '../shared/footer/footer.component';
-import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 // Custom Components
 import { NoticiasComponent } from './noticias/noticias.component';
@@ -39,13 +37,10 @@ import { NgxWigModule } from 'ngx-wig';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
+
 @NgModule({
     declarations: [
         AdminComponent,
-        SidebarComponent,
-        NavbarComponent,
-        FooterComponent,
-        BreadcrumbComponent,
         NoticiasComponent,
         PerfilUsuarioComponent,
         PerfilProgramaComponent,
@@ -65,6 +60,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
          AngularMaterialModule,
          PipesModule,
          NgxWigModule,
+         SharedModule,
          FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
          ],
     exports: [],

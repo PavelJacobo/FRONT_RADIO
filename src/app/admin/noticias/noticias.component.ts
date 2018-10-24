@@ -68,6 +68,8 @@ export class NoticiasComponent implements OnInit {
           console.log('DATA', data);
         });
         form.reset();
+        this.imagenTemp = null;
+        this.tagArray = [];
       }).catch((err) => console.log(err));
     } else {
       console.log('Imagen no definida');
