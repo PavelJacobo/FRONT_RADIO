@@ -7,6 +7,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { SharedModule } from '../shared/shared.module';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { DirectiveModule } from '../directives/directive.module';
+import { SharedComponentsModule } from '../sharedcomponents/shared.components.module';
 
 
 
@@ -21,6 +22,7 @@ import { DirectiveModule } from '../directives/directive.module';
         PagesRoutingModule,
         PipesModule,
         SharedModule,
+        SharedComponentsModule,
         DirectiveModule
      ],
     exports: [],

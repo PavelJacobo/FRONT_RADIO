@@ -35,8 +35,9 @@ import { NgxWigModule } from 'ngx-wig';
 // FROALA
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
-// Shared Modules
-import { SharedComponentsModule } from '../shared/components/shared.components.module';
+
+// Shared Components Module
+import { SharedComponentsModule } from '../sharedcomponents/shared.components.module';
 
 
 @NgModule({

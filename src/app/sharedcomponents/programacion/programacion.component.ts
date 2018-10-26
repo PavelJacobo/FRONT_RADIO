@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Programa, Evento } from '../../../modelos/modelo.index';
-import { ProgramaService } from '../../../services/admin/programa.service';
-import { Fecha } from '../../../interfaces/fecha.interface';
+import { Programa, Evento } from '../../modelos/modelo.index';
+import { ProgramaService } from '../../services/admin/programa.service';
+import { Fecha } from '../../interfaces/fecha.interface';
 
 @Component({
   selector: 'app-programacion',

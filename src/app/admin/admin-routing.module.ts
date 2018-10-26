@@ -8,7 +8,7 @@ import { PerfilProgramaComponent } from './perfil-programa/perfil-programa.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MisNoticiasComponent } from './noticias/mis-noticias.component';
 import { DetalleNoticiaComponent } from './noticias/detalle-noticia.component';
-
+import { ProgramacionComponent } from '../sharedcomponents/programacion/programacion.component';
 const routes: Routes = [
     {
         path: '',
@@ -56,7 +56,7 @@ const routes: Routes = [
             },
             {
                 path: 'programacion',
-                component: OcupacionLocalComponent,
+                component: ProgramacionComponent,
                 data: { titulo: 'Programación'}
             }
         ]
