@@ -6,7 +6,7 @@ export class Noticia {
                public tags: string[],
                public categoria: string,
                public img: string,
-               public author: string,
+               public author: any,
                public date: Date,
                public _id?: string
                ) {}

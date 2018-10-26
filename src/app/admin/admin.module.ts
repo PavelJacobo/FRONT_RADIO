@@ -12,7 +12,6 @@ import { NoticiasComponent } from './noticias/noticias.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { PerfilProgramaComponent } from './perfil-programa/perfil-programa.component';
 import { OcupacionLocalComponent } from './ocupacion-local/ocupacion-local.component';
-import { ProgramacionComponent } from './programacion/programacion.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GestionProgramasComponent } from './gestion-programas/gestion-programas.component';
 import { MisNoticiasComponent } from './noticias/mis-noticias.component';
@@ -36,6 +35,8 @@ import { NgxWigModule } from 'ngx-wig';
 // FROALA
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
+// Shared Modules
+import { SharedComponentsModule } from '../shared/components/shared.components.module';
 
 
 @NgModule({
@@ -45,7 +46,6 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
         PerfilUsuarioComponent,
         PerfilProgramaComponent,
         OcupacionLocalComponent,
-        ProgramacionComponent,
         DashboardComponent,
         GestionProgramasComponent,
         MisNoticiasComponent,
@@ -61,6 +61,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
          PipesModule,
          NgxWigModule,
          SharedModule,
+         SharedComponentsModule,
          FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
          ],
     exports: [],

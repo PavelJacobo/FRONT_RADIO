@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 import { OcupacionLocalComponent } from './ocupacion-local/ocupacion-local.component';
-import { ProgramacionComponent } from './programacion/programacion.component';
 import { PerfilProgramaComponent } from './perfil-programa/perfil-programa.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MisNoticiasComponent } from './noticias/mis-noticias.component';
@@ -57,7 +56,7 @@ const routes: Routes = [
             },
             {
                 path: 'programacion',
-                component: ProgramacionComponent,
+                component: OcupacionLocalComponent,
                 data: { titulo: 'Programación'}
             }
         ]

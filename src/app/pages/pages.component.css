@@ -1,7 +1,7 @@
  main {
      display: grid;
      grid-template-areas: "nav" "section" "footer";
-     grid-template-rows: 1fr 8fr 1fr;
+     grid-template-rows: 100px 8fr 1fr;
      background-color: rgb(239, 239, 239);
  }
  
