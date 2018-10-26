@@ -11,8 +11,10 @@ import { NoticiaService } from '../../services/admin/noticia.service';
 import { COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
 
-export interface Fruit {
-  name: string;
+
+export interface Categoria {
+  value: string;
+  viewValue: string;
 }
 
 @Component({
@@ -21,6 +23,12 @@ export interface Fruit {
   styleUrls: ['./noticias.component.css']
 })
 export class NoticiasComponent implements OnInit {
+
+  public categorias: Categoria[] = [
+    {value: 'noticia', viewValue: 'Noticia'},
+    {value: 'actividad',  viewValue: 'Actividad'},
+    {value: 'opinion', viewValue: 'Opinión'}
+  ];
 
   visible = true;
   selectable = true;
@@ -53,17 +61,22 @@ export class NoticiasComponent implements OnInit {
       tags: [ '', [
         Validators.required
       ]],
+      categoria: [ '', [
+        Validators.required
+      ]],
     });
   }
 
   onSubmit(form) {
     const value = form.value;
-    if (this.imagenSubir !== undefined) {
+    console.log(form);
+    console.log(value);
+     if (this.imagenSubir !== undefined) {
 
       this.subirImagen().then((res: any) => {
         const date = new Date();
         const _id = this._usuarioService.usuario._id;
-        const noticia = new Noticia(value.titulo, value.resume, value.contenido, this.tagArray , res.img, _id, date );
+        const noticia = new Noticia(value.titulo, value.resume, value.contenido, this.tagArray , value.categoria, res.img, _id, date );
         this._noticiaService.crearNoticia( noticia).subscribe((data) => {
           console.log('DATA', data);
         });

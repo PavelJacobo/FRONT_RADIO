@@ -21,6 +21,17 @@
 
             <ngx-wig formControlName="contenido"></ngx-wig>
 
+            <ng-container *ngIf="noticia">
+                <mat-form-field class="w-100 p-2">
+                    <mat-select placeholder="Categoría" formControlName="categoria" [(value)]="noticia.categoria">
+                        <mat-option required *ngFor="let categoria of categorias" [value]="categoria.value">
+                            {{ categoria.viewValue }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ng-container>
+
+
             <mat-form-field class="example-chip-list w-100 p-2">
                 <mat-chip-list #chipList>
                     <mat-chip *ngFor="let tag of noticia?.tags" [selectable]="selectable" [removable]="removable" (removed)="removeTag(tag)">

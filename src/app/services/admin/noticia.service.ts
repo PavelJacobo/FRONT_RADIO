@@ -28,8 +28,8 @@ export class NoticiaService {
     }));
   }
 
-  getNoticias() {
-    const url = URL_SERVICE + '/noticia';
+  getNoticias(tipo) {
+    const url = URL_SERVICE + '/noticia/tipo/' + tipo;
     return this.http.get(url).pipe(map((res: any) => {
       return res.noticias;
     }));

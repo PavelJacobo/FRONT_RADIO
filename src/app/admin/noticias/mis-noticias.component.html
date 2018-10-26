@@ -8,6 +8,7 @@
                     <th scope="col">Titulo</th>
                     <th scope="col">Resumen</th>
                     <th scope="col">Fecha</th>
+                    <th scope="col">Categoría</th>
                     <th class="text-danger">Borrar</th>
                     <th class="text-success">Editar</th>
                 </tr>
@@ -21,6 +22,7 @@
                     <td>{{ noticia.titulo }}</td>
                     <td>{{ noticia.resume }}</td>
                     <td>{{ noticia.date | date: 'dd-MM-yyyy'}}</td>
+                    <td>{{ noticia.categoria }}</td>
                     <td><i (click)="eraseNotica( noticia._id )" class="fas fa-trash-alt text-danger pointer"></i></td>
                     <td><i [routerLink]="['../detalle_noticia', noticia._id]" class="far fa-edit text-success pointer"></i></td>
                 </tr>

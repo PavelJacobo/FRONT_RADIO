@@ -4,6 +4,7 @@ export class Noticia {
                public resume: string,
                public contenido: string,
                public tags: string[],
+               public categoria: string,
                public img: string,
                public author: string,
                public date: Date,

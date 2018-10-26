@@ -11,12 +11,23 @@ import { MatSnackBar } from '@angular/material';
 import { COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material';
 
+export interface Categoria {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-detalle-noticia',
   templateUrl: './detalle-noticia.component.html',
   styles: []
 })
 export class DetalleNoticiaComponent implements OnInit {
+
+  public categorias: Categoria[] = [
+    {value: 'noticia', viewValue: 'Noticia'},
+    {value: 'actividad',  viewValue: 'Actividad'},
+    {value: 'opinion', viewValue: 'Opinión'}
+  ];
 
   public tagArray = [];
   visible = true;
@@ -59,6 +70,7 @@ export class DetalleNoticiaComponent implements OnInit {
       this.forma.controls['contenido'].setValue(noticia.contenido);
       this.forma.controls['resume'].setValue(noticia.resume);
       this.forma.controls['tags'].setValue(noticia.tags);
+      this.forma.controls['categoria'].setValue(noticia.categoria);
       console.log(this.noticia);
     });
 
@@ -75,6 +87,9 @@ export class DetalleNoticiaComponent implements OnInit {
         tags: [ '', [
           Validators.required
         ]],
+        categoria: [ '', [
+          Validators.required
+        ]],
       });
 
 
@@ -82,6 +97,7 @@ export class DetalleNoticiaComponent implements OnInit {
 
   onSubmit(form) {
     const value = form.value;
+    console.log(form.value);
     if (this.imagenSubir !== undefined) {
 
       this.subirImagen().then((res: any) => {
@@ -89,7 +105,6 @@ export class DetalleNoticiaComponent implements OnInit {
           this.noticia.titulo = this.forma.get('titulo').value;
           this.noticia.contenido = this.forma.get('contenido').value;
           this.noticia.resume = this.forma.get('resume').value;
-          console.log(this.noticia);
           this._noticiaService.updateNoticia(this.noticia).subscribe((data: any) => {
                         console.log(data);
           });
@@ -163,5 +178,6 @@ export class DetalleNoticiaComponent implements OnInit {
       this.noticia.tags.splice(index, 1);
     }
   }
+
 
 }

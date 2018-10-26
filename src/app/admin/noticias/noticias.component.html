@@ -17,8 +17,15 @@
                 <input formControlName="resume" type="text" required matInput placeholder="Resumen">
             </mat-form-field>
 
-
             <ngx-wig formControlName="contenido" [placeholder]="'Describe el evento....'"></ngx-wig>
+
+            <mat-form-field class="w-100 p-2">
+                <mat-select placeholder="Categoría" formControlName="categoria">
+                    <mat-option required *ngFor="let categoria of categorias" [value]="categoria.value">
+                        {{ categoria.viewValue }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
             <mat-form-field class="example-chip-list">
                 <mat-chip-list #chipList>

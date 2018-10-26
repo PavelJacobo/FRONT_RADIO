@@ -1,18 +1,119 @@
-main {
-    height: 100vh;
-    display: grid;
-    grid-template-areas: "nav" "section" "footer";
-    grid-template-rows: 1fr 8fr 1fr;
-}
+ main {
+     display: grid;
+     grid-template-areas: "nav" "section" "footer";
+     grid-template-rows: 1fr 8fr 1fr;
+     background-color: rgb(239, 239, 239);
+ }
+ 
+ nav {
+     grid-area: nav;
+ }
+ 
+ section {
+     grid-area: section;
+ }
+ 
+ footer {
+     grid-area: footer;
+ }
+ /*
+ TODO: estilos con css sin flexbox
 
-nav {
-    grid-area: nav;
-}
+ aside,
+ section,
+ footer {
+     width: 100%;
+     float: left;
+ }
 
-section {
-    grid-area: section;
-}
+ header {
+     width: 100%;
+     background-color: #f00;
+     z-index: 5;
+ }
 
-footer {
-    grid-area: footer;
-}
+ aside {}
+
+ section {
+     background-color: #f0f;
+     z-index: -1;
+     height: 100vh;
+     margin-top: -100px;
+     overflow: hidden;
+     padding-top: 100px;
+ }
+
+ footer {
+     background-color: #0f0;
+     position: absolute;
+     height: 100px;
+     color: #FFF;
+     top: 100%;
+     margin-top: -100px;
+ }*/
+ /* header {
+     background-color: #f00;
+ }
+
+ .miCont {
+     background-color: aliceblue;
+     height: 100%;
+ }
+
+ aside {
+     background-color: chartreuse;
+     width: 30%;
+ }
+
+ article {
+     background-color: #f0f;
+     width: 70%;
+ }
+
+ footer {
+     background-color: rgb(11, 141, 201);
+ }
+
+ @media( max-width: 768px) {
+     aside,
+     article {
+         width: 100%;
+     }
+     article {
+         flex-grow: 1;
+     }
+ } */
+ /* main {
+     height: 100vh;
+     display: grid;
+     grid-template-areas: "nav" "contenido" "aside" "footer";
+     grid-template-rows: 1fr 6fr 1fr;
+ }
+
+ nav {
+     grid-area: nav;
+     background-color: aqua;
+ }
+
+ aside {
+     grid-area: aside;
+     background-color: blueviolet;
+ }
+
+ section {
+     grid-area: contenido;
+     background-color: cadetblue;
+ }
+
+ footer {
+     grid-area: footer;
+     background-color: yellowgreen;
+ }
+
+ @media (min-width: 548px) {
+     main {
+         grid-template-areas: "nav nav" "aside contenido" "footer footer";
+         grid-template-columns: 1fr 6fr;
+         grid-template-rows: 1fr 18fr 1fr;
+     }
+ }*/

@@ -1,8 +1,10 @@
 <main>
     <nav>
         <app-nav-page-module></app-nav-page-module>
+
     </nav>
     <div class="container">
+        <app-breadcrumb class="mb-5 pb-5"></app-breadcrumb>
         <section>
             <router-outlet></router-outlet>
         </section>
@@ -12,3 +14,62 @@
         <app-footer></app-footer>
     </footer>
 </main>
+
+<!--
+   TODO: estilos con css sin flexbox
+
+<header>
+    <h2>Soy un header</h2>
+</header>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3" style=" background-color: burlywood">
+            <aside>
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </aside>
+        </div>
+        <div class="col-md-9" style=" background-color: blue">
+            <section>
+                <h1>Section</h1>
+            </section>
+        </div>
+    </div>
+</div>
+<footer>
+    <h2>Footer</h2>
+</footer>
+-->
+
+<!-- TODO: CON FLEXBOX-->
+<!--<div class="d-flex flex-column " style="height: 100%;">
+    <header>soy header</header>
+    <div class="miCont d-inline-flex flex-column flex-md-row align-content-stretch">
+        <aside class="order-1 order-md-0">soy aside</aside>
+        <article class="order-0 order-md-1 align-content-stretch"> soy articulo</article>
+    </div>
+    <footer class="mt-auto">
+        <h2>Soy pie</h2>
+    </footer>
+
+</div>-->
+
+<!--<main>
+    <nav>
+        <h1>nav</h1>
+    </nav>
+    <aside>
+        <h2>Aside</h2>
+    </aside>
+    <section>
+        <h2>Section</h2>
+    </section>
+    <footer>
+        <h3>Footer</h3>
+    </footer>
+</main> -->
