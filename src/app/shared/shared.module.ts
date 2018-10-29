@@ -7,6 +7,7 @@ import { NavPageModuleComponent } from './nav-page-module/nav-page-module.compon
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DetallePublicoNoticiaComponent } from '../sharedcomponents/detalle-publico-noticia/detalle-publico-noticia.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     FooterComponent,
     NavPageModuleComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    DetallePublicoNoticiaComponent
   ],
   imports: [
     CommonModule,

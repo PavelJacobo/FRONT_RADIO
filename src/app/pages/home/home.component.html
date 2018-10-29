@@ -1,72 +1,95 @@
-<div class="row">
-    <div class="col-md-8 bg-light pt-3 pb-3">
-        <ng-container *ngIf="noticias">
-            <div class="card">
-                <div class="text-center" style="overflow: hidden; max-height: 400px;">
-                    <img class="card-img-top img-fluid" [src]=" noticias[0].img | imagen: 'noticia'" alt="Card image cap">
-                </div>
+<ng-container *ngIf="noticias">
+    <div class="row">
+        <div class="col-md-8 bg-light pt-3 pb-3">
+            <div class="row">
+                <div class="col-md-12">
 
-                <div class="card-body">
-                    <h5 class="card-title font-weight-bold h2">{{ noticias[0].titulo }}</h5>
-                    <p class="card-text">{{ noticias[0].resume}}</p>
-                    <p class="card-text"><small class="text-muted">{{ noticias[0].author.nombre }} - {{ noticias[0].date | date: 'HH:mm'}}</small></p>
-                </div>
-            </div>
-
-        </ng-container>
-
-    </div>
-    <div class="col-md-4 bg-light pt-3 pb-3">
-        <div class="row">
-            <div class="col-md-12 pt-1 pb-1">
-                <ng-container *ngIf="noticias">
                     <div class="card">
                         <div class="text-center" style="overflow: hidden; max-height: 400px;">
-                            <img class="card-img-top img-fluid" [src]=" noticias[1].img | imagen: 'noticia'" alt="Card image cap">
+                            <img class="card-img-top img-fluid" [src]=" noticias[0].img | imagen: 'noticia'" alt="Card image cap">
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title">{{ noticias[1].titulo }}</h5>
-                            <p class="card-text">{{ noticias[1].resume}}</p>
-                            <p class="card-text"><small class="text-muted">{{ noticias[1].author.nombre }} - {{ noticias[1].date | date: 'HH:mm'}}</small></p>
+                            <h5 class="card-title font-weight-bold h2">{{ noticias[0].titulo }}</h5>
+                            <p class="card-text">{{ noticias[0].resume}}</p>
+                            <p class="card-text"><small class="text-muted">{{ noticias[0].author.nombre }} - {{ noticias[0].date | date: 'HH:mm'}}</small></p>
                         </div>
                     </div>
 
-                </ng-container>
+                </div>
             </div>
-            <div class="col-md-12 pb-1">
-                <ng-container *ngIf="noticias">
-                    <div class="card">
-                        <div class="text-center" style="overflow: hidden; max-height: 400px;">
-                            <img class="card-img-top img-fluid" [src]=" noticias[2].img | imagen: 'noticia'" alt="Card image cap">
-                        </div>
+            <div class="row mt-5">
 
-                        <div class="card-body">
-                            <h5 class="card-title">{{ noticias[2].titulo }}</h5>
-                            <p class="card-text">{{ noticias[2].resume}}</p>
-                            <p class="card-text"><small class="text-muted">{{ noticias[2].author.nombre }} - {{ noticias[2].date | date: 'HH:mm'}}</small></p>
+                <div class="col-md-12">
+                    <h2>{{'De Interés' | uppercase}}</h2>
+                    <hr class="text-info">
+                    <div class="card-group">
+                        <div class="card" *ngFor="let noticia of noticias">
+                            <img class="card-img-top" [src]=" noticia.img | imagen: 'noticia'" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ noticia.titulo }}</h5>
+                                <p class="card-text">{{ noticia.resume }}</p>
+                                <p class="card-text"><small class="text-muted">{{ noticia.date | date: 'dd-MM-yyyy'}}</small></p>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                </ng-container>
             </div>
         </div>
-    </div>
-</div>
-<div class="row pt-5 pb-5">
-    <h2>Opinión</h2>
-    <hr class="text-info">
-    <div class="col-md-12 bg-light pt-3 pb-3">
+        <div class="col-md-4 bg-light pt-3 pb-3">
+            <div class="row">
+                <div class="col-md-12 pt-1 pb-1">
+                    <ng-container *ngIf="noticias">
+                        <div class="card">
+                            <div class="text-center" style="overflow: hidden; max-height: 400px;">
+                                <img class="card-img-top img-fluid" [src]=" noticias[1].img | imagen: 'noticia'" alt="Card image cap">
+                            </div>
 
-        <div class="card-deck">
-            <div class="card" *ngFor="let noticia of noticiasDeOpinion">
-                <img class="card-img-top" [src]=" noticia.img | imagen: 'noticia'" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{ noticia.titulo }}</h5>
-                    <p class="card-text">{{ noticia.resume }}</p>
-                    <p class="card-text"><small class="text-muted">{{ noticia.author.nombre }} - {{ noticia.date | date: 'HH:mm'}}</small></p>
+                            <div class="card-body">
+                                <h5 class="card-title text-info">{{ noticias[1].titulo }}</h5>
+                                <p class="card-text">{{ noticias[1].resume}}</p>
+                                <p class="card-text"><small class="text-muted">{{ noticias[1].author.nombre }} - {{ noticias[1].date | date: 'HH:mm'}}</small></p>
+                            </div>
+                        </div>
+
+                    </ng-container>
+                </div>
+                <div class="col-md-12 pb-1">
+                    <ng-container *ngIf="noticias">
+                        <div class="card">
+                            <div class="text-center" style="overflow: hidden; max-height: 400px;">
+                                <img class="card-img-top img-fluid" [src]=" noticias[2].img | imagen: 'noticia'" alt="Card image cap">
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title text-info">{{ noticias[2].titulo }}</h5>
+                                <p class="card-text">{{ noticias[2].resume}}</p>
+                                <p class="card-text"><small class="text-muted">{{ noticias[2].author.nombre }} - {{ noticias[2].date | date: 'HH:mm'}}</small></p>
+                            </div>
+                        </div>
+
+                    </ng-container>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="row pt-5 pb-5">
+
+
+        <div class="col-md-12 bg-light pt-3 pb-3">
+            <h2>{{'Opinión' | uppercase}} </h2>
+            <hr class="text-info">
+            <div class="card-deck">
+                <div class="card" *ngFor="let noticia of noticiasDeOpinion">
+                    <img class="card-img-top" [src]=" noticia.img | imagen: 'noticia'" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ noticia.titulo }}</h5>
+                        <p class="card-text">{{ noticia.resume }}</p>
+                        <p class="card-text"><small class="text-muted">{{ noticia.author.nombre }} - {{ noticia.date | date: 'HH:mm'}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
