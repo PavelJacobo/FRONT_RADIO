@@ -3,10 +3,10 @@
         <ng-container *ngIf="noticias">
             <div class="card">
                 <div class="text-center" style="overflow: hidden; max-height: 400px;">
-                    <img class="card-img-top img-fluid" [src]=" noticias[0].img | imagen: 'noticia'" alt="Card image cap">
+                    <img class="card-img-top img-fluid cambiar" [src]=" noticias[0].img | imagen: 'noticia'" alt="Card image cap">
                 </div>
 
-                <div class="card-body">
+                <div class="card-body pointer">
                     <h5 class="card-title font-weight-bold h2">{{ noticias[0].titulo }}</h5>
                     <p class="card-text">{{ noticias[0].resume}}</p>
                     <p class="card-text"><small class="text-muted">{{ noticias[0].author.nombre }} - {{ noticias[0].date | date: 'HH:mm'}}</small></p>
@@ -22,11 +22,11 @@
                 <ng-container *ngIf="noticias">
                     <div class="card">
                         <div class="text-center" style="overflow: hidden; max-height: 400px;">
-                            <img class="card-img-top img-fluid" [src]=" noticias[1].img | imagen: 'noticia'" alt="Card image cap">
+                            <img class="card-img-top img-fluid cambiar" [src]=" noticias[1].img | imagen: 'noticia'" alt="Card image cap">
                         </div>
 
-                        <div class="card-body">
-                            <h5 class="card-title">{{ noticias[1].titulo }}</h5>
+                        <div class="card-body pointer">
+                            <h5 class="card-title h3">{{ noticias[1].titulo }}</h5>
                             <p class="card-text">{{ noticias[1].resume}}</p>
                             <p class="card-text"><small class="text-muted">{{ noticias[1].author.nombre }} - {{ noticias[1].date | date: 'HH:mm'}}</small></p>
                         </div>
@@ -38,11 +38,11 @@
                 <ng-container *ngIf="noticias">
                     <div class="card">
                         <div class="text-center" style="overflow: hidden; max-height: 400px;">
-                            <img class="card-img-top img-fluid" [src]=" noticias[2].img | imagen: 'noticia'" alt="Card image cap">
+                            <img class="card-img-top img-fluid cambiar" [src]=" noticias[2].img | imagen: 'noticia'" alt="Card image cap">
                         </div>
 
-                        <div class="card-body">
-                            <h5 class="card-title">{{ noticias[2].titulo }}</h5>
+                        <div class="card-body pointer">
+                            <h5 class="card-title h3">{{ noticias[2].titulo }}</h5>
                             <p class="card-text">{{ noticias[2].resume}}</p>
                             <p class="card-text"><small class="text-muted">{{ noticias[2].author.nombre }} - {{ noticias[2].date | date: 'HH:mm'}}</small></p>
                         </div>
@@ -60,9 +60,9 @@
 
         <div class="card-deck">
             <div class="card" *ngFor="let noticia of noticiasDeOpinion">
-                <img class="card-img-top" [src]=" noticia.img | imagen: 'noticia'" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{ noticia.titulo }}</h5>
+                <img class="card-img-top cambiar" [src]=" noticia.img | imagen: 'noticia'" alt="Card image cap">
+                <div class="card-body pointer">
+                    <h5 class="card-title h3">{{ noticia.titulo }}</h5>
                     <p class="card-text">{{ noticia.resume }}</p>
                     <p class="card-text"><small class="text-muted">{{ noticia.author.nombre }} - {{ noticia.date | date: 'HH:mm'}}</small></p>
                 </div>
