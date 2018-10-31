@@ -7,27 +7,41 @@ import { NavPageModuleComponent } from './nav-page-module/nav-page-module.compon
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
-
-
+import { DetallePublicoNoticiaComponent } from './detalle-publico-noticia/detalle-publico-noticia.component';
+import { DetallePublicoProgramaComponent } from './detalle-publico-programa/detalle-publico-programa.component';
+import { DirectiveModule } from 'src/app/directives/directive.module';
+import { RadioComponent } from './radio/radio.component';
+import { ProgramacionComponent } from './programacion/programacion.component';
 @NgModule({
   declarations: [
     BreadcrumbComponent,
     FooterComponent,
     NavPageModuleComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    DetallePublicoNoticiaComponent,
+    RadioComponent,
+    ProgramacionComponent,
+    DetallePublicoProgramaComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    PipesModule
+    PipesModule,
+    DirectiveModule
   ],
   exports: [
     BreadcrumbComponent,
     FooterComponent,
     NavPageModuleComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    RadioComponent,
+    ProgramacionComponent,
+    DetallePublicoNoticiaComponent,
+    DetallePublicoProgramaComponent,
+    PipesModule,
+    DirectiveModule
   ]
 })
 export class SharedModule { }

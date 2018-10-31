@@ -1,0 +1,9 @@
+<audio id="radio" appRadio [play]="play">
+    <source src="http://tesla.eldialdigital.com:6230/;" type="audio/mp3">
+</audio>
+<div class="row">
+    <div class="text-center col-md-6">
+        <i (click)="playPause()" *ngIf="play" class="text-light fa fa-play-circle fa-5x pointer"></i>
+        <i (click)="playPause()" *ngIf="!play" class="text-light fa fa-stop-circle fa-5x pointer"></i>
+    </div>
+</div>

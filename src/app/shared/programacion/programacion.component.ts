@@ -26,7 +26,7 @@ export class ProgramacionComponent implements OnInit {
               res._id,
               obj.dia,
               this.colors[Math.floor(Math.random() * this.colors.length)],
-              '#/perfil_publico_programas/' + res._id
+              '#/programa/' + res._id
             );
             this.eventos.push(eve);
           });

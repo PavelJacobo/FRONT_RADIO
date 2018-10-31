@@ -35,7 +35,7 @@ export class ProgramaService  {
    // Obtener programa por id
    // ===========================
 
-   findPrograma(idDePrograma, token) {
+   findPrograma(idDePrograma, token?) {
     let url = URL_SERVICE + '/programa/' + idDePrograma;
     url += '?token=' + token;
     return this.http.get(url, idDePrograma);

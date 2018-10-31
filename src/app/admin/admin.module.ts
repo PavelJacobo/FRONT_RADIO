@@ -17,11 +17,9 @@ import { GestionProgramasComponent } from './gestion-programas/gestion-programas
 import { MisNoticiasComponent } from './noticias/mis-noticias.component';
 import { DetalleNoticiaComponent } from './noticias/detalle-noticia.component';
 
+
 // Custom Module
 import { PipesModule } from '../pipes/pipes.module';
-
-// Directives
-import { DirectiveModule } from '../directives/directive.module';
 
 // Forms Modules
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,9 +33,6 @@ import { NgxWigModule } from 'ngx-wig';
 // FROALA
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
-
-// Shared Components Module
-import { SharedComponentsModule } from '../sharedcomponents/shared.components.module';
 
 
 @NgModule({
@@ -55,15 +50,11 @@ import { SharedComponentsModule } from '../sharedcomponents/shared.components.mo
     imports: [
          CommonModule,
          AdminRoutingModule,
-         DirectiveModule,
          FormsModule,
          ReactiveFormsModule,
          AngularMaterialModule,
-         PipesModule,
          NgxWigModule,
-         SharedModule,
-         SharedComponentsModule,
-         FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
+         SharedModule
          ],
     exports: [],
     providers: [],
