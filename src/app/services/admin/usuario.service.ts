@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AdminService } from '../admin/admin.service';
 import { ProgramaService } from '../admin/programa.service';
-import { forkJoin } from 'rxjs';
-
+import { forkJoin, of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
@@ -16,6 +16,7 @@ export class UsuarioService {
 
     usuario: Usuario;
     token: string;
+    menu: any = [];
 
     constructor(
         public router: Router,
@@ -34,18 +35,22 @@ export class UsuarioService {
         if ( localStorage.getItem('token')) {
           this.token = localStorage.getItem('token');
           this.usuario = JSON.parse(localStorage.getItem('usuario'));
+          this.menu = JSON.parse(localStorage.getItem('menu'));
         } else {
           this.token = '';
           this.usuario = null;
+          this.menu = [];
         }
       }
 
-    guardarStorage(id: string, token: string, usuario: Usuario) {
+    guardarStorage(id: string, token: string, usuario: Usuario, menu?: any) {
         localStorage.setItem('id', id);
         localStorage.setItem('token', token);
         localStorage.setItem('usuario', JSON.stringify(usuario));
+        localStorage.setItem('menu', JSON.stringify(menu));
         this.usuario = usuario;
         this.token = token;
+        this.menu = menu;
     }
 
     login(usuario: LoginUsuario, recordar: boolean = false) {
@@ -57,18 +62,29 @@ export class UsuarioService {
           }
         const url = `${URL_SERVICE}/login`;
         return this.http.post(url, usuario)
-        .pipe(map((res: any) => {
-            this.guardarStorage(res.id, res.token, res.usuario );
+        .pipe(
+            map((res: any) => {
+            console.log(res);
+            this.guardarStorage(res.id, res.token, res.usuario, res.menu );
             return true;
-          }));
+            }),
+            catchError(err => {
+                // Swal('Error', err.error.mensaje, 'error');
+                this.manageError(err);
+                return throwError(err);
+            })
+        );
     }
 
     logout() {
         this.usuario = null;
         this.token = '';
+        this.menu = [];
         localStorage.removeItem('usuario');
         localStorage.removeItem('token');
-        this.router.navigate(['/home']);
+        localStorage.removeItem('menu');
+        localStorage.removeItem('id');
+        this.router.navigate(['../../']);
     }
 
 
@@ -88,7 +104,7 @@ export class UsuarioService {
             .then((responnse: any) => {
                 this.usuario.programas = responnse;
                 usuarioDB.programas = responnse;
-                this.guardarStorage(usuarioDB._id, this.token, usuarioDB);
+                this.guardarStorage(usuarioDB._id, this.token, usuarioDB, this.menu);
                 Swal('Usuario actualizado', usuario.nombre, 'success');
                 return true;
             });
@@ -105,7 +121,7 @@ export class UsuarioService {
                                  .then((res: any) => {
                                      console.log(res);
                                     this.usuario.img = res.usuario.img;
-                                    this.guardarStorage(id, this.token, this.usuario );
+                                    this.guardarStorage(id, this.token, this.usuario, this.menu );
                                  })
                                  .catch((res: any) => {
                                     console.log(res);
@@ -171,6 +187,26 @@ export class UsuarioService {
         }));
         } else {
             return;
+        }
+    }
+
+    getAllUsers(desde: number = 0) {
+        let url = URL_SERVICE + '/usuario';
+        url += '?desde=' + desde;
+        url += '?token=' + this.token;
+        return this.http.get(url).pipe(map((res: any) => {
+              return res.usuarios;
+        }));
+    }
+
+    manageError(err: any) {
+        switch (err) {
+            case err.statusText === 'Unauthorized':
+                Swal('Error', err.statusText, 'error');
+                break;
+            default:
+                Swal('Error', err.error.mensaje, 'error');
+                break;
         }
     }
 

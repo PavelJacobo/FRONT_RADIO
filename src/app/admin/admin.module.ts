@@ -32,6 +32,7 @@ import { NgxWigModule } from 'ngx-wig';
 
 // FROALA
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { GestionWebComponent } from './gestion-web/gestion-web.component';
 
 
 
@@ -45,7 +46,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
         DashboardComponent,
         GestionProgramasComponent,
         MisNoticiasComponent,
-        DetalleNoticiaComponent
+        DetalleNoticiaComponent,
+        GestionWebComponent
     ],
     imports: [
          CommonModule,

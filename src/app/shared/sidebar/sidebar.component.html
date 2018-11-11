@@ -1,6 +1,6 @@
 <div class="row sidebar">
-    <div class="col-md-12">
-        <ul [ngClass]="{'slideOutLeft': isOpen, 'slideInLeft': !isOpen }" class="sidebar navbar-nav animated bg-dark pt-3">
+    <!-- <div class="col-md-12">
+        <ul [ngClass]="{'slideOutLeft': isOpen, 'slideInLeft': !isOpen }" class="sidebar navbar-nav animated bg-dark pt-3 main-menu">
             <li class="nav-item pointer" routerLink="dashboard">
                 <a class="nav-link">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -14,12 +14,42 @@
                 </a>
                 <div class="animated dropdown-menu bg-dark dropdown-menu-left fadeIn" aria-labelledby="pagesDropdown" (click)="$event.stopPropagation()">
                     <ul class="p-0">
-                        <li routerLinkActive="active" [routerLink]="submenu.url" *ngFor="let submenu of menu.submenu" class="dropdown-item pointer">
+                        <li [routerLink]="submenu.url" *ngFor="let submenu of menu.submenu" class="dropdown-item pointer submenu-item">
                             <i [class]="submenu.icon"></i>
-                            <span class="pl-2">{{ submenu.titulo }}</span>
+                            <span *ngIf="submenu.titulo === 'Salir'" (click)="logout()">{{ submenu.titulo }}</span>
+                            <span *ngIf="submenu.titulo !== 'Salir'" class="pl-2">{{ submenu.titulo }}</span>
                         </li>
                     </ul>
                 </div>
+            </li>
+        </ul>
+    </div> -->
+    <div class="col-md-12">
+        <ul [ngClass]="{'slideOutLeft': isOpen, 'slideInLeft': !isOpen }" class="sidebar navbar-nav animated bg-dark pt-3 ">
+            <li class="nav-item pointer" routerLink="dashboard">
+                <a class="nav-link">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span> Dashboard</span>
+                </a>
+            </li>
+            <li class="pointer" *ngFor="let menu of _sidebar.menu; let i = index" (click)="showMenu(menu)">
+                <a class="nav-link">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span> {{ menu.titulo }} 
+                        <i *ngIf="!menu.showmenu" class="fas fa-chevron-circle-right"></i>
+                        <i *ngIf="menu.showmenu" class="fas fa-chevron-circle-down"></i>
+                    </span>
+                </a>
+                <ul class="list-unstyled animated" [ngClass]="{'no-menu': !menu.showmenu, 'si-menu': menu.showmenu}">
+                    <li class="pointer submenu-item" [routerLink]="submenu.url" *ngFor="let submenu of menu.submenu" (click)="$event.stopPropagation()">
+                        <a class="nav-link">
+                            <i [class]="submenu.icon"></i>
+                            <span *ngIf="submenu.titulo === 'Salir'" (click)="logOut()">{{ submenu.titulo }}</span>
+                            <span *ngIf="submenu.titulo !== 'Salir'" class="pl-2">{{ submenu.titulo }}</span>
+                        </a>
+                    </li>
+
+                </ul>
             </li>
         </ul>
     </div>

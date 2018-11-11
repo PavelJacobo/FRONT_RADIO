@@ -5,30 +5,31 @@ import { URL_SERVICE } from '../../config/config.config';
 import { map } from 'rxjs/internal/operators';
 import { forkJoin, Observable } from 'rxjs';
 import { AdminService } from '../admin/admin.service';
+import { UsuarioService } from './usuario.service';
 @Injectable({
     providedIn: 'root'
 })
 export class ProgramaService  {
 
     public programas: Programa[];
-
     constructor(
         public http: HttpClient,
-        public _adminService: AdminService
+        public _adminService: AdminService,
     ) {
-        this.optenerProgramas().subscribe( (res: any) => {
-            this.programas = res.programas;
+        this.obtenerProgramas().subscribe( (programas: any) => {
+            this.programas = programas;
             console.log(this.programas);
-
         });
      }
 
    // ===========================
    // Obtener todos los programas
    // ===========================
-    optenerProgramas() {
+    obtenerProgramas() {
     const url = `${ URL_SERVICE }/programa`;
-    return this.http.get(url);
+    return this.http.get(url).pipe(map((res: any) => {
+        return res.programas;
+    }));
     }
 
     // ===========================
@@ -48,6 +49,7 @@ export class ProgramaService  {
     // // }
 
     updateProgramas(programas: Programa[], token, idDeUsuario) {
+        console.log('UPDATE PRO', programas, idDeUsuario);
         return new Promise ((resolvedor, reject) => {
 
             const progs = [];
@@ -82,8 +84,8 @@ export class ProgramaService  {
                 });
             });
             promesa.then(() => {
-                this.optenerProgramas().subscribe( (res: any) => {
-                    this.programas = res.programas;
+                this.obtenerProgramas().subscribe( (res: any) => {
+                    this.programas = res;
                     resolvedor(progs);
                 });
             });
@@ -96,8 +98,8 @@ export class ProgramaService  {
         url += '?token=' + token;
        return this.http.put(url, programa).pipe(map((res) => {
               if ( <any>false) {
-                this.optenerProgramas().subscribe( (resp: any) => {
-                    this.programas = resp.programas;
+                this.obtenerProgramas().subscribe( (resp: any) => {
+                    this.programas = resp;
                 });
               }
               return res;
@@ -135,6 +137,15 @@ export class ProgramaService  {
             return;
         }
         return this._adminService.subirImagen(archivo, tipo);
+    }
+
+
+    removePrograma(programaID, token?) {
+        let url = URL_SERVICE + '/programa/' + programaID;
+        url += '?token=' + token;
+        return this.http.delete(url).pipe(map((res: any) => {
+            return res.programa;
+        }));
     }
 
 

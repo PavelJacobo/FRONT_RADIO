@@ -5,10 +5,10 @@
             <mat-form-field class="w-100 p-2">
                 <input [ngModel]="programa?.nombre" name="nombre" class="form-control" type="text" required matInput placeholder="nombre de programa...">
             </mat-form-field>
-
-            <mat-form-field class="w-100 p-2">
+            <ngx-wig [ngModel]="programa?.contenido" name="contenido"></ngx-wig>
+            <!-- <mat-form-field class="w-100 p-2">
                 <textarea [ngModel]="programa?.contenido" name="contenido" class="form-control" rows="15" type="contenido" required matInput placeholder="contenido..."></textarea>
-            </mat-form-field>
+            </mat-form-field> -->
             <ng-container *ngIf="programa; else newPrograma">
                 <div class="w-100 row  p-2 border-bottom-1" *ngFor="let data of programa?.fecha; let i=index">
                     <div class="col-7 p-2 text-center">

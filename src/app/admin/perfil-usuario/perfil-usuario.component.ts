@@ -23,12 +23,15 @@ export class PerfilUsuarioComponent implements OnInit {
   public usuario: Usuario;
   public imagenSubir: File;
   public imagenTemp: string | ArrayBuffer | null;
+  public passwordEnabled: boolean ;
 
    constructor(  public router: Router,
                 public fb: FormBuilder,
                 public _usuarioService: UsuarioService,
                 public _programaService: ProgramaService,
-                public _adminService: AdminService) {}
+                public _adminService: AdminService) {
+                  this.passwordEnabled = false;
+                }
 
   ngOnInit() {
 
@@ -42,7 +45,9 @@ export class PerfilUsuarioComponent implements OnInit {
       email: [ this._usuarioService.usuario.email, [
         Validators.required,
         Validators.email
-      ]]
+      ]],
+      password1: [''],
+      password2: ['']
     });
 
   }
@@ -59,15 +64,32 @@ export class PerfilUsuarioComponent implements OnInit {
     get email() {
       return this.forma.get('email');
     }
+    get password1() {
+      return this.forma.get('password1');
+    }
+    get password2() {
+      return this.forma.get('password2');
+    }
 
   onSubmit() {
+    if (this.passwordEnabled && this.password1.value.length > 0) {
+      console.log(this.password1.value);
+      console.log(this.password2.value);
+      if (this.password1.value !== this.password2.value) {
+         window.alert('Las contraseñas no coinciden');
+         return null;
+      } else {
+        this.usuario.password1 = this.password1.value;
+        this.usuario.password2 = this.password2.value;
+      }
+    }
     this.usuario.nombre = this.nombre.value;
     this.usuario.email = this.email.value;
     this.usuario.programas = this.programas.value;
     this.cambiarImagen();
     this._usuarioService.updateUser(this.usuario)
                       .subscribe((res) => {
-                        console.log(res);
+                        console.log(this._usuarioService.usuario.programas);
                         this.programas.setValue(this._usuarioService.usuario.programas);
                       });
   }
@@ -103,6 +125,16 @@ export class PerfilUsuarioComponent implements OnInit {
   cancelar() {
     this.imagenTemp = null;
     this.router.navigate(['/home']);
+  }
+
+  enableChangePassword() {
+  this.passwordEnabled = !this.passwordEnabled;
+  if (!this.passwordEnabled) {
+    this.password1.setValue(undefined);
+    this.password2.setValue(undefined);
+    this.usuario.password1 = undefined;
+    this.usuario.password2 = undefined;
+  }
   }
 
 }

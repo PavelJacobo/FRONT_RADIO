@@ -1,3 +1,4 @@
+import { UsuarioService } from '../../services/admin/usuario.service';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { SidebarService } from '../../services/shared/sidebar.service';
 
@@ -10,8 +11,11 @@ export class SidebarComponent implements OnInit {
 
   @HostBinding('class.is-open')
   isOpen = false;
+  public showmenu: boolean;
 
-  constructor( public _sidebar: SidebarService) {}
+  constructor( public _sidebar: SidebarService, private _usuarioService: UsuarioService) {
+    this.showmenu = false;
+  }
 
   ngOnInit() {
   }
@@ -19,6 +23,14 @@ export class SidebarComponent implements OnInit {
   toggle() {
     this.isOpen = !this.isOpen;
     console.log(this.isOpen);
+  }
+
+  logOut() {
+    this._usuarioService.logout();
+  }
+
+  showMenu(menu) {
+    menu.showmenu = !menu.showmenu;
   }
 
 

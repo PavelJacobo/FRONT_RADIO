@@ -31,10 +31,15 @@ export class PerfilProgramaComponent implements OnInit {
    }
 
    getProgramasDelUsuario() {
-      this.programasDeUsuario = this.programas.filter((programa) => {
-        return programa.colaboradores.includes(this.usuario._id);
-      });
-     console.log(this.programasDeUsuario);
+      if (this.usuario.role === 'ADMIN_ROLE') {
+        this.programasDeUsuario = this.programas;
+      } else {
+        this.programasDeUsuario = this.programas.filter((programa) => {
+          console.log(programa.colaboradores);
+          return programa.colaboradores.includes(this.usuario._id);
+        });
+       console.log(this.programasDeUsuario);
+      }
    }
 
    datoAHijo( programa: Programa ) {
@@ -62,10 +67,10 @@ export class PerfilProgramaComponent implements OnInit {
     this._programaService.updatePrograma(programa, this._usuarioService.token)
                              .subscribe((res: any) => {
                                console.log(res.programa);
-                               this._programaService.optenerProgramas().subscribe(((resp: any ) => {
+                               this._programaService.obtenerProgramas().subscribe(((resp: any ) => {
                                  console.log(resp);
-                                 this.programas = resp.programas;
-                                 this._programaService.programas = resp.programas;
+                                 this.programas = resp;
+                                 this._programaService.programas = resp;
                                  this.getProgramasDelUsuario();
                                }));
                              });
@@ -79,10 +84,10 @@ export class PerfilProgramaComponent implements OnInit {
                 console.log(res);
             });
             console.log('Usuario', this.usuario);
-            this._programaService.optenerProgramas().subscribe(((resp: any ) => {
+            this._programaService.obtenerProgramas().subscribe(((resp: any ) => {
             console.log(resp);
-            this.programas = resp.programas;
-            this._programaService.programas = resp.programas;
+            this.programas = resp;
+            this._programaService.programas = resp;
             this.getProgramasDelUsuario();
           }));
         });

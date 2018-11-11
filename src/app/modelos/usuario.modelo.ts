@@ -8,7 +8,9 @@ export class Usuario {
         public  password?: string,
         public programas?: Programa[],
         public img?: string,
-        public _id?: string
+        public _id?: string,
+        public password1?: string,
+        public password2?: string
     ) {}
 
 }

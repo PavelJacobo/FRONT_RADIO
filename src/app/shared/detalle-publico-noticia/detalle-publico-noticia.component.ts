@@ -30,11 +30,11 @@ export class DetallePublicoNoticiaComponent implements OnInit {
     });
   }
 
-  getThisEvento(eventoId) {
+  getThisEvento = (eventoId) => {
     this.eventId = eventoId;
+    window.scrollTo(0, 0);
     this.getEvento();
-    document.body.scroll(1, 1);
-    console.log(document.body.scroll);
   }
+
 
 }

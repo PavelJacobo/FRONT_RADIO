@@ -14,7 +14,24 @@
                         </ng-container>
                     </p>
                     <hr>
-                    <p class="text-justify">{{ programa.contenido }}</p>
+                    <p class="text-justify" [innerHTML]="programa.contenido | safeHtml: 'html'"></p>
+                    <hr>
+                    <p class="font-weight-light h3">Horario:
+                        <ng-container *ngFor="let fecha of programa.fecha">
+
+                            <span [ngSwitch]=true>
+                                    <span *ngSwitchCase="fecha.dia == 1">Lunes</span>
+                            <span *ngSwitchCase="fecha.dia == 2">Martes</span>
+                            <span *ngSwitchCase="fecha.dia == 3">Miércoles</span>
+                            <span *ngSwitchCase="fecha.dia == 4">Jueves</span>
+                            <span *ngSwitchCase="fecha.dia == 5">Viernes</span>
+                            <span *ngSwitchCase="fecha.dia == 6">Sábado</span>
+                            <span *ngSwitchCase="fecha.dia == 0">Domingo</span>
+                            <span *ngSwitchDefault>null</span>
+                            </span> de {{ fecha.horaInicio }} a {{ fecha.horaFin }}
+                        </ng-container>
+                    </p>
+                    <hr>
                 </div>
             </div>
         </div>

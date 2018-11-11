@@ -1,0 +1,142 @@
+<div class="row ">
+    <div class="col-md-12 text-center">
+
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary" (click)="conmutaTarget('noticias')">
+              <input type="radio" name="options" > Noticias
+          </label>
+            <label class="btn btn-secondary" (click)="conmutaTarget('programas')">
+              <input type="radio" name="options">Programas
+          </label>
+            <label class="btn btn-secondary" (click)="conmutaTarget('usuarios')">
+              <input type="radio" name="options" > Usuarios
+          </label>
+            <label class="btn btn-secondary" (click)="conmutaTarget('eventos')">
+            <input type="radio" name="options"> Reservas
+        </label>
+        </div>
+
+    </div>
+</div>
+
+<div class="row" *ngIf="target">
+    <!-- <div class="col-md-6 pt-5 ml-auto mr-auto">
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th *ngFor="let items of target[0] | keyvalue">
+                        <span *ngIf="items.key !== '__v' && items.key !== '_id'">{{ items.key }}</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let items of target">
+                    <td *ngFor="let info of items | keyvalue">
+                        <span *ngIf="info.key !== '__v' && info.key !== '_id'">
+                            <span *ngIf="info.key == 'contenido'" [innerHTML]="info.value"></span>
+                        <span *ngIf="info.key !== 'contenido'">{{ info.value }}</span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+    <ng-container [ngSwitch]=true class="col-md-12">
+        <ng-template [ngSwitchCase]="target === noticias">
+
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Autor</th>
+                        <th>resume</th>
+                        <th>categoria</th>
+                        <th>fecha</th>
+                        <th>imagen</th>
+                        <th class="text-danger">Borrar</th>
+                        <th class="text-success">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let noticia of noticias; let i=index">
+                        <td>{{ noticia.author.nombre }}</td>
+                        <td>{{ noticia.resume | slice:0:30}}...</td>
+                        <td>{{ noticia.categoria }}</td>
+                        <td>{{ noticia.date | date: 'dd-mm-yyyy'}}</td>
+                        <td><img [src]="noticia.img | imagen: 'noticia'" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
+                        <td><i (click)="eraseNoticia(noticia._id, i)" class="fas fa-trash-alt text-danger pointer"></i></td>
+                        <td><i [routerLink]="['../detalle_noticia', noticia._id]" class="far fa-edit text-success pointer"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </ng-template>
+        <ng-template [ngSwitchCase]="target === programas">
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>imagen</th>
+                        <th>nombre</th>
+                        <th>colaboradores</th>
+                        <th class="text-danger">Borrar</th>
+                        <th class="text-success">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let programa of programas; let i=index">
+                        <td><img [src]="programa.img | imagen:'programa'" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
+                        <td>{{ programa.nombre }}</td>
+                        <td>
+                            <mat-chip-list>
+                                <ng-container *ngFor="let usuario of usuarios">
+                                    <ng-container *ngFor="let colaborador of programa.colaboradores">
+                                        <ng-container *ngIf="usuario._id === colaborador">
+                                            <mat-chip>
+                                                <span class="pointer">{{ usuario.nombre }}</span>
+                                            </mat-chip>
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+                            </mat-chip-list>
+                        </td>
+                        <td><i (click)="erasePrograma(programa._id, i)" class="fas fa-trash-alt text-danger pointer"></i></td>
+                        <td><i [routerLink]="['../perfil_programa']" class="far fa-edit text-success pointer"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+        <ng-template [ngSwitchCase]="target === usuarios">
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>imagen</th>
+                        <th>nombre</th>
+                        <th>email</th>
+                        <th>role</th>
+                        <th class="text-danger">Borrar</th>
+                        <th class="text-success">Editar</th>
+                        <th class="text-info">Actualizar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <td><img [src]="usuario.img | imagen" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>{{ usuario.role }}</td>
+                        <td><i (click)="eraseUser(usuario._id)" class="fas fa-trash-alt text-danger pointer"></i></td>
+                        <td><i class="far fa-edit text-success pointer"></i></td>
+                        <td><i class="fas fa-save text-info pointer"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+    </ng-container>
+    <div class="row">
+        <div class="col-md-12">
+            <button (click)="cambiarDesde(-5)" class="btn btn-outline-secondary mr-1">Anteriores</button>
+            <button (click)="cambiarDesde(5)" class="btn btn-outline-secondary ml-1">Siguientes</button>
+        </div>
+    </div>
+
+</div>

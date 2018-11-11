@@ -12,6 +12,16 @@
                 </mat-select>
             </mat-form-field>
 
+            <ng-container *ngIf="passwordEnabled">
+                <mat-form-field class="w-100 p-2">
+                    <input formControlName="password1" type="password" matInput placeholder="contraseña">
+                </mat-form-field>
+
+                <mat-form-field class="w-100 p-2">
+                    <input formControlName="password2" type="password" matInput placeholder=" confirmar contraseña">
+                </mat-form-field>
+            </ng-container>
+
             <mat-form-field class="w-100 p-2">
                 <input formControlName="email" type="email" required matInput placeholder="correo">
             </mat-form-field>
@@ -38,6 +48,9 @@
             </label>
             <label class="btn btn-secondary" routerLink='../perfil_programa'>
                 <input type="radio" name="options"> Mis Programas
+            </label>
+            <label class="btn btn-secondary" (click)="enableChangePassword()">
+                <input type="radio" name="options"> Cambiar Contraseña
             </label>
         </div>
 

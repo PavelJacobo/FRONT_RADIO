@@ -9,6 +9,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MisNoticiasComponent } from './noticias/mis-noticias.component';
 import { DetalleNoticiaComponent } from './noticias/detalle-noticia.component';
 import { ProgramacionComponent } from '../shared/programacion/programacion.component';
+import { GestionWebComponent } from './gestion-web/gestion-web.component';
+
 const routes: Routes = [
     {
         path: '',
@@ -58,7 +60,17 @@ const routes: Routes = [
                 path: 'programacion',
                 component: ProgramacionComponent,
                 data: { titulo: 'Programación'}
-            }
+            },
+            {
+                path: 'gestion_web',
+                component: GestionWebComponent,
+                data: { titulo: 'Gestion de la Aplicación'}
+            },
+            {
+                path: '**',
+                component: DashboardComponent,
+                data: { titulo: 'Dashboard'}
+            },
         ]
     }
 ];

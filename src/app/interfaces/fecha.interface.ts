@@ -1,5 +1,5 @@
 export interface Fecha {
-    dia: number[];
+    dia: number[] | any;
     horaInicio: string;
     horaFin: string;
 }

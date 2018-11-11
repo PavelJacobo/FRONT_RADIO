@@ -25,3 +25,39 @@ a:visited {
 .active:focus {
     border: none;
 }
+
+.submenu-item {
+    width: 90%;
+}
+
+.submenu-item:focus span {
+    color: black;
+}
+
+.submenu-item:focus i {
+    color: black;
+}
+
+.submenu-item:focus {
+    background-color: white;
+}
+
+.dropdown-menu {
+    transform: translate3d(-19px, 40px, 0px);
+}
+
+li {
+    outline: none;
+}
+
+.no-menu {
+    transition: opacity 3s ease-out;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.si-menu {
+    opacity: 1;
+    height: auto;
+}

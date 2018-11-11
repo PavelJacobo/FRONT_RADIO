@@ -17,7 +17,10 @@ export class NoticiaService {
   constructor(public http: HttpClient, public _usuarioService: UsuarioService) {
 
     this.token = this._usuarioService.token;
-    this.userId = this._usuarioService.usuario._id;
+    if ( this._usuarioService.usuario ) {
+      this.userId = this._usuarioService.usuario._id;
+    }
+     // TODO, condifcion return if ternario
    }
 
   crearNoticia(noticia: Noticia) {
@@ -28,7 +31,14 @@ export class NoticiaService {
     }));
   }
 
-  getNoticias(tipo) {
+  getallNoticias() {
+    const url = URL_SERVICE + '/noticia';
+    return this.http.get(url).pipe(map((res: any) => {
+      return res.noticias;
+    }));
+  }
+
+  getNoticias(tipo?) {
     const url = URL_SERVICE + '/noticia/tipo/' + tipo;
     return this.http.get(url).pipe(map((res: any) => {
       return res.noticias;
@@ -36,11 +46,13 @@ export class NoticiaService {
   }
 
   getUsersNoticias() {
-    let url = URL_SERVICE + '/noticia/user/' + this.userId;
-    url += '?token=' + this.token;
-    return this.http.get(url).pipe(map((res: any) => {
-      return res.noticias;
-    }));
+    if (this.userId !== undefined) {
+      let url = URL_SERVICE + '/noticia/user/' + this.userId;
+      url += '?token=' + this.token;
+      return this.http.get(url).pipe(map((res: any) => {
+        return res.noticias;
+      }));
+    }
   }
 
   getNoticiaById(id) {

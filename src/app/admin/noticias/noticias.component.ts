@@ -71,6 +71,10 @@ export class NoticiasComponent implements OnInit {
     const value = form.value;
     console.log(form);
     console.log(value);
+    if (value.contenido.length <= 0 || value.categoria === '') {
+      this.openSnackBar('El cuerpo del evento no puede estar vacío y la categoría debe ser definida', 'Aceptar');
+      return;
+    }
      if (this.imagenSubir !== undefined) {
 
       this.subirImagen().then((res: any) => {
