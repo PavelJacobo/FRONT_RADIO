@@ -5,6 +5,7 @@ import { NoticiaService } from 'src/app/services/admin/noticia.service';
 import { UsuarioService } from '../../services/admin/usuario.service';
 import Swal from 'sweetalert2';
 import { ProgramaService } from '../../services/admin/programa.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-gestion-web',
@@ -14,6 +15,7 @@ import { ProgramaService } from '../../services/admin/programa.service';
 export class GestionWebComponent implements OnInit {
 
   public desde: number;
+  public limit: number;
   public totalRegistros: number;
   objectKeys = Object.keys;
   public noticias: Noticia[];
@@ -22,6 +24,8 @@ export class GestionWebComponent implements OnInit {
   public eventoscalendario: any;
   public target: Object;
   private total: number;
+  private clickOnPwd: number;
+  public enablePasswd: boolean;
   private popupConfirm = Swal.mixin({
     confirmButtonClass: 'btn btn-success ml-1',
     cancelButtonClass: 'btn btn-danger mr-1',
@@ -34,8 +38,11 @@ export class GestionWebComponent implements OnInit {
     public _usuarioService: UsuarioService,
     public _programaService: ProgramaService) {
       this.desde = 0;
+      this.limit = 5;
       this.totalRegistros = 0;
       this.total = 0;
+      this.enablePasswd = false;
+      this.clickOnPwd = 0;
     }
 
   ngOnInit() {
@@ -46,38 +53,40 @@ export class GestionWebComponent implements OnInit {
   }
 
   getNoticias() {
-    this._noticiasService.getallNoticias().subscribe((noticias: any) => {
+    this._noticiasService.getallNoticias(this.desde, this.limit).subscribe((noticias: any) => {
       this.noticias = noticias;
-      console.log(noticias);
     });
   }
 
   getUsuarios() {
     this._usuarioService.getAllUsers(this.desde).subscribe((usuarios: any) => {
       this.usuarios = usuarios;
-      console.log(usuarios);
     });
   }
 
   getProgramas() {
-    this._programaService.obtenerProgramas().subscribe((programas: any) => {
-      console.log(programas);
+    this._programaService.obtenerProgramas(this.desde, this.limit).subscribe((programas: any) => {
       this.programas = programas;
     });
   }
 
   conmutaTarget(target) {
-    console.log(target);
      switch (target) {
        case 'noticias':
          this.target = this.noticias;
+         this.totalRegistros = this._noticiasService.totalRegistroDeNoticias;
+         this.desde = 0;
          break;
          case 'usuarios':
          this.target = this.usuarios;
+         this.totalRegistros = this._usuarioService.totalRegistrosDeUsuarios;
+         this.desde = 0;
          break;
          case 'programas':
          console.log(this.programas);
          this.target = this.programas;
+         this.totalRegistros = this._programaService.totalRegistrosDeProgramas;
+         this.desde = 0;
          break;
        default:
          break;
@@ -166,7 +175,25 @@ export class GestionWebComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        console.log(userID);
+        if (this._usuarioService.usuario.role !== 'ADMIN_ROLE') {
+          return;
+        }
+         if (userID === this._usuarioService.usuario._id) {
+            this.popupConfirm(
+              'No puede borrar su usuario',
+              'No se permite la autodestrucción',
+              'error'
+             );
+
+             return;
+         }
+         this._usuarioService.deleteUser(userID)
+              .subscribe((res: any) => {
+                console.log(res);
+                this.getNewInf('Usuarios').then(() => {
+                  this.target = this.usuarios;
+                });
+              });
       } else if (
         // Read more about handling dismissals
         result.dismiss === Swal.DismissReason.cancel
@@ -183,11 +210,78 @@ export class GestionWebComponent implements OnInit {
   }
 
   cambiarDesde( valor: number) {
-    let desde = this.desde + valor;
-    console.log( desde );
-    if (desde >= this.total) {
-
+    const desde = this.desde + valor;
+    if (desde >= this.totalRegistros) {
+        return;
+    }
+    if (desde < 0 ) {
+        return;
+    }
+    this.desde += valor;
+    console.log(this.desde);
+    switch (true) {
+      case this.target === this.noticias:
+        this.getNewInf('Noticias').then(() => {
+          this.target = this.noticias;
+        });
+      break;
+      case this.target === this.programas:
+        this.getNewInf('Programas').then(() => {
+          this.target = this.programas;
+        });
+      break;
+      case this.target === this.usuarios:
+        this.getNewInf('Usuarios').then(() => {
+          this.target = this.usuarios;
+        });
+      break;
+      default:
+      break;
     }
   }
 
+  async getNewInf(componente) {
+    console.log(componente);
+    switch (componente) {
+      case 'Noticias':
+        const noticias = await this._noticiasService.getallNoticias(this.desde, this.limit).toPromise();
+        this.noticias = noticias;
+
+      break;
+      case 'Programas':
+        const programas = await this._programaService.obtenerProgramas(this.desde, this.limit).toPromise();
+        this.programas = programas;
+
+      break;
+      case 'Usuarios':
+        const usuarios = await this._usuarioService.getAllUsers(this.desde).toPromise();
+        this.usuarios = usuarios;
+
+      break;
+      default:
+      break;
+    }
+  }
+
+  updateUser( usuario: Usuario, password) {
+
+    this._usuarioService.updateUser(usuario).subscribe((res: any) => {
+      console.log(usuario);
+    });
+  }
+
+  enablePwdInput(event) {
+
+    event.stopPropagation();
+    event.preventDefault();
+    if (this.clickOnPwd = 3) {
+      const target = event.target.querySelector('input');
+      if ( target !== null) {
+        if (target.hasAttribute('disabled') ) {
+          target.removeAttribute('disabled');
+        }
+      }
+    }
+
+  }
 }

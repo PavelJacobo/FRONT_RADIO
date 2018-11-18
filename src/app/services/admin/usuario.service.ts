@@ -17,6 +17,7 @@ export class UsuarioService {
     usuario: Usuario;
     token: string;
     menu: any = [];
+    totalRegistrosDeUsuarios = 0;
 
     constructor(
         public router: Router,
@@ -98,16 +99,19 @@ export class UsuarioService {
         let url = URL_SERVICE + '/usuario/' + this.usuario._id;
         url += '?token=' + this.token;
         return this.http.put( url, usuario ).pipe(map(( res: any ) => {
-            this.usuario = res.usuario;
-            const usuarioDB: Usuario = res.usuario;
-            this._programaService.updateProgramas(res.usuario.programas, this.token, res.usuario._id)
-            .then((responnse: any) => {
-                this.usuario.programas = responnse;
-                usuarioDB.programas = responnse;
-                this.guardarStorage(usuarioDB._id, this.token, usuarioDB, this.menu);
-                Swal('Usuario actualizado', usuario.nombre, 'success');
-                return true;
-            });
+            if (usuario._id === this.usuario._id) {
+                this.usuario = res.usuario;
+                const usuarioDB: Usuario = res.usuario;
+                this._programaService.updateProgramas(res.usuario.programas, this.token, res.usuario._id)
+                .then((responnse: any) => {
+                    this.usuario.programas = responnse;
+                    usuarioDB.programas = responnse;
+                    this.guardarStorage(usuarioDB._id, this.token, usuarioDB, this.menu);
+                    Swal('Usuario actualizado', usuario.nombre, 'success');
+                    return true;
+                });
+            }
+
         }));
     }
 
@@ -190,11 +194,14 @@ export class UsuarioService {
         }
     }
 
-    getAllUsers(desde: number = 0) {
+    getAllUsers(desde?) {
         let url = URL_SERVICE + '/usuario';
-        url += '?desde=' + desde;
         url += '?token=' + this.token;
+        if (desde) {
+            url += '&desde=' + desde;
+        }
         return this.http.get(url).pipe(map((res: any) => {
+              this.totalRegistrosDeUsuarios = res.total;
               return res.usuarios;
         }));
     }
@@ -208,6 +215,14 @@ export class UsuarioService {
                 Swal('Error', err.error.mensaje, 'error');
                 break;
         }
+    }
+
+
+    deleteUser(id: string) {
+        let url = URL_SERVICE + '/usuario/' + id;
+        url += '?token=' + this.token;
+
+        return this.http.delete(url);
     }
 
 }

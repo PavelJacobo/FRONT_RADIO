@@ -19,29 +19,7 @@
     </div>
 </div>
 
-<div class="row" *ngIf="target">
-    <!-- <div class="col-md-6 pt-5 ml-auto mr-auto">
-        <table class="table">
-            <thead>
-                <tr>
-
-                    <th *ngFor="let items of target[0] | keyvalue">
-                        <span *ngIf="items.key !== '__v' && items.key !== '_id'">{{ items.key }}</span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let items of target">
-                    <td *ngFor="let info of items | keyvalue">
-                        <span *ngIf="info.key !== '__v' && info.key !== '_id'">
-                            <span *ngIf="info.key == 'contenido'" [innerHTML]="info.value"></span>
-                        <span *ngIf="info.key !== 'contenido'">{{ info.value }}</span>
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
+<div class="row patata" *ngIf="target">
     <ng-container [ngSwitch]=true class="col-md-12">
         <ng-template [ngSwitchCase]="target === noticias">
 
@@ -63,7 +41,7 @@
                         <td>{{ noticia.resume | slice:0:30}}...</td>
                         <td>{{ noticia.categoria }}</td>
                         <td>{{ noticia.date | date: 'dd-mm-yyyy'}}</td>
-                        <td><img [src]="noticia.img | imagen: 'noticia'" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
+                        <td class="w70"><img [src]="noticia.img | imagen: 'noticia'" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
                         <td><i (click)="eraseNoticia(noticia._id, i)" class="fas fa-trash-alt text-danger pointer"></i></td>
                         <td><i [routerLink]="['../detalle_noticia', noticia._id]" class="far fa-edit text-success pointer"></i></td>
                     </tr>
@@ -84,7 +62,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let programa of programas; let i=index">
-                        <td><img [src]="programa.img | imagen:'programa'" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
+                        <td class="w70"><img [src]="programa.img | imagen:'programa'" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
                         <td>{{ programa.nombre }}</td>
                         <td>
                             <mat-chip-list>
@@ -113,20 +91,31 @@
                         <th>nombre</th>
                         <th>email</th>
                         <th>role</th>
+                        <th>passwd</th>
                         <th class="text-danger">Borrar</th>
-                        <th class="text-success">Editar</th>
                         <th class="text-info">Actualizar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let usuario of usuarios">
-                        <td><img [src]="usuario.img | imagen" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
-                        <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.email }}</td>
-                        <td>{{ usuario.role }}</td>
+                        <td class="w40"><img [src]="usuario.img | imagen" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
+                        <td class="w40">{{ usuario.nombre }}</td>
+                        <td class="w40">{{ usuario.email }}</td>
+                        <td class="w40">
+                            <mat-form-field>
+                                <mat-select [(value)]="usuario.role">
+                                    <mat-option value="ADMIN_ROLE">ADMIN_ROLE</mat-option>
+                                    <mat-option value="USER_ROLE">USER_ROLE</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                        <td class="pointer">
+                            <mat-form-field class="example-full-width" (click)="enablePwdInput($event)">
+                                <input disabled matInput [(value)]="usuario.password" type="password">
+                            </mat-form-field>
+                        </td>
                         <td><i (click)="eraseUser(usuario._id)" class="fas fa-trash-alt text-danger pointer"></i></td>
-                        <td><i class="far fa-edit text-success pointer"></i></td>
-                        <td><i class="fas fa-save text-info pointer"></i></td>
+                        <td><i (click)="updateUser(usuario)" class="fas fa-save text-info pointer"></i></td>
                     </tr>
                 </tbody>
             </table>

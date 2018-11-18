@@ -14,6 +14,7 @@ export class NoticiaService {
   public noticias: Noticia[];
   private token: string;
   private userId: string;
+  public totalRegistroDeNoticias: number;
   constructor(public http: HttpClient, public _usuarioService: UsuarioService) {
 
     this.token = this._usuarioService.token;
@@ -31,9 +32,16 @@ export class NoticiaService {
     }));
   }
 
-  getallNoticias() {
-    const url = URL_SERVICE + '/noticia';
+  getallNoticias(desde?, limit?) {
+    let url = URL_SERVICE + '/noticia';
+    if (desde) {
+      url += '?desde=' + desde;
+      url += '&limit=' + limit;
+    } else if (limit) {
+      url += '?limit=' + limit;
+    }
     return this.http.get(url).pipe(map((res: any) => {
+      this.totalRegistroDeNoticias = res.total;
       return res.noticias;
     }));
   }

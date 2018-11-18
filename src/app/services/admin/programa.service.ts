@@ -12,6 +12,7 @@ import { UsuarioService } from './usuario.service';
 export class ProgramaService  {
 
     public programas: Programa[];
+    public totalRegistrosDeProgramas: number;
     constructor(
         public http: HttpClient,
         public _adminService: AdminService,
@@ -25,9 +26,16 @@ export class ProgramaService  {
    // ===========================
    // Obtener todos los programas
    // ===========================
-    obtenerProgramas() {
-    const url = `${ URL_SERVICE }/programa`;
+    obtenerProgramas(desde?, limit?) {
+    let url = `${ URL_SERVICE }/programa`;
+    if (desde) {
+        url += '?desde=' + desde;
+        url += '&limit=' + limit;
+    } else if (limit) {
+        url += '?limit=' + limit;
+    }
     return this.http.get(url).pipe(map((res: any) => {
+        this.totalRegistrosDeProgramas = res.total;
         return res.programas;
     }));
     }
