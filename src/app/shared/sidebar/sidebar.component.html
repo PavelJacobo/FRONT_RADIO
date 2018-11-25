@@ -44,7 +44,7 @@
                     <li class="pointer submenu-item" [routerLink]="submenu.url" *ngFor="let submenu of menu.submenu" (click)="$event.stopPropagation()">
                         <a class="nav-link">
                             <i [class]="submenu.icon"></i>
-                            <span *ngIf="submenu.titulo === 'Salir'" (click)="logOut()">{{ submenu.titulo }}</span>
+                            <span *ngIf="submenu.titulo === 'Salir'" (click)="logOut()"> {{ submenu.titulo }}</span>
                             <span *ngIf="submenu.titulo !== 'Salir'" class="pl-2">{{ submenu.titulo }}</span>
                         </a>
                     </li>

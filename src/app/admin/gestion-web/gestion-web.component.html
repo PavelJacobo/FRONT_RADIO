@@ -111,11 +111,31 @@
                         </td>
                         <td class="pointer">
                             <mat-form-field class="example-full-width" (click)="enablePwdInput($event)">
-                                <input disabled matInput [(value)]="usuario.password" type="password">
+                                <input disabled matInput [(value)]="usuario.password" #password type="password">
                             </mat-form-field>
                         </td>
                         <td><i (click)="eraseUser(usuario._id)" class="fas fa-trash-alt text-danger pointer"></i></td>
-                        <td><i (click)="updateUser(usuario)" class="fas fa-save text-info pointer"></i></td>
+                        <td><i (click)="updateUser(usuario, password.value)" class="fas fa-save text-info pointer"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+        <ng-template [ngSwitchCase]="target === eventos">
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Desde</th>
+                        <th>Hasta</th>
+                        <th class="text-danger">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let evento of eventos; let i=index">
+                        <td class="w40">{{ evento.title }}</td>
+                        <td class="w40">{{ evento.start }}</td>
+                        <td class="w40">{{ evento.end }}</td>
+                        <td><i (click)="eraseEvento(evento._id, i)" class="fas fa-trash-alt text-danger pointer"></i></td>
                     </tr>
                 </tbody>
             </table>

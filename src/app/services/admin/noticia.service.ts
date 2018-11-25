@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Noticia } from '../../modelos/noticia.modelo';
 import { map } from 'rxjs/internal/operators/map';
 import { UsuarioService } from './usuario.service';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { throwError } from 'rxjs/internal/observable/throwError';
 
 @Injectable({
   providedIn: 'root'
@@ -57,9 +59,15 @@ export class NoticiaService {
     if (this.userId !== undefined) {
       let url = URL_SERVICE + '/noticia/user/' + this.userId;
       url += '?token=' + this.token;
-      return this.http.get(url).pipe(map((res: any) => {
+      return this.http.get(url).pipe(
+        map((res: any) => {
         return res.noticias;
-      }));
+      }),
+      catchError(err => {
+        console.log(err);
+        return throwError(err);
+    })
+    );
     }
   }
 
@@ -86,4 +94,5 @@ export class NoticiaService {
       return res;
     }));
   }
+
 }

@@ -96,7 +96,7 @@ export class UsuarioService {
     }
 
     updateUser( usuario: Usuario) {
-        let url = URL_SERVICE + '/usuario/' + this.usuario._id;
+        let url = URL_SERVICE + '/usuario/' + usuario._id;
         url += '?token=' + this.token;
         return this.http.put( url, usuario ).pipe(map(( res: any ) => {
             if (usuario._id === this.usuario._id) {

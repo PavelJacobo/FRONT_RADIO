@@ -10,6 +10,7 @@ import { MisNoticiasComponent } from './noticias/mis-noticias.component';
 import { DetalleNoticiaComponent } from './noticias/detalle-noticia.component';
 import { ProgramacionComponent } from '../shared/programacion/programacion.component';
 import { GestionWebComponent } from './gestion-web/gestion-web.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
     {
@@ -64,7 +65,8 @@ const routes: Routes = [
             {
                 path: 'gestion_web',
                 component: GestionWebComponent,
-                data: { titulo: 'Gestion de la Aplicación'}
+                data: { titulo: 'Gestion de la Aplicación'},
+                canActivate: [AdminGuard]
             },
             {
                 path: '**',

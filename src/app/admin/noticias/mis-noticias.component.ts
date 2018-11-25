@@ -11,10 +11,10 @@ export class MisNoticiasComponent implements OnInit {
 
   public noticias: Noticia[];
   constructor( public _usuarioService: UsuarioService, public _noticiaService: NoticiaService ) {
-    this.getMisNoticias();
   }
 
   ngOnInit() {
+    this.getMisNoticias();
   }
 
   eraseNotica(id) {

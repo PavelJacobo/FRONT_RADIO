@@ -6,6 +6,7 @@ import { UsuarioService } from '../../services/admin/usuario.service';
 import Swal from 'sweetalert2';
 import { ProgramaService } from '../../services/admin/programa.service';
 import { Title } from '@angular/platform-browser';
+import { OcupacionService } from '../../services/admin/ocupacion.service';
 
 @Component({
   selector: 'app-gestion-web',
@@ -21,7 +22,7 @@ export class GestionWebComponent implements OnInit {
   public noticias: Noticia[];
   public usuarios: Usuario[];
   public programas: Programa[];
-  public eventoscalendario: any;
+  public eventos: any;
   public target: Object;
   private total: number;
   private clickOnPwd: number;
@@ -36,7 +37,8 @@ export class GestionWebComponent implements OnInit {
   constructor(
     public _noticiasService: NoticiaService,
     public _usuarioService: UsuarioService,
-    public _programaService: ProgramaService) {
+    public _programaService: ProgramaService,
+    public _ocupacionService: OcupacionService) {
       this.desde = 0;
       this.limit = 5;
       this.totalRegistros = 0;
@@ -50,6 +52,7 @@ export class GestionWebComponent implements OnInit {
     this.getNoticias();
     this.getUsuarios();
     this.getProgramas();
+    this.getReservas();
   }
 
   getNoticias() {
@@ -70,6 +73,13 @@ export class GestionWebComponent implements OnInit {
     });
   }
 
+  getReservas() {
+    this._ocupacionService.getAllReservas(this.desde, this.limit).subscribe((eventos) => {
+      this.eventos = eventos;
+      console.log(this.eventos);
+    });
+  }
+
   conmutaTarget(target) {
      switch (target) {
        case 'noticias':
@@ -86,6 +96,12 @@ export class GestionWebComponent implements OnInit {
          console.log(this.programas);
          this.target = this.programas;
          this.totalRegistros = this._programaService.totalRegistrosDeProgramas;
+         this.desde = 0;
+         break;
+         case 'eventos':
+         console.log(this.eventos);
+         this.target = this.eventos;
+         this.totalRegistros = this._ocupacionService.totalReservas;
          this.desde = 0;
          break;
        default:
@@ -235,6 +251,11 @@ export class GestionWebComponent implements OnInit {
           this.target = this.usuarios;
         });
       break;
+      case this.target === this.eventos:
+        this.getNewInf('Eventos').then(() => {
+          this.target = this.eventos;
+        });
+      break;
       default:
       break;
     }
@@ -258,13 +279,23 @@ export class GestionWebComponent implements OnInit {
         this.usuarios = usuarios;
 
       break;
+      case 'Eventos':
+        const eventos = await this._ocupacionService.getAllReservas(this.desde, this.limit).toPromise();
+        this.eventos = eventos;
+
+      break;
       default:
       break;
     }
   }
 
-  updateUser( usuario: Usuario, password) {
+  updateUser( usuario: Usuario, password: string) {
 
+    if ( password !== 'undefined') {
+      usuario.password1 = password;
+      usuario.password2 = password;
+    }
+    console.log(usuario);
     this._usuarioService.updateUser(usuario).subscribe((res: any) => {
       console.log(usuario);
     });
@@ -283,5 +314,40 @@ export class GestionWebComponent implements OnInit {
       }
     }
 
+  }
+
+  eraseEvento(eventoID, index) {
+    console.log(eventoID);
+  console.log(index);
+  this.popupConfirm({
+    title: 'Estás Seguro que desea eliminar la reserva?',
+    text: 'Los cambios no serán reversibles',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Eliminar!',
+    cancelButtonText: 'Cancelar!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.value) {
+      this._ocupacionService.eraseReserva(eventoID).subscribe((data: any) => {
+        this.popupConfirm(
+          'Borrado!',
+          'La reserva ha sido eliminada',
+          'success'
+        );
+        this.eventos.splice(index, 1);
+      });
+    } else if (
+      // Read more about handling dismissals
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      this.popupConfirm(
+        'Cancelado',
+        'La reserva no ha sido eliminada',
+        'error'
+      );
+      return;
+    }
+  });
   }
 }
