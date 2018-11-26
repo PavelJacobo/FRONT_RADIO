@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Nuestra Programación</h1>
+    <hr>
+    <div class="row mt-5 mb-5">
+        <div appFullcalendar [config]="calendarOptions"></div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <h3 class="text-center mt-5 mb-5">Cada día con nosotros</h3>
+        <div class="card-deck">
+            <div class="col-md-3" *ngFor="let programa of programas">
+                <div class="card">
+                    <img [routerLink]="['/programa', programa._id]" class="card-img-top pointer" [src]="programa.img | imagen:'programa'">
+                    <div class="card-body pointer" [routerLink]="['/programa', programa._id]">
+                        <h5 class="card-title">{{programa.nombre}}</h5>
+                        <p class="card-text"></p>
+                        <p class="card-text"><small class="text-muted"></small></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

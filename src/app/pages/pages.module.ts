@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ActividadesComponent } from './actividades/actividades.component';
+import { ProgramlistComponent } from './programlist/programlist.component';
 
 
 
@@ -13,6 +14,7 @@ import { ActividadesComponent } from './actividades/actividades.component';
         PagesComponent,
         HomeComponent,
         ActividadesComponent,
+        ProgramlistComponent,
     ],
     imports: [
         CommonModule,
