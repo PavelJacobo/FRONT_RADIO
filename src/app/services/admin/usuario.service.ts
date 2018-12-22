@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AdminService } from '../admin/admin.service';
 import { ProgramaService } from '../admin/programa.service';
-import { forkJoin, of, throwError } from 'rxjs';
+import { forkJoin, of, throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
@@ -26,6 +26,24 @@ export class UsuarioService {
         public _programaService: ProgramaService
     ) {
         this.cargarStorage();
+    }
+
+    renuevaToken() {
+        let url = URL_SERVICE + '/login/renuevatoken';
+        url += '?token=' + this.token;
+
+        return this.http.get(url)
+                        .pipe(
+                            map((res: any) => {
+                                this.token = res.token;
+                                localStorage.setItem('token', this.token);
+                                return true;
+                            }),
+                            catchError((err: any) => {
+                                Swal('No fue posible renovar token', err, 'error');
+                                return Observable.throw(err);
+                             })
+                        );
     }
 
     isLogged() {

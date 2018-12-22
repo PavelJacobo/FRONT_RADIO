@@ -11,6 +11,7 @@ import { DetalleNoticiaComponent } from './noticias/detalle-noticia.component';
 import { ProgramacionComponent } from '../shared/programacion/programacion.component';
 import { GestionWebComponent } from './gestion-web/gestion-web.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { VerificaTokenGuard } from '../guards/verifica-token.guard';
 
 const routes: Routes = [
     {
@@ -25,6 +26,7 @@ const routes: Routes = [
             {
                 path: 'dashboard',
                 component: DashboardComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Dashboard'}
             },
             {
