@@ -26,6 +26,8 @@ export interface Dias {
 })
 export class GestionProgramasComponent implements OnInit {
 
+  nameCtrl: NgForm;
+
   dias: Dias[] = [
     {value: '1', viewValue: 'Lunes'},
     {value: '2', viewValue: 'Martes'},

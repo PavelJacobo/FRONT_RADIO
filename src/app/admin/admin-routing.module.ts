@@ -32,6 +32,7 @@ const routes: Routes = [
             {
                 path: 'noticias',
                 component: NoticiasComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Noticias'}
              },
             {
@@ -42,11 +43,13 @@ const routes: Routes = [
             {
                 path: 'perfil_programa',
                 component: PerfilProgramaComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Perfil Programa'}
             },
             {
                 path: 'mis_noticias',
                 component: MisNoticiasComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Mis Noticias'}
             },
             {
@@ -57,18 +60,20 @@ const routes: Routes = [
             {
                 path: 'ocupacion',
                 component: OcupacionLocalComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Reservar Local'}
             },
             {
                 path: 'programacion',
                 component: ProgramacionComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Programación'}
             },
             {
                 path: 'gestion_web',
                 component: GestionWebComponent,
                 data: { titulo: 'Gestion de la Aplicación'},
-                canActivate: [AdminGuard]
+                canActivate: [AdminGuard, VerificaTokenGuard]
             },
             {
                 path: '**',
