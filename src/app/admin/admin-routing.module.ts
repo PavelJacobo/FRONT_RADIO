@@ -73,7 +73,7 @@ const routes: Routes = [
                 path: 'gestion_web',
                 component: GestionWebComponent,
                 data: { titulo: 'Gestion de la Aplicación'},
-                canActivate: [AdminGuard, VerificaTokenGuard]
+                canActivate: [AdminGuard]
             },
             {
                 path: '**',

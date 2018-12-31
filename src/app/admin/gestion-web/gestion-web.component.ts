@@ -5,7 +5,6 @@ import { NoticiaService } from 'src/app/services/admin/noticia.service';
 import { UsuarioService } from '../../services/admin/usuario.service';
 import Swal from 'sweetalert2';
 import { ProgramaService } from '../../services/admin/programa.service';
-import { Title } from '@angular/platform-browser';
 import { OcupacionService } from '../../services/admin/ocupacion.service';
 
 @Component({
@@ -23,10 +22,12 @@ export class GestionWebComponent implements OnInit {
   public usuarios: Usuario[];
   public programas: Programa[];
   public eventos: any;
+  public redonda: Object;
   public target: Object;
   private total: number;
   private clickOnPwd: number;
   public enablePasswd: boolean;
+  private pdfRedonda: File;
   private popupConfirm = Swal.mixin({
     confirmButtonClass: 'btn btn-success ml-1',
     cancelButtonClass: 'btn btn-danger mr-1',
@@ -45,6 +46,7 @@ export class GestionWebComponent implements OnInit {
       this.total = 0;
       this.enablePasswd = false;
       this.clickOnPwd = 0;
+      this.redonda = {};
     }
 
   ngOnInit() {
@@ -103,6 +105,12 @@ export class GestionWebComponent implements OnInit {
          this.target = this.eventos;
          this.totalRegistros = this._ocupacionService.totalReservas;
          this.desde = 0;
+         break;
+         case 'redonda':
+         console.log('redonda');
+         this.target = this.redonda;
+         console.log(this.target);
+         console.log(this.redonda);
          break;
        default:
          break;
@@ -349,5 +357,27 @@ export class GestionWebComponent implements OnInit {
       return;
     }
   });
+  }
+
+  seleccionImagen(archivo: File) {
+    console.log(archivo);
+    if ( archivo.type.indexOf('pdf') < 0 ) {
+      Swal('Solo pdfs', 'El archivo seleccionado no es una imagen pdf', 'error');
+      archivo = null;
+      return;
+    }
+
+    this.pdfRedonda = archivo;
+  }
+
+  subirPdf() {
+    if (this.pdfRedonda !== undefined) {
+      return this._programaService.subirImagen(this.pdfRedonda, 'redonda').then(() => {
+        Swal('Redonda Subida', 'Redonda se ha subido perfectamente', 'success');
+      });
+    } else {
+      console.log('La imagen no está definida');
+      return;
+    }
   }
 }

@@ -4,16 +4,19 @@
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-secondary" (click)="conmutaTarget('noticias')">
               <input type="radio" name="options" > Noticias
-          </label>
+            </label>
             <label class="btn btn-secondary" (click)="conmutaTarget('programas')">
               <input type="radio" name="options">Programas
-          </label>
+            </label>
             <label class="btn btn-secondary" (click)="conmutaTarget('usuarios')">
               <input type="radio" name="options" > Usuarios
-          </label>
+            </label>
             <label class="btn btn-secondary" (click)="conmutaTarget('eventos')">
             <input type="radio" name="options"> Reservas
-        </label>
+            </label>
+            <label class="btn btn-secondary" (click)="conmutaTarget('redonda')">
+            <input type="radio" name="options"> Redonda
+            </label>
         </div>
 
     </div>
@@ -140,8 +143,32 @@
                 </tbody>
             </table>
         </ng-template>
+        <ng-template [ngSwitchCase]="target === redonda">
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Subir PDF</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <form>
+                                <div class="form-group">
+                                    <label for="redonda">pdf de Redonda</label>
+                                    <input type="file" class="form-control-file" id="redonda" (change)="seleccionImagen( $event.target.files[0] )" accept=".pdf">
+                                </div>
+                                <button (click)="subirPdf()" class="btn btn-outline-secondary">Subir</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
     </ng-container>
-    <div class="row">
+    <div class="row" *ngIf="target != redonda">
         <div class="col-md-12">
             <button (click)="cambiarDesde(-5)" class="btn btn-outline-secondary mr-1">Anteriores</button>
             <button (click)="cambiarDesde(5)" class="btn btn-outline-secondary ml-1">Siguientes</button>

@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { ProgramlistComponent } from './programlist/programlist.component';
+import { RedondaComponent } from './redonda/redonda.component';
 
 
 
@@ -15,6 +16,7 @@ import { ProgramlistComponent } from './programlist/programlist.component';
         HomeComponent,
         ActividadesComponent,
         ProgramlistComponent,
+        RedondaComponent,
     ],
     imports: [
         CommonModule,

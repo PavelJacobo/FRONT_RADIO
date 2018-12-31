@@ -36,6 +36,7 @@ export class UsuarioService {
                         .pipe(
                             map((res: any) => {
                                 this.token = res.token;
+                                console.log(this.token, 'THIS TOKEN');
                                 localStorage.setItem('token', this.token);
                                 return true;
                             }),

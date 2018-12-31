@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 import { Programa } from '../../modelos/modelo.index';
 import { URL_SERVICE } from '../../config/config.config';
 import { map } from 'rxjs/internal/operators';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { AdminService } from '../admin/admin.service';
-import { UsuarioService } from './usuario.service';
 @Injectable({
     providedIn: 'root'
 })

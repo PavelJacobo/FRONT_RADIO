@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { URL_SERVICE } from '../../config/config.config';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/internal/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class AdminService {
         public http: HttpClient
     ) {}
 
-    subirArchivo( archivo: File, tipo: string, id?: string) {
+    subirArchivo( archivo: File, tipo: string, id?: string) { // Update file
 
         // tslint:disable-next-line:no-shadowed-variable
         return new Promise(( resolve, reject) => {
@@ -63,6 +64,21 @@ export class AdminService {
             xhr.open('POST', url, true);
             xhr.send( formData );
       });
+      }
+
+      downloadFiles() {
+        const url = URL_SERVICE + '/download';
+        return this.http.get(url).pipe(map((res: any) => {
+         const files = [];
+          res.files.forEach(file => {
+           const date = file.split('.');
+           files.push({
+             name: date[1],
+             date: date[0]
+           });
+          });
+          return files;
+        }));
       }
 
 

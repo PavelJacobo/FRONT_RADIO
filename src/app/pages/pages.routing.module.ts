@@ -7,6 +7,7 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { ProgramacionComponent } from '../shared/programacion/programacion.component';
 import { DetallePublicoNoticiaComponent } from '../shared/detalle-publico-noticia/detalle-publico-noticia.component';
 import { DetallePublicoProgramaComponent } from '../shared/detalle-publico-programa/detalle-publico-programa.component';
+import { RedondaComponent } from './redonda/redonda.component';
 
 const routes: Routes = [
     {
@@ -27,6 +28,11 @@ const routes: Routes = [
             path: 'actividades',
             component: ActividadesComponent,
             data: { titulo: 'Actividades'}
+          },
+          {
+            path: 'redonda',
+            component: RedondaComponent,
+            data: { titulo: 'Redonda'}
           },
           {
             path: 'evento/:id',

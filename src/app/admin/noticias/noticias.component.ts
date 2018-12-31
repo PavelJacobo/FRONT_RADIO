@@ -45,7 +45,11 @@ export class NoticiasComponent implements OnInit {
               public _programaService: ProgramaService,
               public _noticiaService: NoticiaService,
               public _usuarioService: UsuarioService,
-              public snackBar: MatSnackBar) { }
+              public snackBar: MatSnackBar) {
+                if ( this._usuarioService.usuario.role === 'ADMIN_ROLE') {
+                  this.categorias.push({value: 'redonda', viewValue: 'Redonda'});
+                }
+               }
 
   ngOnInit() {
     this.forma = this.fb.group({
