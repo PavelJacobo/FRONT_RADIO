@@ -10,10 +10,13 @@ import { Noticia } from 'src/app/modelos/noticia.modelo';
 export class RedondaComponent implements OnInit {
  public files: any;
  public actividades: Noticia[];
+ public hasta: Date;
   constructor(
     public _adminService: AdminService,
     public _noticiaService: NoticiaService
-  ) { }
+  ) {
+    this.hasta = new Date();
+  }
 
   ngOnInit() {
     this.getFiles();
@@ -22,7 +25,7 @@ export class RedondaComponent implements OnInit {
 
   getFiles() {
   this._adminService.downloadFiles().subscribe((res: any) => {
-    console.log(res);
+    console.log(res, 'RES');
     this.files = res;
     });
   }

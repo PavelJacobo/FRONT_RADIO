@@ -3,19 +3,19 @@
         <div class="row">
             <div class="col-md-6 bg-light pt-3 pb-3">
                 <div class="card" [routerLink]="['/evento', actividades[0]?._id ]">
-                    <img class="card-img-top img-fluid" [src]="actividades[0].img | imagen:'noticia'" alt="Card image cap">
+                    <img class="card-img-top img-fluid" [src]="actividades[0]?.img | imagen:'noticia'">
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold h2">{{ actividades[0]?.titulo }}</h5>
-                        <p class="card-text">{{actividades[0].resume}}</p>
+                        <p class="card-text">{{actividades[0]?.resume}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 bg-light pt-3 pb-3">
                 <div class="card" [routerLink]="['/evento', actividades[1]?._id ]">
-                    <img class="card-img-top img-fluid" [src]="actividades[1].img | imagen:'noticia'" alt="Card image cap">
+                    <img class="card-img-top img-fluid" [src]="actividades[1]?.img | imagen:'noticia'">
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold h2">{{ actividades[1]?.titulo }}</h5>
-                        <p class="card-text">{{actividades[1].resume}}</p>
+                        <p class="card-text">{{actividades[1]?.resume}}</p>
                     </div>
                 </div>
             </div>

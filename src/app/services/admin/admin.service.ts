@@ -72,9 +72,14 @@ export class AdminService {
          const files = [];
           res.files.forEach(file => {
            const date = file.split('.');
+           const desde = new Date(Number(date[0]));
+           const hasta = new Date(Number(date[0]));
+           hasta.setDate(desde.getDate() + 15);
            files.push({
              name: date[1],
-             date: date[0]
+             date: desde,
+             todate: hasta,
+             file: file
            });
           });
           return files;

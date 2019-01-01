@@ -1,0 +1,15 @@
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url('../../../assets/img/649.jpeg');
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    font-weight: bolder;
+}
+
+.jumbotron h1,
+p {
+    mix-blend-mode: difference;
+    text-shadow: black 0.3em 0.3em 0.3em;
+}

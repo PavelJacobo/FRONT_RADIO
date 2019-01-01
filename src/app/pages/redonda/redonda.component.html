@@ -2,25 +2,30 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 bg-light pt-3 pb-3">
-
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1 class="display-4"> Descargate Redonda</h1>
+                        <p class="lead">La Agenda Cultural más completa de toda la provincia</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 bg-light pt-3 pb-3">
-                <div class="card-deck">
+                <div class="card-deck ">
                     <div class="card" [routerLink]="['/evento', actividades[0]?._id ]">
-                        <img class="card-img-top img-fluid" [src]="actividades[0].img | imagen:'noticia'" alt="Card image cap">
+                        <img class="card-img-top img-fluid pointer" [src]="actividades[0].img | imagen:'noticia'" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{actividades[0].titulo}}</h5>
-                            <p class="card-text">{{actividades[0].resume}}</p>
+                            <p class="card-text pointer">{{actividades[0].resume}}</p>
                             <p class="card-text"><small class="text-muted">{{ actividades[0]?.author.nombre }} - {{ actividades[0]?.date | date: 'dd-MM-yyyy'}}</small></p>
                         </div>
                     </div>
                     <div class="card" [routerLink]="['/evento', actividades[1]?._id ]">
-                        <img class="card-img-top img-fluid" [src]="actividades[1].img | imagen:'noticia'" alt="Card image cap">
+                        <img class="card-img-top img-fluid pointer" [src]="actividades[1].img | imagen:'noticia'" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{actividades[1].titulo}}</h5>
-                            <p class="card-text">{{actividades[1].resume}}</p>
+                            <p class="card-text pointer">{{actividades[1].resume}}</p>
                             <p class="card-text"><small class="text-muted">{{ actividades[1]?.author.nombre }} - {{ actividades[0]?.date | date: 'dd-MM-yyyy'}}</small></p>
                         </div>
                     </div>
@@ -29,8 +34,8 @@
             <div class="col-md-4 bg-light pt-3 pb-3">
                 <h5>Hemeroteca</h5>
                 <div class="list-group" *ngFor="let file of files">
-                    <a href="#" class="list-group-item list-group-item-action" routerLinkActive="active">
-                      {{ file.name }} - {{ file.date | date }}
+                    <a [href]=" file | imagen:'redonda'" target="_blank" class="list-group-item list-group-item-action" routerLinkActive="active">
+                      {{ file.name }} - {{ file.date | date:'dd-MM-yyyy' }} a {{ file.todate | date:'dd-MM-yyyy' }}
                     </a>
                 </div>
             </div>
