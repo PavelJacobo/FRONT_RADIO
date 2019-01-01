@@ -151,7 +151,7 @@ export class UsuarioService {
                                  });
        }
 
-    findUser(_idsDeUsuarios) {
+    findUser(_idsDeUsuarios: Array<any>) {
         const busquedas = [];
         console.log(_idsDeUsuarios);
         _idsDeUsuarios.forEach((_id) => {

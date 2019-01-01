@@ -20,12 +20,12 @@
                     <h2 class="font-weight-light">{{'De Interés' | uppercase}}</h2>
                     <hr class="text-info">
                     <div class="card-group">
-                        <div class="card" *ngFor="let noticia of noticias" [routerLink]="['/evento', noticia._id ]">
-                            <img class="cambiar card-img-top" [src]=" noticia.img | imagen: 'noticia'" alt="Card image cap">
+                        <div class="card" *ngFor="let actividad of noticias" [routerLink]="['/evento', actividad._id ]">
+                            <img class="cambiar card-img-top" [src]=" actividad.img | imagen: 'noticia'" alt="Card image cap">
                             <div class="card-body pointer">
-                                <h5 class="card-title">{{ noticia.titulo }}</h5>
-                                <p class="card-text">{{ noticia.resume }}</p>
-                                <p class="card-text"><small class="text-muted">{{ noticia.date | date: 'dd-MM-yyyy'}}</small></p>
+                                <h5 class="card-title">{{ actividad.titulo }}</h5>
+                                <p class="card-text">{{ actividad.resume }}</p>
+                                <p class="card-text"><small class="text-muted">{{ actividad.date | date: 'dd-MM-yyyy'}}</small></p>
                             </div>
                         </div>
                     </div>
@@ -35,30 +35,30 @@
         <div class="col-md-4 bg-light pt-3 pb-3">
             <div class="row">
                 <div class="col-md-12 pt-1 pb-1">
-                    <ng-container *ngIf="noticias">
+                    <ng-container *ngIf="actividades">
                         <div class="card" [routerLink]="['/evento', noticias[1]?._id ]">
                             <div class="text-center" style="overflow: hidden; max-height: 400px;">
-                                <img class="cambiar card-img-top img-fluid" [src]=" noticias[1]?.img | imagen: 'noticia'" alt="Card image cap">
+                                <img class="cambiar card-img-top img-fluid" [src]=" actividades[1]?.img | imagen: 'noticia'" alt="Card image cap">
                             </div>
                             <div class="card-body pointer">
-                                <h5 class="card-title text-info">{{ noticias[1]?.titulo }}</h5>
-                                <p class="card-text">{{ noticias[1]?.resume}}</p>
-                                <p class="card-text"><small class="text-muted">{{ noticias[1]?.author.nombre }} - {{ noticias[1]?.date | date: 'dd-MM-yyy'}}</small></p>
+                                <h5 class="card-title text-info">{{ actividades[1]?.titulo }}</h5>
+                                <p class="card-text">{{ actividades[1]?.resume}}</p>
+                                <p class="card-text"><small class="text-muted">{{ actividades[1]?.author.nombre }} - {{ actividades[1]?.date | date: 'dd-MM-yyy'}}</small></p>
                             </div>
                         </div>
                     </ng-container>
                 </div>
                 <div class="col-md-12 pb-1">
-                    <ng-container *ngIf="noticias">
-                        <div class="card" [routerLink]="['/evento', noticias[2]?._id ]">
+                    <ng-container *ngIf="actividades">
+                        <div class="card" [routerLink]="['/evento', actividades[2]?._id ]">
                             <div class="text-center" style="overflow: hidden; max-height: 400px;">
-                                <img class="cambiar card-img-top img-fluid" [src]=" noticias[2]?.img | imagen: 'noticia'" alt="Card image cap">
+                                <img class="cambiar card-img-top img-fluid" [src]=" actividades[2]?.img | imagen: 'noticia'" alt="Card image cap">
                             </div>
 
                             <div class="card-body pointer">
-                                <h5 class="card-title text-info">{{ noticias[2]?.titulo }}</h5>
-                                <p class="card-text">{{ noticias[2]?.resume}}</p>
-                                <p class="card-text"><small class="text-muted">{{ noticias[2]?.author.nombre }} - {{ noticias[2]?.date | date: 'dd-MM-yyy'}}</small></p>
+                                <h5 class="card-title text-info">{{ actividades[2]?.titulo }}</h5>
+                                <p class="card-text">{{ actividades[2]?.resume}}</p>
+                                <p class="card-text"><small class="text-muted">{{ actividades[2]?.author.nombre }} - {{ actividades[2]?.date | date: 'dd-MM-yyy'}}</small></p>
                             </div>
                         </div>
                     </ng-container>

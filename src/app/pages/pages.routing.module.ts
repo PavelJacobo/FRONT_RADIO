@@ -4,10 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { ActividadesComponent } from './actividades/actividades.component';
-import { ProgramacionComponent } from '../shared/programacion/programacion.component';
 import { DetallePublicoNoticiaComponent } from '../shared/detalle-publico-noticia/detalle-publico-noticia.component';
 import { DetallePublicoProgramaComponent } from '../shared/detalle-publico-programa/detalle-publico-programa.component';
 import { RedondaComponent } from './redonda/redonda.component';
+import { DetallePublicoUserComponent } from '../shared/detalle-publico-user/detalle-publico-user.component';
+
 
 const routes: Routes = [
     {
@@ -43,6 +44,11 @@ const routes: Routes = [
             path: 'programa/:id',
             component: DetallePublicoProgramaComponent,
             data: { titulo: 'Programa'}
+          },
+          {
+            path: 'usuario/:id',
+            component: DetallePublicoUserComponent,
+            data: { titulo: 'Usuario'}
           },
         ]
     }

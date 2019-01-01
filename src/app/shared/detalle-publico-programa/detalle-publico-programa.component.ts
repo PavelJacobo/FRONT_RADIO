@@ -20,35 +20,57 @@ export class DetallePublicoProgramaComponent implements OnInit {
       this.programa = programa.programa;
       console.log(this.programa);
 
+      if (this.programa.fecha[1]) {
+        for (let dia = 0; dia <= this.programa.fecha[1].dia.length; dia++) {
+          switch (this.programa.fecha[1].dia[dia]) {
+            case 0:
+            this.programa.fecha[1].dia[dia] = 'Domingo';
+            break;
+            case 1:
+            this.programa.fecha[1].dia[dia] = 'Lunes';
+            break;
+            case 2:
+            this.programa.fecha[1].dia[dia] = 'Martes';
+            break;
+            case 3:
+            this.programa.fecha[1].dia[dia] = 'Miercoles';
+            break;
+            case 4:
+            this.programa.fecha[1].dia[dia] = 'Jueves';
+            break;
+            case 5:
+            this.programa.fecha[1].dia[dia] = 'Viernes';
+            break;
+            case 6:
+            this.programa.fecha[1].dia[dia] = 'Sábados';
+            break;
+          }
+        }
+
+      }
+
       for (let dia = 0; dia <= this.programa.fecha[0].dia.length; dia++) {
         switch (this.programa.fecha[0].dia[dia]) {
           case 0:
           this.programa.fecha[0].dia[dia] = 'Domingo';
-          console.log(dia, 'INDEX');
           break;
           case 1:
           this.programa.fecha[0].dia[dia] = 'Lunes';
-          console.log(dia, 'INDEX');
           break;
           case 2:
           this.programa.fecha[0].dia[dia] = 'Martes';
-          console.log(dia, 'INDEX');
           break;
           case 3:
           this.programa.fecha[0].dia[dia] = 'Miercoles';
-          console.log(dia, 'INDEX');
           break;
           case 4:
           this.programa.fecha[0].dia[dia] = 'Jueves';
-          console.log(dia, 'INDEX');
           break;
           case 5:
           this.programa.fecha[0].dia[dia] = 'Viernes';
-          console.log(dia, 'INDEX');
           break;
           case 6:
           this.programa.fecha[0].dia[dia] = 'Sábados';
-          console.log(dia, 'INDEX');
           break;
         }
       }

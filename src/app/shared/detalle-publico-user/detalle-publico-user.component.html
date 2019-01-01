@@ -1,0 +1,27 @@
+<div class="container" *ngIf="usuario">
+    <div class="row">
+
+
+        <div class="col-md-8 bg-light pt-3 pb-3">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Email: </strong> {{ usuario.email }}</li>
+                        <li class="list-group-item"><strong>Nombre: </strong> {{ usuario.nombre }} </li>
+                        <li class="list-group-item"><strong>Facebook: </strong> ETC </li>
+                        <li class="list-group-item"><strong>Twitter: </strong> ETC </li>
+                        <li class="list-group-item"><strong>Potcast: </strong> ETC </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 bg-light pt-3 pb-3">
+            <div class="card w-100">
+                <img class="card-img-top" [src]="usuario.img | imagen: 'usuario'" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">{{ usuario.nombre }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

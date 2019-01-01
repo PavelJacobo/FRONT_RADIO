@@ -13,10 +13,12 @@ export class HomeComponent implements OnInit {
 
   public noticias: Noticia[];
   public noticiasDeOpinion: Noticia[];
+  public actividades: Noticia[];
 
   constructor( public _noticiaService: NoticiaService) {
     this.getNoticias();
     this.getOpiniones();
+    this.getDeInteres();
    }
 
   ngOnInit() {
@@ -33,6 +35,13 @@ export class HomeComponent implements OnInit {
     this._noticiaService.getNoticias('opinion').subscribe((noticiasDeOpinion: any) => {
       this.noticiasDeOpinion = noticiasDeOpinion;
       console.log(this.noticiasDeOpinion);
+    });
+  }
+
+  getDeInteres() {
+    this._noticiaService.getNoticias('actividad').subscribe((actividades: any) => {
+      this.actividades = actividades;
+      console.log(this.actividades);
     });
   }
 

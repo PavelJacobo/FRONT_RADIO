@@ -10,33 +10,13 @@
                     <hr>
                     <p class="font-weight-light h3">Colaboradores:
                         <ng-container *ngFor="let colaborador of programa.colaboradores">
-                            <span class="badge badge-secondary"> <small> {{ colaborador.nombre }} </small></span>
+                            <span [routerLink]="['/usuario', colaborador._id]" class="badge badge-secondary pointer"> <small> {{ colaborador.nombre }} </small></span>
                         </ng-container>
                     </p>
                     <hr>
                     <p class="text-justify" [innerHTML]="programa.contenido | safeHtml: 'html'"></p>
                     <hr>
                     <p class="font-weight-light h3">Horario:
-                        <!-- <ng-container *ngFor="let fecha of programa.fecha">
-
-                            <span [ngSwitch]=true>
-                            <ng-container *ngIf="fecha.dia.length === 1">
-                            <span *ngSwitchCase="fecha.dia == 1">Lunes</span>
-                            <span *ngSwitchCase="fecha.dia == 2">Martes</span>
-                            <span *ngSwitchCase="fecha.dia == 3">Miércoles</span>
-                            <span *ngSwitchCase="fecha.dia == 4">Jueves</span>
-                            <span *ngSwitchCase="fecha.dia == 5">Viernes</span>
-                            <span *ngSwitchCase="fecha.dia == 6">Sábado</span>
-                            <span *ngSwitchCase="fecha.dia == 0">Domingo</span>
-
-                        </ng-container>
-                        <span *ngIf="fecha.dia.length > 1">
-                            <ng-container *ngFor="let dia of fecha">
-                                {{ dia }}
-                            </ng-container>
-                        </span>
-                        </span> de {{ fecha.horaInicio }} a {{ fecha.horaFin }}
-                         </ng-container> -->
                         <ng-container *ngFor="let dia of programa.fecha[0].dia">
                             <span *ngIf="programa.fecha[0].dia.length > 1">
                                 {{ dia }} - 
@@ -45,6 +25,17 @@
                                 {{ dia }} -
                             </span>
                         </ng-container> de {{ programa.fecha[0].horaInicio }} a {{ programa.fecha[0].horaFin }}
+                        <br>
+                        <ng-container *ngIf="programa.fecha[1]">
+                            <ng-container *ngFor="let dia of programa.fecha[1].dia">
+                                <span *ngIf="programa.fecha[1].dia.length > 1">
+                                {{ dia }} - 
+                            </span>
+                                <span *ngIf="programa.fecha[1].dia.length <= 1">
+                                {{ dia }} -
+                            </span>
+                            </ng-container> de {{ programa.fecha[1].horaInicio }} a {{ programa.fecha[1].horaFin }}
+                        </ng-container>
                     </p>
                     <hr>
                 </div>

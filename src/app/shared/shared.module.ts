@@ -12,6 +12,7 @@ import { DetallePublicoProgramaComponent } from './detalle-publico-programa/deta
 import { DirectiveModule } from 'src/app/directives/directive.module';
 import { RadioComponent } from './radio/radio.component';
 import { ProgramacionComponent } from './programacion/programacion.component';
+import { DetallePublicoUserComponent } from './detalle-publico-user/detalle-publico-user.component';
 @NgModule({
   declarations: [
     BreadcrumbComponent,
@@ -22,7 +23,8 @@ import { ProgramacionComponent } from './programacion/programacion.component';
     DetallePublicoNoticiaComponent,
     RadioComponent,
     ProgramacionComponent,
-    DetallePublicoProgramaComponent
+    DetallePublicoProgramaComponent,
+    DetallePublicoUserComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { ProgramacionComponent } from './programacion/programacion.component';
     ProgramacionComponent,
     DetallePublicoNoticiaComponent,
     DetallePublicoProgramaComponent,
+    DetallePublicoUserComponent,
     PipesModule,
     DirectiveModule
   ]
