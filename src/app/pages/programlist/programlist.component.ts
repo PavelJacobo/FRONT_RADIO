@@ -44,6 +44,7 @@ export class ProgramlistComponent implements OnInit {
           center: 'title',
           right: 'month,agendaWeek,agendaDay',
       },
+      columnFormat: 'ddd D / MMM',
       buttonText: {
         today:    'hoy',
         month:    'mes',

@@ -34,7 +34,8 @@ export class RadioComponent implements OnInit {
   }
 
   getCurrentProgram() {
-    const Now = new Date().getTime();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const Now = new Date().toLocaleDateString('es-ES', options);
     console.log(Now);
   }
 

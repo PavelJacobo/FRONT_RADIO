@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProgramaService } from '../../services/admin/programa.service';
 import { Programa, Usuario } from '../../modelos/modelo.index';
 import { UsuarioService } from '../../services/admin/usuario.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-perfil-programa',
   templateUrl: './perfil-programa.component.html',
@@ -79,6 +79,7 @@ export class PerfilProgramaComponent implements OnInit {
       crearPrograma(programa: Programa) {
         this._programaService.crearPrograma(programa, this._usuarioService.token).subscribe((res: any) => {
             console.log('Respuesta del Servidor', res);
+            Swal('Nuevo Programa añadido', 'programa creado correctamente', 'success');
             this.usuario.programas.push(res.programa._id);
             this._usuarioService.setNewProgramToUser(res.programa._id, this.usuario._id).subscribe((resp: any) => {
                 console.log(res);

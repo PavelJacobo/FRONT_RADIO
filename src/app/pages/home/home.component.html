@@ -71,7 +71,7 @@
             <h2 class="font-weight-light">{{'Opinión' | uppercase}} </h2>
             <hr class="text-info">
             <div class="card-deck">
-                <div class="card" *ngFor="let noticia of noticiasDeOpinion" [routerLink]="['/evento', noticia._id ]">
+                <div class="card" *ngFor="let noticia of noticiasDeOpinion | slice:0:3" [routerLink]="['/evento', noticia._id ]">
                     <img class="cambiar card-img-top" [src]=" noticia.img | imagen: 'noticia'" alt="Card image cap">
                     <div class="card-body pointer">
                         <h5 class="card-title">{{ noticia.titulo }}</h5>

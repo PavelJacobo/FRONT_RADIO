@@ -51,6 +51,7 @@ export class NoticiaService {
   getNoticias(tipo?) {
     const url = URL_SERVICE + '/noticia/tipo/' + tipo;
     return this.http.get(url).pipe(map((res: any) => {
+      console.log(res.noticias);
       return res.noticias;
     }));
   }
