@@ -24,7 +24,6 @@ export class PerfilUsuarioComponent implements OnInit {
   public imagenSubir: File;
   public imagenTemp: string | ArrayBuffer | null;
   public passwordEnabled: boolean ;
-
    constructor(  public router: Router,
                 public fb: FormBuilder,
                 public _usuarioService: UsuarioService,
@@ -89,7 +88,8 @@ export class PerfilUsuarioComponent implements OnInit {
     this.cambiarImagen();
     this._usuarioService.updateUser(this.usuario)
                       .subscribe((res) => {
-                        console.log(this._usuarioService.usuario.programas);
+                        // console.log(this._usuarioService.usuario.programas);
+                        this._usuarioService.loading = false;
                         this.programas.setValue(this._usuarioService.usuario.programas);
                       });
   }

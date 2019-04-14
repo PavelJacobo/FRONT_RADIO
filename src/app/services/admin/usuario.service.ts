@@ -18,7 +18,7 @@ export class UsuarioService {
     token: string;
     menu: any = [];
     totalRegistrosDeUsuarios = 0;
-
+    loading = false;
     constructor(
         public router: Router,
         public http: HttpClient,
@@ -115,6 +115,7 @@ export class UsuarioService {
     }
 
     updateUser( usuario: Usuario) {
+        this.loading = true;
         let url = URL_SERVICE + '/usuario/' + usuario._id;
         url += '?token=' + this.token;
         return this.http.put( url, usuario ).pipe(map(( res: any ) => {
@@ -226,7 +227,7 @@ export class UsuarioService {
   }
 
   getTotalUsers() {
-    let url = URL_SERVICE + '/usuario';
+    const url = URL_SERVICE + '/usuario';
     return this.http.get(url).pipe(map((res: any) => {
       this.totalRegistrosDeUsuarios = res.total;
       return res.total;

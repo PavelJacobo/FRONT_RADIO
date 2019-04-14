@@ -48,6 +48,7 @@ export class GestionProgramasComponent implements OnInit {
   cambiandoImagen: boolean;
   public fecha: Fecha;
   public fechas: Fecha[];
+  public cancreate = false;
   constructor(
                 public router: Router,
                 public fb: FormBuilder,
@@ -168,6 +169,10 @@ export class GestionProgramasComponent implements OnInit {
   }
 
     crearPrograma(programa) {
+      if (programa.contenido.length === 0) {
+        Swal('error', 'Campo de descripción vacío', 'error');
+        return 0;
+      }
       if (this.imagenSubir !== undefined) {
 
       this.subirImagen().then((res: any) => {
@@ -186,6 +191,7 @@ export class GestionProgramasComponent implements OnInit {
       }).catch((err) => console.log(err));
     } else {
       console.log('Imagen no definida');
+      Swal('error', 'Imagen no definida', 'error');
       this.openSnackBar('Imagen no definida', 'Aceptar');
     }
   }

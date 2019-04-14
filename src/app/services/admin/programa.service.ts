@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import { Programa } from '../../modelos/modelo.index';
 import { URL_SERVICE } from '../../config/config.config';
 import { map } from 'rxjs/internal/operators';
-import { forkJoin } from 'rxjs';
 import { AdminService } from '../admin/admin.service';
+import Swal from 'sweetalert2';
+import { forkJoin, throwError, Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
@@ -40,7 +42,7 @@ export class ProgramaService  {
   }
 
   getTotalProgramas() {
-    let url = `${URL_SERVICE}/programa`;
+    const url = `${URL_SERVICE}/programa`;
     return this.http.get(url).pipe(map((res: any) => {
       this.totalRegistrosDeProgramas = res.total;
       return res.total;
@@ -124,9 +126,16 @@ export class ProgramaService  {
     crearPrograma(programa, token) {
         let url = URL_SERVICE + '/programa';
         url += '?token=' + token;
-        return this.http.post(url, programa).pipe(map((res) => {
+        return this.http.post(url, programa).pipe(
+            map((res) => {
             return res;
-        }));
+           }),
+           catchError(err => {
+            // Swal('Error', err.error.mensaje, 'error');
+            this.manageError(err);
+            return throwError(err);
+        })
+    );
     }
 
      getAllIndexes(arr, val) {
@@ -170,6 +179,17 @@ export class ProgramaService  {
         return this.http.post(url, {userID}).pipe(map((res: any) => {
             return res;
         }));
+    }
+
+    manageError(err: any) {
+        switch (err) {
+            case err.statusText === 'Unauthorized':
+                Swal('Error', err.statusText, 'error');
+                break;
+            default:
+                Swal('Error', err.error.mensaje + ' El campo descripción no puede estar vacío, añada alguna descripción', 'error');
+                break;
+        }
     }
 
 

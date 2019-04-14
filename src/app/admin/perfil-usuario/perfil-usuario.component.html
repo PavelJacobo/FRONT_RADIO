@@ -1,4 +1,15 @@
 <div class="row">
+    <div *ngIf="_usuarioService.loading" class="col-md-6" style="position: fixed;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);transform: translate(-50%, -50%);
+    z-index: 999999;">
+            <div class="card text-center">
+                    <div class="card-body">
+                      <h5 class="card-title">Cargando</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Procesando petición</h6>
+                      <i class="fas fa-spinner fa-spin fa-9x"></i>
+                      <p class="card-text">Por favor, espere...</p>
+                    </div>
+             </div>
+    </div>
     <div class="col-md-6 ml-5">
         <form ngNativeValidate [formGroup]="forma" (ngSubmit)="onSubmit()">
 
