@@ -214,6 +214,12 @@ export class GestionWebComponent implements OnInit {
          this._usuarioService.deleteUser(userID)
               .subscribe((res: any) => {
                 console.log(res);
+                this.popupConfirm(
+                  'Eliminado!',
+                  'El usuario ha sido eliminado',
+                  'success'
+                );
+                this._programaService.deleteUserFromPrograma(userID).subscribe((resp: any) => console.log(resp));
                 this.getNewInf('Usuarios').then(() => {
                   this.target = this.usuarios;
                 });
@@ -303,9 +309,39 @@ export class GestionWebComponent implements OnInit {
       usuario.password1 = password;
       usuario.password2 = password;
     }
-    console.log(usuario);
-    this._usuarioService.updateUser(usuario).subscribe((res: any) => {
-      console.log(usuario);
+
+    this.popupConfirm({
+      title: 'Estás Seguro que desea actualizar el usuario?',
+      text: 'Los cambios serán irreversibles',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Actualizar',
+      cancelButtonText: 'Cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        if (this._usuarioService.usuario.role !== 'ADMIN_ROLE') {
+          return;
+        }
+        this._usuarioService.updateUser(usuario).subscribe((res: any) => {
+          console.log(usuario);
+          this.popupConfirm(
+            'Actualizado',
+            'El usuario no ha sido actualizado',
+            'success'
+          );
+        });
+      } else if (
+        // Read more about handling dismissals
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        this.popupConfirm(
+          'Cancelado',
+          'La acción ha sido eliminado',
+          'error'
+        );
+        return;
+      }
     });
   }
 
@@ -380,4 +416,5 @@ export class GestionWebComponent implements OnInit {
       return;
     }
   }
+
 }

@@ -37,7 +37,15 @@ export class ProgramaService  {
         this.totalRegistrosDeProgramas = res.total;
         return res.programas;
     }));
-    }
+  }
+
+  getTotalProgramas() {
+    let url = `${URL_SERVICE}/programa`;
+    return this.http.get(url).pipe(map((res: any) => {
+      this.totalRegistrosDeProgramas = res.total;
+      return res.total;
+    }));
+  }
 
     // ===========================
    // Obtener programa por id
@@ -152,6 +160,15 @@ export class ProgramaService  {
         url += '?token=' + token;
         return this.http.delete(url).pipe(map((res: any) => {
             return res.programa;
+        }));
+    }
+
+    deleteUserFromPrograma(userID) {
+        console.log(userID, 'USER ID');
+        const url = URL_SERVICE + '/programa/user/' + userID;
+        console.log(url);
+        return this.http.post(url, {userID}).pipe(map((res: any) => {
+            return res;
         }));
     }
 

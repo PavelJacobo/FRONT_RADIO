@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.components';
 import { AdminRoutingModule } from './admin-routing.module';
-
+import { ChartsModule } from 'ng2-charts';
 // Shared Components
 import { SharedModule } from '../shared/shared.module';
 
@@ -56,7 +56,8 @@ import { GestionWebComponent } from './gestion-web/gestion-web.component';
          ReactiveFormsModule,
          AngularMaterialModule,
          NgxWigModule,
-         SharedModule
+         SharedModule,
+         ChartsModule
          ],
     exports: [],
     providers: [],

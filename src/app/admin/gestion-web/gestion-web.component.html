@@ -40,7 +40,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let noticia of noticias; let i=index">
-                        <td>{{ noticia.author.nombre }}</td>
+                        <td>{{ noticia.author?.nombre || "Anónimo" }}</td>
                         <td>{{ noticia.resume | slice:0:30}}...</td>
                         <td>{{ noticia.categoria }}</td>
                         <td>{{ noticia.date | date: 'dd-mm-yyyy'}}</td>

@@ -223,7 +223,15 @@ export class UsuarioService {
               this.totalRegistrosDeUsuarios = res.total;
               return res.usuarios;
         }));
-    }
+  }
+
+  getTotalUsers() {
+    let url = URL_SERVICE + '/usuario';
+    return this.http.get(url).pipe(map((res: any) => {
+      this.totalRegistrosDeUsuarios = res.total;
+      return res.total;
+    }));
+  }
 
     manageError(err: any) {
         switch (err) {

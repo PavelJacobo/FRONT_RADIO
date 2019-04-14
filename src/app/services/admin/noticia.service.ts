@@ -48,8 +48,27 @@ export class NoticiaService {
     }));
   }
 
-  getNoticias(tipo?) {
-    const url = URL_SERVICE + '/noticia/tipo/' + tipo;
+  getaTotalNoticias() {
+    let url = URL_SERVICE + '/noticia';
+    return this.http.get(url).pipe(map((res: any) => {
+      this.totalRegistroDeNoticias = res.total;
+      return res.total;
+    }));
+  }
+
+  getNoticias(tipo?, limit?) {
+    let url = URL_SERVICE + '/noticia/tipo/' + tipo;
+    if (limit) {
+      url += `/${limit}`;
+    }
+    return this.http.get(url).pipe(map((res: any) => {
+      console.log(res.noticias);
+      return res.noticias;
+    }));
+  }
+
+  getNoticia() {
+    const url = URL_SERVICE + '/noticia/';
     return this.http.get(url).pipe(map((res: any) => {
       console.log(res.noticias);
       return res.noticias;
