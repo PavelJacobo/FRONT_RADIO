@@ -74,6 +74,9 @@ export class GestionProgramasComponent implements OnInit {
         this.programa.nombre = programa.nombre;
         this.programa.contenido = programa.contenido;
         this.programa.img = res.programa.img;
+        this.programa.potcast = res.programa.potcast;
+        this.programa.facebook = res.programa.facebook;
+        this.programa.twitter = res.programa.twitter;
         console.log(this.programa);
         this.actualizar.emit(programa);
         this.imagenTemp = null;
@@ -81,6 +84,9 @@ export class GestionProgramasComponent implements OnInit {
     } else {
       this.programa.nombre = programa.nombre;
       this.programa.contenido = programa.contenido;
+      this.programa.potcast = programa.potcast;
+        this.programa.facebook = programa.facebook;
+        this.programa.twitter = programa.twitter;
       this.actualizar.emit(programa);
       console.log(this.programa);
       this.imagenTemp = null;
@@ -181,9 +187,12 @@ export class GestionProgramasComponent implements OnInit {
           programa.contenido,
           [this._usuarioService.usuario._id],
           this.fechas,
-          res.img
+          res.img,
+          programa.potcast,
+          programa.facebook,
+          programa.twitter
         );
-        console.log(prog);
+        console.log(prog, 'PROOOOOOOOOOOG');
         this.crear.emit(prog);
         this.imagenTemp = null;
         this.fechas = [];

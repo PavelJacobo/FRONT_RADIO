@@ -73,8 +73,8 @@ export class NoticiasComponent implements OnInit {
 
   onSubmit(form) {
     const value = form.value;
-    console.log(form);
-    console.log(value);
+    // console.log(form);
+    // console.log(value);
     if (value.contenido.length <= 0 || value.categoria === '') {
       this.openSnackBar('El cuerpo del evento no puede estar vacío y la categoría debe ser definida', 'Aceptar');
       return;
@@ -91,9 +91,9 @@ export class NoticiasComponent implements OnInit {
         form.reset();
         this.imagenTemp = null;
         this.tagArray = [];
-      }).catch((err) => console.log(err));
+      }).catch((err) => Swal('error', err, 'error'));
     } else {
-      console.log('Imagen no definida');
+      // console.log('Imagen no definida');
       this.openSnackBar('Imagen no definida', 'Aceptar');
     }
   }
@@ -105,7 +105,7 @@ export class NoticiasComponent implements OnInit {
   }
 
   seleccionImagen( archivo: File ) {
-    console.log ( archivo );
+    // console.log ( archivo );
     if ( !archivo ) {
       this.imagenSubir = null;
       return;
@@ -128,7 +128,7 @@ export class NoticiasComponent implements OnInit {
     if (this.imagenSubir !== undefined) {
       return this._programaService.subirImagen(this.imagenSubir, 'noticia');
     } else {
-      console.log('La imagen no está definida');
+      // console.log('La imagen no está definida');
       return;
     }
   }

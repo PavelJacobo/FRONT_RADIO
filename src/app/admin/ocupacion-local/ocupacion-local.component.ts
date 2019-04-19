@@ -26,7 +26,7 @@ export class OcupacionLocalComponent implements OnInit {
     this.color = '#6BA5C1';
     this._usuarioService.getEventos().subscribe(res => {
       this.eventos = res;
-      console.log(this.eventos);
+      // console.log(this.eventos);
       this.fullcalendarRef.renderEvents(this.eventos);
     });
   }

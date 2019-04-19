@@ -33,7 +33,7 @@ export class ProgramacionComponent implements OnInit {
         }
       });
     }
-      console.log(this.eventos);
+      // console.log(this.eventos);
 
   }
 

@@ -15,7 +15,7 @@ public totalReservas;
     ) {}
 
     getAllReservas(desde?, limit?) {
-        console.log(desde);
+        // console.log(desde);
         let url = URL_SERVICE + '/eventocup';
         if (desde) {
           url += '?desde=' + desde;

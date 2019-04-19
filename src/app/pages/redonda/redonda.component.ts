@@ -25,7 +25,7 @@ export class RedondaComponent implements OnInit {
 
   getFiles() {
   this._adminService.downloadFiles().subscribe((res: any) => {
-    console.log(res, 'RES');
+    // console.log(res, 'RES');
     this.files = res;
     });
   }
@@ -33,7 +33,7 @@ export class RedondaComponent implements OnInit {
   getNoticias() {
     this._noticiaService.getNoticias('redonda').subscribe((noticias: any) => {
       this.actividades = noticias;
-      console.log(this.actividades, 'ACTIVIDADES');
+      // console.log(this.actividades, 'ACTIVIDADES');
     });
   }
 

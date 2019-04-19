@@ -48,7 +48,7 @@ export class DetalleNoticiaComponent implements OnInit {
     height: 300,
     events : {
       'froalaEditor.focus' : function(e, editor) {
-        console.log(editor.selection.get());
+        // // console.log(editor.selection.get());
       }
     }
   };
@@ -71,7 +71,7 @@ export class DetalleNoticiaComponent implements OnInit {
       this.forma.controls['resume'].setValue(noticia.resume);
       this.forma.controls['tags'].setValue(noticia.tags);
       this.forma.controls['categoria'].setValue(noticia.categoria);
-      console.log(this.noticia);
+      // // console.log(this.noticia);
     });
 
       this.forma = this.fb.group({
@@ -97,7 +97,7 @@ export class DetalleNoticiaComponent implements OnInit {
 
   onSubmit(form) {
     const value = form.value;
-    console.log(form.value);
+    // console.log(form.value);
     if (this.imagenSubir !== undefined) {
 
       this.subirImagen().then((res: any) => {
@@ -106,18 +106,18 @@ export class DetalleNoticiaComponent implements OnInit {
           this.noticia.contenido = this.forma.get('contenido').value;
           this.noticia.resume = this.forma.get('resume').value;
           this._noticiaService.updateNoticia(this.noticia).subscribe((data: any) => {
-                        console.log(data);
+                        // console.log(data);
           });
        // form.reset();
-      }).catch((err) => console.log(err));
+      }).catch((err) => Swal('error', err, 'error'));
     } else {
 
           this.noticia.titulo = this.forma.get('titulo').value;
           this.noticia.contenido = this.forma.get('contenido').value;
           this.noticia.resume = this.forma.get('resume').value;
-          console.log(this.noticia);
+         // console.log(this.noticia);
           this._noticiaService.updateNoticia(this.noticia).subscribe((data: any) => {
-                        console.log(data);
+                       // console.log(data);
           });
     }
   }
@@ -129,7 +129,7 @@ export class DetalleNoticiaComponent implements OnInit {
   }
 
   seleccionImagen( archivo: File ) {
-    console.log ( archivo );
+    // console.log ( archivo );
     if ( !archivo ) {
       this.imagenSubir = null;
       return;
@@ -152,7 +152,7 @@ export class DetalleNoticiaComponent implements OnInit {
     if (this.imagenSubir !== undefined) {
       return this._programaService.subirImagen(this.imagenSubir, 'noticia');
     } else {
-      console.log('La imagen no está definida');
+      // console.log('La imagen no está definida');
       return;
     }
   }

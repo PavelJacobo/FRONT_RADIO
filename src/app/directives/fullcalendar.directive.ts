@@ -10,7 +10,7 @@ export class FullcalendarDirective implements AfterViewInit  {
  @Input('config') config: object = {};
   public stick: boolean;
   constructor(private el: ElementRef) {
-    console.log('Directiva llamada');
+    // console.log('Directiva llamada');
     this.stick = true;
   }
 

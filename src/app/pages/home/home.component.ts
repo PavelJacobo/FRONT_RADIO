@@ -27,21 +27,21 @@ export class HomeComponent implements OnInit {
   getNoticias() {
     this._noticiaService.getNoticias('noticia').subscribe((noticias: any) => {
       this.noticias = noticias;
-      console.log(this.noticias);
+      // console.log(this.noticias);
     });
   }
 
   getOpiniones() {
     this._noticiaService.getNoticias('opinion').subscribe((noticiasDeOpinion: any) => {
       this.noticiasDeOpinion = noticiasDeOpinion;
-      console.log(this.noticiasDeOpinion);
+      // console.log(this.noticiasDeOpinion);
     });
   }
 
   getDeInteres() {
     this._noticiaService.getNoticias('actividad').subscribe((actividades: any) => {
       this.actividades = actividades;
-      console.log(this.actividades);
+      // console.log(this.actividades);
     });
   }
 

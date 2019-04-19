@@ -7,6 +7,9 @@ export class Programa {
         public colaboradores?: string[] | any,
         public fecha?: Fecha[],
         public img?: string,
+        public potcast?: string,
+        public facebook?: string,
+        public twitter?: string,
         public _id?: string
     ) {}
 }

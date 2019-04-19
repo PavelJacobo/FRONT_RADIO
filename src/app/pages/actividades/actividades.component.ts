@@ -19,7 +19,7 @@ export class ActividadesComponent implements OnInit {
   getNoticias() {
     this._noticiaService.getNoticias('actividad').subscribe((noticias: any) => {
       this.actividades = noticias;
-      console.log(this.actividades);
+      // console.log(this.actividades);
     });
   }
 

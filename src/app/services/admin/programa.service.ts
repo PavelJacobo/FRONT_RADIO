@@ -20,7 +20,7 @@ export class ProgramaService  {
     ) {
         this.obtenerProgramas().subscribe( (programas: any) => {
             this.programas = programas;
-            console.log(this.programas);
+            // console.log(this.programas);
         });
      }
 
@@ -66,7 +66,7 @@ export class ProgramaService  {
     // // }
 
     updateProgramas(programas: Programa[], token, idDeUsuario) {
-        console.log('UPDATE PRO', programas, idDeUsuario);
+        // console.log('UPDATE PRO', programas, idDeUsuario);
         return new Promise ((resolvedor, reject) => {
 
             const progs = [];
@@ -91,7 +91,7 @@ export class ProgramaService  {
                         return inputArray.indexOf(item) === index;
                 });
                     observableBatch.push(this.http.put(url, programa).pipe(map((res: any) => {
-                        console.log(res);
+                        // console.log(res);
                         progs.push(res.programa);
                     } )));
             });
@@ -173,9 +173,9 @@ export class ProgramaService  {
     }
 
     deleteUserFromPrograma(userID) {
-        console.log(userID, 'USER ID');
+        // console.log(userID, 'USER ID');
         const url = URL_SERVICE + '/programa/user/' + userID;
-        console.log(url);
+        // console.log(url);
         return this.http.post(url, {userID}).pipe(map((res: any) => {
             return res;
         }));

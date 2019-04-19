@@ -29,14 +29,14 @@ export class RadioComponent implements OnInit {
   getAllPrograms() {
     this._programaService.obtenerProgramas().subscribe((programas) => {
       this.programas = programas;
-      console.log(programas);
+      // console.log(programas);
     });
   }
 
   getCurrentProgram() {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const Now = new Date().toLocaleDateString('es-ES', options);
-    console.log(Now);
+    // console.log(Now);
   }
 
 }

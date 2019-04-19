@@ -63,7 +63,7 @@ export class ProgramlistComponent implements OnInit {
 
   getProgramas() {
     this._programaService.obtenerProgramas().subscribe((programas: any) => {
-      console.log(programas);
+      // console.log(programas);
       this.programas = programas;
     });
   }

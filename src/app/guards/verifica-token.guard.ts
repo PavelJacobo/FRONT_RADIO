@@ -11,11 +11,11 @@ export class VerificaTokenGuard implements CanActivate {
     public router: Router
   ) {}
   canActivate(): Promise<boolean> | boolean {
-    console.log('Token Guard');
+    // console.log('Token Guard');
     const token = this._usuarioService.token;
-    console.log(token, 'TOKEN');
+    // console.log(token, 'TOKEN');
     const payload = JSON.parse( atob(token.split('.')[1]));
-    console.log(payload);
+    // console.log(payload);
     const expirado = this.expirado(payload.exp);
     if (expirado) {
       this.router.navigate(['/login']);
@@ -29,8 +29,8 @@ export class VerificaTokenGuard implements CanActivate {
      const tokenExp = new Date( fechaExp * 1000);
      const ahora = new Date();
      ahora.setTime( ahora.getTime() + ( 4 * 60 * 60 * 1000));
-     console.log(tokenExp);
-     console.log( ahora);
+    //  console.log(tokenExp);
+    //  console.log( ahora);
 
      if ( tokenExp.getTime() > ahora.getTime()) {
       resolve(true);

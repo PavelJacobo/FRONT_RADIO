@@ -25,7 +25,7 @@ export class ImagenPipe implements PipeTransform {
       break;
 
       default:
-      console.log('tipo de imagen no existe, usuario, noticia, programa');
+      // console.log('tipo de imagen no existe, usuario, noticia, programa');
         url += '/usuarios/xxx';
     }
     return url;

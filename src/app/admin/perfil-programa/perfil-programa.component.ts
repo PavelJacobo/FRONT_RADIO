@@ -25,7 +25,7 @@ export class PerfilProgramaComponent implements OnInit {
     this.usuario = this._usuarioService.usuario;
     this.programas = this._programaService.programas;
       if (this.programas) {
-        console.log(this.programas);
+        // console.log(this.programas);
         this.getProgramasDelUsuario();
       }
    }
@@ -35,10 +35,10 @@ export class PerfilProgramaComponent implements OnInit {
         this.programasDeUsuario = this.programas;
       } else {
         this.programasDeUsuario = this.programas.filter((programa) => {
-          console.log(programa.colaboradores);
+          // console.log(programa.colaboradores);
           return programa.colaboradores.includes(this.usuario._id);
         });
-       console.log(this.programasDeUsuario);
+      //  console.log(this.programasDeUsuario);
       }
    }
 
@@ -49,6 +49,9 @@ export class PerfilProgramaComponent implements OnInit {
         programa.colaboradores,
         programa.fecha,
         programa.img,
+        programa.potcast,
+        programa.facebook,
+        programa.twitter,
         programa._id
       );
       this.findColaboradores(programa.colaboradores);
@@ -57,7 +60,7 @@ export class PerfilProgramaComponent implements OnInit {
    findColaboradores(colaboradores) {
     this._usuarioService.findUser(colaboradores)
     .subscribe((res) => {
-                    console.log(res);
+                    // console.log(res);
                     this.colaboradores = res;
     });
    }
@@ -66,9 +69,9 @@ export class PerfilProgramaComponent implements OnInit {
 
     this._programaService.updatePrograma(programa, this._usuarioService.token)
                              .subscribe((res: any) => {
-                               console.log(res.programa);
+                              //  console.log(res.programa);
                                this._programaService.obtenerProgramas().subscribe(((resp: any ) => {
-                                 console.log(resp);
+                                //  console.log(resp);
                                  this.programas = resp;
                                  this._programaService.programas = resp;
                                  this.getProgramasDelUsuario();
@@ -78,15 +81,15 @@ export class PerfilProgramaComponent implements OnInit {
 
       crearPrograma(programa: Programa) {
         this._programaService.crearPrograma(programa, this._usuarioService.token).subscribe((res: any) => {
-            console.log('Respuesta del Servidor', res);
+            // console.log('Respuesta del Servidor', res);
             Swal('Nuevo Programa añadido', 'programa creado correctamente', 'success');
             this.usuario.programas.push(res.programa._id);
             this._usuarioService.setNewProgramToUser(res.programa._id, this.usuario._id).subscribe((resp: any) => {
-                console.log(res);
+                // console.log(res);
             });
-            console.log('Usuario', this.usuario);
+            // console.log('Usuario', this.usuario);
             this._programaService.obtenerProgramas().subscribe(((resp: any ) => {
-            console.log(resp);
+            // console.log(resp);
             this.programas = resp;
             this._programaService.programas = resp;
             this.getProgramasDelUsuario();
@@ -94,7 +97,5 @@ export class PerfilProgramaComponent implements OnInit {
         });
       }
 
-
-      
 
 }

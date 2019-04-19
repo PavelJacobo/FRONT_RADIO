@@ -99,6 +99,15 @@
                 </div>
 
             </ng-template>
+            <mat-form-field  class="w-100 p-2">
+                <textarea [ngModel]="programa?.potcast" name="potcast" matInput placeholder="potcast"></textarea>
+            </mat-form-field>
+            <mat-form-field class="w-100 p-2">
+                <input [ngModel]="programa?.facebook" matInput placeholder="facebook" name="facebook" [value]="programa?.facebook">
+              </mat-form-field>
+              <mat-form-field class="w-100 p-2">
+                <input [ngModel]="programa?.twitter" matInput placeholder="twitter" name="twitter" [value]="programa?.twitter">
+              </mat-form-field>
             <mat-form-field class="w-100 p-2">
                 <p>
                     <mat-hint>Colaboradores</mat-hint>

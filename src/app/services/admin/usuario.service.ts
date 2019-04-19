@@ -36,7 +36,7 @@ export class UsuarioService {
                         .pipe(
                             map((res: any) => {
                                 this.token = res.token;
-                                console.log(this.token, 'THIS TOKEN');
+                                // console.log(this.token, 'THIS TOKEN');
                                 localStorage.setItem('token', this.token);
                                 return true;
                             }),
@@ -84,7 +84,7 @@ export class UsuarioService {
         return this.http.post(url, usuario)
         .pipe(
             map((res: any) => {
-            console.log(res);
+            // console.log(res);
             this.guardarStorage(res.id, res.token, res.usuario, res.menu );
             return true;
             }),
@@ -143,18 +143,18 @@ export class UsuarioService {
 
         this._adminService.subirArchivo( archivo, coleccion , id )
                                  .then((res: any) => {
-                                     console.log(res);
+                                    //  console.log(res);
                                     this.usuario.img = res.usuario.img;
                                     this.guardarStorage(id, this.token, this.usuario, this.menu );
                                  })
                                  .catch((res: any) => {
-                                    console.log(res);
+                                    // console.log(res);
                                  });
        }
 
     findUser(_idsDeUsuarios: Array<any>) {
         const busquedas = [];
-        console.log(_idsDeUsuarios);
+        // console.log(_idsDeUsuarios);
         _idsDeUsuarios.forEach((_id) => {
             let url = URL_SERVICE + '/usuario/' + _id;
             url += '?token=' + this.token;
@@ -172,7 +172,7 @@ export class UsuarioService {
             id: _idPrograma
         };
        return this.http.put(url, prog).pipe(map((res: any ) => {
-            console.log(res);
+            // console.log(res);
         }));
     }
 
@@ -180,7 +180,7 @@ export class UsuarioService {
         let url = URL_SERVICE + '/eventocup' ;
         url += '?token=' + this.token;
         return this.http.get(url).pipe(map((res: any) => {
-            console.log(res);
+            // console.log(res);
               return res.eventos;
         }));
     }
@@ -189,7 +189,7 @@ export class UsuarioService {
         let url = URL_SERVICE + '/eventocup' ;
         url += '?token=' + this.token;
         return this.http.post(url, evento).pipe(map((response: any) => {
-            console.log(response);
+            // console.log(response);
             return response.evento;
         }));
     }

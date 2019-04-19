@@ -41,6 +41,25 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card w-100">
+                <div class="card-body">
+                  <h5 *ngIf="programa.facebook || programa.twitter || programa.potcast"  class="card-title">Síguenos en las redes</h5>
+                  <p *ngIf="programa.facebook" class="card-text"><i class="fab fa-facebook-f"></i> <a [href]="programa?.facebook"> Facebook</a></p>
+                  <p *ngIf="programa.twitter" class="card-text"><i class="fab fa-twitter"></i> <a [href]="programa?.twitter"> Twitter</a></p>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card w-100">
+                <div class="card-body">
+                    <h5 class="card-title">Podcast</h5>
+
+                  <p *ngIf="programa.potcast" ><span class="text-justify" [innerHTML]="programa?.potcast | safeHtml: 'html'"></span></p>
+                </div>
+            </div>
+        </div>
     </div>
 </ng-container>

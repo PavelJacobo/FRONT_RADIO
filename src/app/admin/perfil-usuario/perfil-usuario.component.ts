@@ -72,8 +72,8 @@ export class PerfilUsuarioComponent implements OnInit {
 
   onSubmit() {
     if (this.passwordEnabled && this.password1.value.length > 0) {
-      console.log(this.password1.value);
-      console.log(this.password2.value);
+      // console.log(this.password1.value);
+      // console.log(this.password2.value);
       if (this.password1.value !== this.password2.value) {
          window.alert('Las contraseñas no coinciden');
          return null;
@@ -95,7 +95,7 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   seleccionImagen( archivo: File ) {
-    console.log ( archivo );
+    // console.log ( archivo );
     if ( !archivo ) {
       this.imagenSubir = null;
       return;

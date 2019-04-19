@@ -19,7 +19,9 @@ export class DetallePublicoNoticiaComponent implements OnInit {
                 this.getEvento();
               }
 
-  ngOnInit() { console.log(this.eventId); }
+  ngOnInit() {
+    // console.log(this.eventId);
+  }
 
   getEvento() {
     this._noticiaService.getNoticiaById(this.eventId).subscribe((evento: any) => {

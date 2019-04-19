@@ -28,10 +28,10 @@ export class AdminService {
             xhr.onreadystatechange = () => {
               if ( xhr.readyState === 4 ) {
                 if ( xhr.status === 200 ) {
-                  console.log( 'imagen subida' );
+                  // console.log( 'imagen subida' );
                   resolve( JSON.parse( xhr.response ) );
                 } else {
-                  console.log( 'Falló la subida' );
+                  // console.log( 'Falló la subida' );
                   reject( xhr.response );
                 }
               }
@@ -52,10 +52,10 @@ export class AdminService {
         xhr.onreadystatechange = () => {
           if ( xhr.readyState === 4 ) {
             if ( xhr.status === 200 ) {
-              console.log( 'imagen subida' );
+              // console.log( 'imagen subida' );
               resolve( JSON.parse( xhr.response ) );
             } else {
-              console.log( 'Falló la subida' );
+              // console.log( 'Falló la subida' );
               reject( xhr.response );
             }
           }

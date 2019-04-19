@@ -49,7 +49,7 @@ export class NoticiaService {
   }
 
   getaTotalNoticias() {
-    let url = URL_SERVICE + '/noticia';
+    const url = URL_SERVICE + '/noticia';
     return this.http.get(url).pipe(map((res: any) => {
       this.totalRegistroDeNoticias = res.total;
       return res.total;
@@ -62,7 +62,7 @@ export class NoticiaService {
       url += `/${limit}`;
     }
     return this.http.get(url).pipe(map((res: any) => {
-      console.log(res.noticias);
+      // console.log(res.noticias);
       return res.noticias;
     }));
   }
@@ -70,7 +70,7 @@ export class NoticiaService {
   getNoticia() {
     const url = URL_SERVICE + '/noticia/';
     return this.http.get(url).pipe(map((res: any) => {
-      console.log(res.noticias);
+      // console.log(res.noticias);
       return res.noticias;
     }));
   }
@@ -84,7 +84,7 @@ export class NoticiaService {
         return res.noticias;
       }),
       catchError(err => {
-        console.log(err);
+        // console.log(err);
         return throwError(err);
     })
     );

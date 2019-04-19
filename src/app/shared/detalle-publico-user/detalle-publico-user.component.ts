@@ -19,7 +19,7 @@ export class DetallePublicoUserComponent implements OnInit {
   ngOnInit() {
     this._usuarioService.findUser([this.userId]).subscribe((usuario: any) => {
       this.usuario = usuario[0];
-      console.log(this.usuario);
+      // console.log(this.usuario);
     });
   }
 

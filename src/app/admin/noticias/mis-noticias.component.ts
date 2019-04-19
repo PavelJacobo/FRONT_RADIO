@@ -28,7 +28,7 @@ export class MisNoticiasComponent implements OnInit {
     this._noticiaService.getUsersNoticias()
      .subscribe((noticias: any) => {
        this.noticias = noticias;
-       console.log(this.noticias);
+      //  console.log(this.noticias);
       });
   }
 

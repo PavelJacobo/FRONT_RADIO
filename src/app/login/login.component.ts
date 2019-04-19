@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
       this.forma.controls.password.value
     );
 
-  console.log('Recuerdame', this.recuerdame.value);
+  // console.log('Recuerdame', this.recuerdame.value);
      this._usuarioService.login( userToLogin, this.recuerdame.value ).subscribe(correcto => this.router.navigate(['/admin']));
   }
 

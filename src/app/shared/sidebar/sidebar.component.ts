@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
 
   toggle() {
     this.isOpen = !this.isOpen;
-    console.log(this.isOpen);
+    // console.log(this.isOpen);
   }
 
   logOut() {
