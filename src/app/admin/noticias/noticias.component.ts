@@ -47,7 +47,7 @@ export class NoticiasComponent implements OnInit {
               public _usuarioService: UsuarioService,
               public snackBar: MatSnackBar) {
                 if ( this._usuarioService.usuario.role === 'ADMIN_ROLE') {
-                  this.categorias.push({value: 'redonda', viewValue: 'Redonda'});
+                  this.categorias.push({value: 'redonda', viewValue: 'Redonda'}, {value: 'nosotros', viewValue: 'Nosotros'});
                 }
                }
 

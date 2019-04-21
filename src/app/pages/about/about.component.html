@@ -1,3 +1,10 @@
-<p>
-  about works!
-</p>
+<div *ngIf="actividades" class="row">
+  <div class="col-md-12">
+    <div class="card w-100">
+      <div class="card-body">
+        <h1 class="card-title">{{actividades[0]?.titulo}}</h1>
+        <p class="h2"><span class="text-justify" [innerHTML]="actividades[0]?.contenido | safeHtml: 'html'"></span></p>
+      </div>
+    </div>
+  </div>
+</div>

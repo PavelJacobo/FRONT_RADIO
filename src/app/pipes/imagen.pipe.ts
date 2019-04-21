@@ -23,7 +23,6 @@ export class ImagenPipe implements PipeTransform {
       case 'redonda':
         url += '/redonda/' + img['file'];
       break;
-
       default:
       // console.log('tipo de imagen no existe, usuario, noticia, programa');
         url += '/usuarios/xxx';
