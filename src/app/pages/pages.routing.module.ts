@@ -8,6 +8,7 @@ import { DetallePublicoNoticiaComponent } from '../shared/detalle-publico-notici
 import { DetallePublicoProgramaComponent } from '../shared/detalle-publico-programa/detalle-publico-programa.component';
 import { RedondaComponent } from './redonda/redonda.component';
 import { DetallePublicoUserComponent } from '../shared/detalle-publico-user/detalle-publico-user.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,11 @@ const routes: Routes = [
             component: DetallePublicoUserComponent,
             data: { titulo: 'Usuario'}
           },
+          {
+            path: 'about',
+            component: AboutComponent,
+            data: { titulo: 'Sobre Nosotros'}
+          }
         ]
     }
 ];

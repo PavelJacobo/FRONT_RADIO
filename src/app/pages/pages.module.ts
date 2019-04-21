@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { ProgramlistComponent } from './programlist/programlist.component';
 import { RedondaComponent } from './redonda/redonda.component';
-
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import { RedondaComponent } from './redonda/redonda.component';
         ActividadesComponent,
         ProgramlistComponent,
         RedondaComponent,
+        AboutComponent,
     ],
     imports: [
         CommonModule,
