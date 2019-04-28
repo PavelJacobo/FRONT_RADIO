@@ -38,6 +38,7 @@ const routes: Routes = [
             {
                 path: 'perfil',
                 component: PerfilUsuarioComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Perfil Usuario'}
             },
             {
@@ -55,6 +56,7 @@ const routes: Routes = [
             {
                 path: 'detalle_noticia/:id',
                 component: DetalleNoticiaComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Mi Noticia'}
             },
             {
@@ -78,6 +80,7 @@ const routes: Routes = [
             {
                 path: '**',
                 component: DashboardComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Dashboard'}
             },
         ]

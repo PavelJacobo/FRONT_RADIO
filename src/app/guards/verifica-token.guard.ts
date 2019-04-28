@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { UsuarioService } from '../services/admin/usuario.service';
+import Swal from 'sweetalert2';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +17,11 @@ export class VerificaTokenGuard implements CanActivate {
     const token = this._usuarioService.token;
     // console.log(token, 'TOKEN');
     const payload = JSON.parse( atob(token.split('.')[1]));
-    // console.log(payload);
+    console.log(payload, 'payload');
     const expirado = this.expirado(payload.exp);
     if (expirado) {
       this.router.navigate(['/login']);
+      Swal('alert', 'Sesión finalizada, por favor inicie sesión', 'error');
       return false;
     }
     return this.verificaRenueva(payload.exp);

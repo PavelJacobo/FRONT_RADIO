@@ -13,9 +13,9 @@ import { ProgramaService } from 'src/app/services/admin/programa.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
- public noticiasNoticia: Noticia[];
- public noticiasActividad: Noticia[];
- public noticiasOpinion: Noticia[];
+ public noticiasNoticia: Noticia[] = [];
+ public noticiasActividad: Noticia[] = [];
+ public noticiasOpinion: Noticia[] = [];
  public totalUsuarios;
  public totalNoticias;
  public totalProgramas;

@@ -77,7 +77,7 @@ export class GestionProgramasComponent implements OnInit {
         this.programa.potcast = res.programa.potcast;
         this.programa.facebook = res.programa.facebook;
         this.programa.twitter = res.programa.twitter;
-        console.log(this.programa);
+        // console.log(this.programa);
         this.actualizar.emit(programa);
         this.imagenTemp = null;
       });
@@ -88,7 +88,7 @@ export class GestionProgramasComponent implements OnInit {
         this.programa.facebook = programa.facebook;
         this.programa.twitter = programa.twitter;
       this.actualizar.emit(programa);
-      console.log(this.programa);
+      // console.log(this.programa);
       this.imagenTemp = null;
     }
   }

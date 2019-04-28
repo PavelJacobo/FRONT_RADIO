@@ -70,6 +70,7 @@ export class PerfilProgramaComponent implements OnInit {
     this._programaService.updatePrograma(programa, this._usuarioService.token)
                              .subscribe((res: any) => {
                               //  console.log(res.programa);
+                              Swal('Programa actualizado', 'programa actualizado correctamente', 'success');
                                this._programaService.obtenerProgramas().subscribe(((resp: any ) => {
                                 //  console.log(resp);
                                  this.programas = resp;
