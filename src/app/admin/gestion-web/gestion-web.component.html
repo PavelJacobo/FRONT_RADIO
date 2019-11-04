@@ -1,3 +1,4 @@
+<div class="container">
 <div class="row ">
     <div class="col-md-12 text-center">
 
@@ -43,7 +44,7 @@
                         <td>{{ noticia.author?.nombre || "Anónimo" }}</td>
                         <td>{{ noticia.resume | slice:0:30}}...</td>
                         <td>{{ noticia.categoria }}</td>
-                        <td>{{ noticia.date | date: 'dd-mm-yyyy'}}</td>
+                        <td>{{ noticia.date | date: 'dd/MM/yyyy'}}</td>
                         <td class="w70"><img [src]="noticia.img | imagen: 'noticia'" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
                         <td><i (click)="eraseNoticia(noticia._id, i)" class="fas fa-trash-alt text-danger pointer"></i></td>
                         <td><i [routerLink]="['../detalle_noticia', noticia._id]" class="far fa-edit text-success pointer"></i></td>
@@ -144,28 +145,106 @@
             </table>
         </ng-template>
         <ng-template [ngSwitchCase]="target === redonda">
-            <table class="table table-striped mt-3">
-                <thead>
-                    <tr>
-                        <th>Subir PDF</th>
+            <div class="row w-100">
+                <table class="table table-striped mt-3">
+                    <thead>
+                        <tr>
+                            <th>Subir PDF</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <form>
-                                <div class="form-group">
-                                    <label for="redonda">pdf de Redonda</label>
-                                    <input type="file" class="form-control-file" id="redonda" (change)="seleccionImagen( $event.target.files[0] )" accept=".pdf">
-                                </div>
-                                <button (click)="subirPdf()" class="btn btn-outline-secondary">Subir</button>
-                            </form>
-                        </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="redonda">pdf de Redonda</label>
+                                        <input type="file" class="form-control-file" id="redonda" (change)="seleccionImagen( $event.target.files[0] )" accept=".pdf">
+                                    </div>
+                                    <div class="form-group">
+                                            <mat-form-field color="accent">
+                                                    <mat-label>Desde...</mat-label>
+                                                    <input [(ngModel)]="inicioAgenda" name="inicioAgenda" matInput [matDatepicker]="picker1">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker1></mat-datepicker>
+                                                  </mat-form-field>
+                                         </div>
+                                         <div class="form-group">         
+                                                  <mat-form-field color="accent">
+                                                    <mat-label>Hasta...</mat-label>
+                                                    <input [(ngModel)]="finAgenda" name="finAgenda" matInput [matDatepicker]="picker2">
+                                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                                                  </mat-form-field>
+                                    
+                                    </div>
+                                    <button (click)="subirPdf()" class="btn btn-outline-secondary">Subir</button>
+                                </form>
+                            </td>
 
-                    </tr>
-                </tbody>
-            </table>
+                        </tr>
+                    </tbody>
+                </table>
+           </div>
+           <div class="row w-100">
+               <div class="col-md-12">
+                   <h4> Eventos de Redonda</h4>
+                <table class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>resume</th>
+                                <th>categoria</th>
+                                <th>fecha</th>
+                                <th>imagen</th>
+                                <th class="text-danger">Borrar</th>
+                                <th class="text-success">Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          
+                            <tr *ngFor="let noticia of noticias; let i=index">
+                               
+                                    <td *ngIf="noticia.categoria == 'redonda'">{{ noticia.author?.nombre || "Anónimo" }}</td>
+                                    <td *ngIf="noticia.categoria == 'redonda'">{{ noticia.resume | slice:0:30}}...</td>
+                                    <td *ngIf="noticia.categoria == 'redonda'">{{ noticia.categoria }}</td>
+                                    <td *ngIf="noticia.categoria == 'redonda'">{{ noticia.date | date: 'dd/MM/yyyy'}}</td>
+                                    <td class="w70" *ngIf="noticia.categoria == 'redonda'"><img [src]="noticia.img | imagen: 'noticia'" class="img img-fluid img-thumbnail" style="max-width: 100px;"></td>
+                                    <td *ngIf="noticia.categoria == 'redonda'"><i (click)="eraseNoticia(noticia._id, i)" class="fas fa-trash-alt text-danger pointer"></i></td>
+                                    <td *ngIf="noticia.categoria == 'redonda'"><i [routerLink]="['../detalle_noticia', noticia._id]" class="far fa-edit text-success pointer"></i></td>
+                                
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+           </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4> Archivos Subidos </h4>
+                <table class="table table-striped mt-3">
+                        <thead>
+                            <tr>
+                                <th>Titulo</th>
+                                <th>resume</th>
+                                <th>categoria</th>
+                                <th>fecha</th>
+                                <th>imagen</th>
+                                <th class="text-danger">Borrar</th>
+                                <th class="text-success">Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          
+                            <tr *ngFor="let file of files; let i=index">
+                               
+                                
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+            </div>
+        </div>
         </ng-template>
     </ng-container>
     <div class="row" *ngIf="target != redonda">
@@ -175,4 +254,5 @@
         </div>
     </div>
 
+</div>
 </div>

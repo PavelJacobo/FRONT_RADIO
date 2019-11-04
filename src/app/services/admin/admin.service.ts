@@ -43,12 +43,18 @@ export class AdminService {
         });
       }
 
-      subirImagen( archivo: File, tipo: string ) {
+      subirImagen( archivo: any, tipo: string ) {
         return new Promise(( resolve, reject) => {
         const formData = new FormData();
         const xhr = new XMLHttpRequest();
 
         formData.append( 'imagen', archivo, archivo.name );
+
+        if (archivo.inicioagenda && archivo.finagenda ) {
+          formData.append( 'desde', archivo, archivo.inicioagenda );
+          formData.append( 'hasta', archivo, archivo.finagenda);
+        }
+
         xhr.onreadystatechange = () => {
           if ( xhr.readyState === 4 ) {
             if ( xhr.status === 200 ) {
@@ -69,20 +75,7 @@ export class AdminService {
       downloadFiles() {
         const url = URL_SERVICE + '/download';
         return this.http.get(url).pipe(map((res: any) => {
-         const files = [];
-          res.files.forEach(file => {
-           const date = file.split('.');
-           const desde = new Date(Number(date[0]));
-           const hasta = new Date(Number(date[0]));
-           hasta.setDate(desde.getDate() + 15);
-           files.push({
-             name: date[1],
-             date: desde,
-             todate: hasta,
-             file: file
-           });
-          });
-          return files;
+          return res.files;
         }));
       }
 

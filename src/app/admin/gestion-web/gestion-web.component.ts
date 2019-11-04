@@ -6,6 +6,7 @@ import { UsuarioService } from '../../services/admin/usuario.service';
 import Swal from 'sweetalert2';
 import { ProgramaService } from '../../services/admin/programa.service';
 import { OcupacionService } from '../../services/admin/ocupacion.service';
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'app-gestion-web',
@@ -17,6 +18,8 @@ export class GestionWebComponent implements OnInit {
   public desde: number;
   public limit: number;
   public totalRegistros: number;
+  public inicioAgenda: string;
+  public finAgenda: string;
   objectKeys = Object.keys;
   public noticias: Noticia[];
   public usuarios: Usuario[];
@@ -27,7 +30,8 @@ export class GestionWebComponent implements OnInit {
   private total: number;
   private clickOnPwd: number;
   public enablePasswd: boolean;
-  private pdfRedonda: File;
+  private pdfRedonda: any;
+  public files: any;
   private popupConfirm = Swal.mixin({
     confirmButtonClass: 'btn btn-success ml-1',
     cancelButtonClass: 'btn btn-danger mr-1',
@@ -39,7 +43,8 @@ export class GestionWebComponent implements OnInit {
     public _noticiasService: NoticiaService,
     public _usuarioService: UsuarioService,
     public _programaService: ProgramaService,
-    public _ocupacionService: OcupacionService) {
+    public _ocupacionService: OcupacionService,
+    public _adminService: AdminService) {
       this.desde = 0;
       this.limit = 5;
       this.totalRegistros = 0;
@@ -101,16 +106,17 @@ export class GestionWebComponent implements OnInit {
          this.desde = 0;
          break;
          case 'eventos':
-         console.log(this.eventos);
+        //  console.log(this.eventos);
          this.target = this.eventos;
          this.totalRegistros = this._ocupacionService.totalReservas;
          this.desde = 0;
          break;
          case 'redonda':
-         console.log('redonda');
+        //  console.log('redonda');
          this.target = this.redonda;
-         console.log(this.target);
-         console.log(this.redonda);
+        //  console.log(this.target);
+        //  console.log(this.redonda);
+         this.getFiles();
          break;
        default:
          break;
@@ -407,14 +413,25 @@ export class GestionWebComponent implements OnInit {
   }
 
   subirPdf() {
-    if (this.pdfRedonda !== undefined) {
+
+    if (this.pdfRedonda !== undefined && this.inicioAgenda !== undefined && this.finAgenda !== undefined ) {
+      this.pdfRedonda.inicioagenda = this.inicioAgenda;
+      this.pdfRedonda.finagenda = this.finAgenda;
+      console.log(this.pdfRedonda);
       return this._programaService.subirImagen(this.pdfRedonda, 'redonda').then(() => {
-        Swal('Redonda Subida', 'Redonda se ha subido perfectamente', 'success');
+        Swal('Redonda Subida', 'Redonda se ha subido correctamente', 'success');
       });
     } else {
-      console.log('La imagen no está definida');
+      Swal('PDF', 'No ha seleccionado ningún archivo pdf o no ha establecido una fecha de evento', 'error');
       return;
     }
   }
+
+  getFiles() {
+    this._adminService.downloadFiles().subscribe((res: any) => {
+      console.log(res, 'RES');
+      this.files = res;
+      });
+    }
 
 }

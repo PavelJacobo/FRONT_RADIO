@@ -20,9 +20,9 @@
             <div class="row mt-3" *ngFor="let evento of otrosEventos | slice:0:3">
                 <ng-container *ngIf="event._id !== evento._id">
                     <div class="col-md-6 text-center">
-                        <img [routerLink]="['/evento', evento._id ]" class="img img-fluid cambiar" [src]="evento.img | imagen: 'noticia'" [alt]="evento.titulo">
+                        <img (click)=getThisEvento(evento._id) class="img img-fluid cambiar" [src]="evento.img | imagen: 'noticia'" [alt]="evento.titulo">
                     </div>
-                    <div [routerLink]="['/evento', evento._id ]" routerLinkActive="router-link-active" class="col-md-6 text-center text-md-left text-lg-left">
+                    <div (click)=getThisEvento(evento._id) routerLinkActive="router-link-active" class="col-md-6 text-center text-md-left text-lg-left">
                         <h4 class="pointer">{{ evento.titulo}}</h4>
                         <p class="font-weight-light text-truncate d-none d-md-block d-lg-block pointer"><small>{{ evento.resume }}</small></p>
                     </div>
@@ -31,3 +31,4 @@
         </div>
     </div>
 </ng-container>
+<!-- [routerLink]="['/evento', evento._id ]" -->

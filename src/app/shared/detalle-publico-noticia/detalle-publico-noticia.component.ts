@@ -15,7 +15,7 @@ export class DetallePublicoNoticiaComponent implements OnInit {
   constructor(private _route: ActivatedRoute,
               private _noticiaService: NoticiaService, public router: Router) {
                 this.eventId = this._route.snapshot.params['id'];
-                this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+                // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
                 this.getEvento();
               }
 
@@ -34,6 +34,7 @@ export class DetallePublicoNoticiaComponent implements OnInit {
   }
 
   getThisEvento = (eventoId) => {
+    console.log(eventoId);
     this.eventId = eventoId;
     this.getEvento();
   }

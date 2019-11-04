@@ -4,6 +4,7 @@ import { NoticiaService } from 'src/app/services/admin/noticia.service';
 import { Noticia } from 'src/app/modelos/noticia.modelo';
 import { ProgramaService } from 'src/app/services/admin/programa.service';
 import { FormGroup, FormBuilder, Validators, Form  } from '@angular/forms';
+import { UsuarioService } from '../../services/admin/usuario.service';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material';
 
@@ -57,9 +58,13 @@ export class DetalleNoticiaComponent implements OnInit {
             public _noticiaService: NoticiaService,
             public fb: FormBuilder,
             public _programaService: ProgramaService,
+            public _usuarioService: UsuarioService,
             public snackBar: MatSnackBar
             ) {
     this.id = this._route.snapshot.params['id'];
+    if ( this._usuarioService.usuario.role === 'ADMIN_ROLE') {
+      this.categorias.push({value: 'redonda', viewValue: 'Redonda'}, {value: 'nosotros', viewValue: 'Nosotros'});
+    }
   }
 
   ngOnInit() {
@@ -107,6 +112,7 @@ export class DetalleNoticiaComponent implements OnInit {
           this.noticia.resume = this.forma.get('resume').value;
           this._noticiaService.updateNoticia(this.noticia).subscribe((data: any) => {
                         // console.log(data);
+           Swal('Evento', 'Noticia actualizada', 'success');
           });
        // form.reset();
       }).catch((err) => Swal('error', err, 'error'));
@@ -118,6 +124,7 @@ export class DetalleNoticiaComponent implements OnInit {
          // console.log(this.noticia);
           this._noticiaService.updateNoticia(this.noticia).subscribe((data: any) => {
                        // console.log(data);
+            Swal('Evento', 'Noticia actualizada', 'success');
           });
     }
   }
