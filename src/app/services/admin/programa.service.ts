@@ -120,7 +120,12 @@ export class ProgramaService  {
                 });
               }
               return res;
-            }));
+            }),
+            catchError(err => {
+             // Swal('Error', err.error.mensaje, 'error');
+             this.manageError(err);
+             return throwError(err);
+         }));
     }
 
     crearPrograma(programa, token) {
@@ -182,9 +187,13 @@ export class ProgramaService  {
     }
 
     manageError(err: any) {
-        switch (err) {
+        console.log(err.error.errors.name)
+        switch (true) {
             case err.statusText === 'Unauthorized':
                 Swal('Error', err.statusText, 'error');
+                break;
+            case err.error.errors.name === 'ValidationError':
+                    Swal('Error', err.error.errors.message, 'error');
                 break;
             default:
                 Swal('Error', err.error.mensaje + ' El campo descripción no puede estar vacío, añada alguna descripción', 'error');

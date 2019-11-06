@@ -113,10 +113,12 @@
                     <mat-hint>Colaboradores</mat-hint>
                 </p>
                 <mat-chip-list>
+                    <span *ngIf="colaboradores?.length > 0">
                     <mat-chip *ngFor="let colaborador of colaboradores">{{ colaborador?.nombre || "Anónimo" }}</mat-chip>
                     <mat-chip *ngIf="!programa">
                         {{ _usuarioService.usuario?.nombre || "Anónimo" }}
                     </mat-chip>
+                    </span>
                 </mat-chip-list>
             </mat-form-field>
 

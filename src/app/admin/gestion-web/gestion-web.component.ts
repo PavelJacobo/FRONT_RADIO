@@ -333,7 +333,7 @@ export class GestionWebComponent implements OnInit {
           console.log(usuario);
           this.popupConfirm(
             'Actualizado',
-            'El usuario no ha sido actualizado',
+            'El usuario ha sido actualizado',
             'success'
           );
         });

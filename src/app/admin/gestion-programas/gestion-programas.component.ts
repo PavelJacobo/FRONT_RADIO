@@ -77,25 +77,25 @@ export class GestionProgramasComponent implements OnInit {
         this.programa.potcast = res.programa.potcast;
         this.programa.facebook = res.programa.facebook;
         this.programa.twitter = res.programa.twitter;
-        // console.log(this.programa);
-        this.actualizar.emit(programa);
+        this.actualizar.emit(this.programa);
         this.imagenTemp = null;
+      }).catch(e => {
+        const error = JSON.parse(e);
+        Swal('error', error.mensaje, 'error');
       });
     } else {
       this.programa.nombre = programa.nombre;
       this.programa.contenido = programa.contenido;
       this.programa.potcast = programa.potcast;
-        this.programa.facebook = programa.facebook;
-        this.programa.twitter = programa.twitter;
-      this.actualizar.emit(programa);
-      // console.log(this.programa);
+      this.programa.facebook = programa.facebook;
+      this.programa.twitter = programa.twitter;
+      this.actualizar.emit(this.programa);
       this.imagenTemp = null;
     }
   }
 
   seleccionImagen( archivo: File ) {
     this.cambiandoImagen = false;
-    console.log(this.cambiandoImagen);
     if ( !archivo ) {
       this.imagenSubir = null;
       return;
@@ -139,7 +139,6 @@ export class GestionProgramasComponent implements OnInit {
   this.imagenTemp = null;
   this.colaboradores = undefined;
   this.fechas = [];
-  console.log(this.programa);
   return;
   }
 
@@ -151,8 +150,6 @@ export class GestionProgramasComponent implements OnInit {
       horaFin: nameCtrl.value.horaFin
     };
     this.fechas.push(fechaValue);
-    console.log(fechaValue);
-    console.log(this.fechas);
   }
 
   readFechaPrograma(nameCtrl: NgForm) {
@@ -171,7 +168,6 @@ export class GestionProgramasComponent implements OnInit {
   }
   eliminarFechaPrograma(index) {
     this.programa.fecha.splice(index, 1);
-    console.log(this.programa.fecha);
   }
 
     crearPrograma(programa) {
@@ -192,14 +188,12 @@ export class GestionProgramasComponent implements OnInit {
           programa.facebook,
           programa.twitter
         );
-        console.log(prog, 'PROOOOOOOOOOOG');
         this.crear.emit(prog);
         this.imagenTemp = null;
         this.fechas = [];
         programa = null;
       }).catch((err) => console.log(err));
     } else {
-      console.log('Imagen no definida');
       Swal('error', 'Imagen no definida', 'error');
       this.openSnackBar('Imagen no definida', 'Aceptar');
     }

@@ -66,7 +66,6 @@ export class PerfilProgramaComponent implements OnInit {
    }
 
    SubmitPrograma(programa: Programa) {
-
     this._programaService.updatePrograma(programa, this._usuarioService.token)
                              .subscribe((res: any) => {
                               //  console.log(res.programa);

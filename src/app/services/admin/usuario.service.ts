@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { URL_SERVICE } from '../../config/config.config';
 import { HttpClient } from '@angular/common/http';
 import { Usuario, LoginUsuario } from '../../modelos/modelo.index';
-import { map } from 'rxjs/internal/operators';
+import { map, mergeMap } from 'rxjs/internal/operators';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AdminService } from '../admin/admin.service';
 import { ProgramaService } from '../admin/programa.service';
-import { forkJoin, of, throwError, Observable } from 'rxjs';
+import { forkJoin, of, throwError, Observable, from } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
@@ -155,14 +155,23 @@ export class UsuarioService {
     findUser(_idsDeUsuarios: Array<any>) {
         const busquedas = [];
         // console.log(_idsDeUsuarios);
-        _idsDeUsuarios.forEach((_id) => {
-            let url = URL_SERVICE + '/usuario/' + _id;
+        // _idsDeUsuarios.forEach((_id) => {
+        //     let url = URL_SERVICE + '/usuario/' + _id;
+        //     url += '?token=' + this.token;
+        //     busquedas.push(this.http.get(url, _id).pipe(map((res: any) => {
+        //         return res.usuario;
+        //     })));
+        // });
+        // return forkJoin(busquedas)
+        const requests = from(_idsDeUsuarios).pipe(mergeMap(id => {
+            let url = URL_SERVICE + '/usuario/' + id;
             url += '?token=' + this.token;
-            busquedas.push(this.http.get(url, _id).pipe(map((res: any) => {
-                return res.usuario;
-            })));
-        });
-        return forkJoin(busquedas);
+          return  this.http.get(url, id).pipe(map((res: any) => {
+                        console.log(res.usuario);
+                        return res.usuario;
+            }));
+        }));
+        return requests;
     }
 
     setNewProgramToUser(_idPrograma, _idUser) {
