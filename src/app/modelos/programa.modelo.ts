@@ -10,6 +10,7 @@ export class Programa {
         public potcast?: string,
         public facebook?: string,
         public twitter?: string,
+        public instagram?: string,
         public _id?: string
     ) {}
 }

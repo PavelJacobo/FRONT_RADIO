@@ -52,6 +52,7 @@ export class PerfilProgramaComponent implements OnInit {
         programa.potcast,
         programa.facebook,
         programa.twitter,
+        programa.instagram,
         programa._id
       );
       this.findColaboradores(programa.colaboradores);

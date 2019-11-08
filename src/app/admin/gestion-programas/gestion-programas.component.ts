@@ -77,6 +77,7 @@ export class GestionProgramasComponent implements OnInit {
         this.programa.potcast = res.programa.potcast;
         this.programa.facebook = res.programa.facebook;
         this.programa.twitter = res.programa.twitter;
+        this.programa.instagram = res.programa.instagram;
         this.actualizar.emit(this.programa);
         this.imagenTemp = null;
       }).catch(e => {
@@ -89,6 +90,7 @@ export class GestionProgramasComponent implements OnInit {
       this.programa.potcast = programa.potcast;
       this.programa.facebook = programa.facebook;
       this.programa.twitter = programa.twitter;
+      this.programa.instagram = programa.instagram;
       this.actualizar.emit(this.programa);
       this.imagenTemp = null;
     }
@@ -186,7 +188,8 @@ export class GestionProgramasComponent implements OnInit {
           res.img,
           programa.potcast,
           programa.facebook,
-          programa.twitter
+          programa.twitter,
+          programa.instagram
         );
         this.crear.emit(prog);
         this.imagenTemp = null;
