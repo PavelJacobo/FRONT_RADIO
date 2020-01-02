@@ -110,7 +110,7 @@ export class UsuarioService {
 
 
     createUser(usuario: Usuario) {
-        const url = `${URL_SERVICE}/usuario`;
+        const url = `${URL_SERVICE}/usuario?token=${this.token}`;
         return this.http.post(url, usuario);
     }
 

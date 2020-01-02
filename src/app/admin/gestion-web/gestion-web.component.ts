@@ -7,14 +7,21 @@ import Swal from 'sweetalert2';
 import { ProgramaService } from '../../services/admin/programa.service';
 import { OcupacionService } from '../../services/admin/ocupacion.service';
 import { AdminService } from '../../services/admin/admin.service';
-
+import { FormGroup, FormBuilder, FormArray, Validators  } from '@angular/forms';
+export interface Role {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-gestion-web',
   templateUrl: './gestion-web.component.html',
   styles: []
 })
 export class GestionWebComponent implements OnInit {
-
+  roles: Role[] = [
+    {value: 'ADMIN_ROLE', viewValue: 'Admin'},
+    {value: 'USER_ROLE', viewValue: 'User'}
+  ];
   public desde: number;
   public limit: number;
   public totalRegistros: number;
@@ -32,6 +39,7 @@ export class GestionWebComponent implements OnInit {
   public enablePasswd: boolean;
   private pdfRedonda: any;
   public files: any;
+  public forma: FormGroup;
   private popupConfirm = Swal.mixin({
     confirmButtonClass: 'btn btn-success ml-1',
     cancelButtonClass: 'btn btn-danger mr-1',
@@ -44,6 +52,7 @@ export class GestionWebComponent implements OnInit {
     public _usuarioService: UsuarioService,
     public _programaService: ProgramaService,
     public _ocupacionService: OcupacionService,
+    public fb: FormBuilder,
     public _adminService: AdminService) {
       this.desde = 0;
       this.limit = 5;
@@ -60,6 +69,18 @@ export class GestionWebComponent implements OnInit {
     this.getUsuarios();
     this.getProgramas();
     this.getReservas();
+    this.forma = this.fb.group({
+      username: ['', [
+        Validators.required
+      ]],
+      email: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      password1: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')]],
+      password2: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')]],
+      role: ['']
+    });
   }
 
   getNoticias() {
@@ -432,6 +453,45 @@ export class GestionWebComponent implements OnInit {
       console.log(res, 'RES');
       this.files = res;
       });
+  }
+
+  // variables
+  get username() {
+    return this.forma.get('username');
+  }
+
+  get email() {
+    return this.forma.get('email');
+  }
+  get password1() {
+    return this.forma.get('password1');
+  }
+  get password2() {
+    return this.forma.get('password2');
+  }
+  get role() {
+    return this.forma.get('role');
+  }
+
+  onSubmit() {
+    if (this.password1.value !== this.password2.value) {
+      Swal('Password Error', 'Las contraseñas no coinciden', 'error');
+      return false;
+    } else {
+     const obj: Usuario = {
+        nombre: this.username.value,
+        email: this.email.value,
+        role: this.role.value,
+        password: this.password1.value
+      };
+      this._usuarioService.createUser(obj).subscribe((res: any) => {
+        console.log(res);
+      });
     }
+  }
+
+  cancelar() {
+    this.forma.reset();
+  }
 
 }
