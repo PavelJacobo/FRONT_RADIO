@@ -21,41 +21,49 @@ const routes: Routes = [
             {
                 path: '',
                 component: DashboardComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Dashboard'}
             },
             {
                 path: 'dashboard',
                 component: DashboardComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Dashboard'}
             },
             {
                 path: 'noticias',
                 component: NoticiasComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Noticias'}
              },
             {
                 path: 'perfil',
                 component: PerfilUsuarioComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Perfil Usuario'}
             },
             {
                 path: 'perfil_programa',
                 component: PerfilProgramaComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Perfil Programa'}
             },
             {
                 path: 'mis_noticias',
                 component: MisNoticiasComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Mis Noticias'}
             },
             {
                 path: 'detalle_noticia/:id',
                 component: DetalleNoticiaComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Mi Noticia'}
             },
             {
                 path: 'ocupacion',
                 component: OcupacionLocalComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Reservar Local'}
             },
             {
@@ -67,11 +75,12 @@ const routes: Routes = [
                 path: 'gestion_web',
                 component: GestionWebComponent,
                 data: { titulo: 'Gestion de la Aplicación'},
-                canActivate: [AdminGuard]
+                canActivate: [AdminGuard, VerificaTokenGuard]
             },
             {
                 path: '**',
                 component: DashboardComponent,
+                canActivate: [VerificaTokenGuard],
                 data: { titulo: 'Dashboard'}
             },
         ]
