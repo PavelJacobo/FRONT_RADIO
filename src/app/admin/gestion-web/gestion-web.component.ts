@@ -388,7 +388,7 @@ export class GestionWebComponent implements OnInit {
   }
 
   eraseEvento(eventoID, index) {
-    console.log(eventoID);
+  console.log(eventoID);
   console.log(index);
   this.popupConfirm({
     title: 'Estás Seguro que desea eliminar la reserva?',
@@ -484,9 +484,46 @@ export class GestionWebComponent implements OnInit {
         role: this.role.value,
         password: this.password1.value
       };
-      this._usuarioService.createUser(obj).subscribe((res: any) => {
-        console.log(res);
+      this.popupConfirm({
+        title: 'Vas a crear el siguiente usuario: ',
+        text: `Nombre: ${obj.nombre}, Rol: ${obj.role}`,
+        type: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+        this._usuarioService.createUser(obj).subscribe((res: any) => {
+          this.forma.reset();
+          if (res.ok === true) {
+              this.popupConfirm(
+                'Creado',
+                'El usuario ha sido creado',
+                'success'
+              );
+          } else {
+            this.popupConfirm(
+              'Oops',
+              'Algo no ha ido bien, Contacta con Alejandro Piri',
+              'error'
+            );
+          }
+        });
+        } else if (
+          // Read more about handling dismissals
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          this.popupConfirm(
+            'Cancelado',
+            'Operación cancelada',
+            'info'
+          );
+          this.cancelar();
+          return;
+        }
       });
+
     }
   }
 
