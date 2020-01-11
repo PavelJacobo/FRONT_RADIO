@@ -13,11 +13,8 @@ export class VerificaTokenGuard implements CanActivate {
     public router: Router
   ) {}
   canActivate(): Promise<boolean> | boolean {
-    // console.log('Token Guard');
     const token = this._usuarioService.token;
     const decode = jwt_decode(token);
-    // const payload = JSON.parse( atob(token.split('.')[1]));
-    // console.log(payload, 'payload');
     const expirado = this.expirado(decode.exp);
     if (expirado) {
       this.router.navigate(['/login']);
@@ -32,9 +29,6 @@ export class VerificaTokenGuard implements CanActivate {
      const tokenExp = new Date( fechaExp * 1000);
      const ahora = new Date();
      ahora.setTime( ahora.getTime() + ( 4 * 60 * 60 * 1000));
-    //  console.log(tokenExp);
-    //  console.log( ahora);
-
      if ( tokenExp.getTime() > ahora.getTime()) {
       resolve(true);
      } else {

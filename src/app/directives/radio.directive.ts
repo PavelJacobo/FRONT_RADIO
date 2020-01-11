@@ -11,11 +11,11 @@ export class RadioDirective {
     if ( this.play ) {
       const audioPlayer = <HTMLVideoElement> document.getElementById('radio');
       audioPlayer.play();
-      console.log('Play Activo');
+      // console.log('Play Activo');
     } else {
       const audioPlayer = <HTMLVideoElement> document.getElementById('radio');
       audioPlayer.pause();
-      console.log('Pause Activo');
+      // console.log('Pause Activo');
     }
   }
 

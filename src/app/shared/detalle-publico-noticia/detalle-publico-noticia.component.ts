@@ -34,7 +34,7 @@ export class DetallePublicoNoticiaComponent implements OnInit {
   }
 
   getThisEvento = (eventoId) => {
-    console.log(eventoId);
+    // console.log(eventoId);
     this.eventId = eventoId;
     this.getEvento();
   }

@@ -18,7 +18,7 @@ export class DetallePublicoProgramaComponent implements OnInit {
   ngOnInit() {
     this._programaService.findPrograma(this.programId).subscribe((programa: any) => {
       this.programa = programa.programa;
-      console.log(this.programa);
+      // console.log(this.programa);
 
       if (this.programa.fecha[1]) {
         for (let dia = 0; dia <= this.programa.fecha[1].dia.length; dia++) {

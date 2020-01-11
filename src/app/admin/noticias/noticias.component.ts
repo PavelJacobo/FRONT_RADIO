@@ -86,7 +86,7 @@ export class NoticiasComponent implements OnInit {
         const _id = this._usuarioService.usuario._id;
         const noticia = new Noticia(value.titulo, value.resume, value.contenido, this.tagArray , value.categoria, res.img, _id, date );
         this._noticiaService.crearNoticia( noticia).subscribe((data) => {
-          console.log('DATA', data);
+          Swal('Noticia', 'La noticia ha sido creada', 'success');
         });
         form.reset();
         this.imagenTemp = null;

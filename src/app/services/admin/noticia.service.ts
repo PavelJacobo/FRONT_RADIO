@@ -14,12 +14,9 @@ export class NoticiaService {
 
 
   public noticias: Noticia[];
-  private token: string;
   private userId: string;
   public totalRegistroDeNoticias: number;
   constructor(public http: HttpClient, public _usuarioService: UsuarioService) {
-
-    this.token = this._usuarioService.token;
     if ( this._usuarioService.usuario ) {
       this.userId = this._usuarioService.usuario._id;
     }
@@ -28,7 +25,7 @@ export class NoticiaService {
 
   crearNoticia(noticia: Noticia) {
     let url = URL_SERVICE + '/noticia';
-    url += '?token=' + this.token;
+    url += '?token=' + this._usuarioService.token;
     return this.http.post(url, noticia).pipe(map((res) => {
       return res;
     }));
@@ -78,7 +75,7 @@ export class NoticiaService {
   getUsersNoticias() {
     if (this.userId !== undefined) {
       let url = URL_SERVICE + '/noticia/user/' + this.userId;
-      url += '?token=' + this.token;
+      url += '?token=' + this._usuarioService.token;
       return this.http.get(url).pipe(
         map((res: any) => {
         return res.noticias;
@@ -93,7 +90,7 @@ export class NoticiaService {
 
   getNoticiaById(id) {
     let url = URL_SERVICE + '/noticia/' + id;
-    url += '?token=' + this.token;
+    url += '?token=' + this._usuarioService.token;
     return this.http.get(url).pipe(map((res: any) => {
       return res.noticia;
     }));
@@ -101,7 +98,7 @@ export class NoticiaService {
 
   removeNoticia(id) {
     let url = URL_SERVICE + '/noticia/' + id;
-    url += '?token=' + this.token;
+    url += '?token=' + this._usuarioService.token;
     return this.http.delete(url).pipe(map((res: any) => {
       return res;
     }));
@@ -109,7 +106,7 @@ export class NoticiaService {
 
   updateNoticia(noticia) {
     let url = URL_SERVICE + '/noticia/' + noticia._id;
-    url += '?token=' + this.token;
+    url += '?token=' + this._usuarioService.token;
     return this.http.put(url, noticia).pipe(map((res: any) => {
       return res;
     }));

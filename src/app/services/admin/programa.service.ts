@@ -187,7 +187,7 @@ export class ProgramaService  {
     }
 
     manageError(err: any) {
-        console.log(err.error.errors.name)
+        // console.log(err.error.errors.name)
         switch (true) {
             case err.statusText === 'Unauthorized':
                 Swal('Error', err.statusText, 'error');

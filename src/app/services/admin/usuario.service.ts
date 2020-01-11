@@ -84,12 +84,10 @@ export class UsuarioService {
         return this.http.post(url, usuario)
         .pipe(
             map((res: any) => {
-            // console.log(res);
             this.guardarStorage(res.id, res.token, res.usuario, res.menu );
             return true;
             }),
             catchError(err => {
-                // Swal('Error', err.error.mensaje, 'error');
                 this.manageError(err);
                 return throwError(err);
             })
@@ -167,7 +165,7 @@ export class UsuarioService {
             let url = URL_SERVICE + '/usuario/' + id;
             url += '?token=' + this.token;
           return  this.http.get(url, id).pipe(map((res: any) => {
-                        console.log(res.usuario);
+                        // console.log(res.usuario);
                         return res.usuario;
             }));
         }));
