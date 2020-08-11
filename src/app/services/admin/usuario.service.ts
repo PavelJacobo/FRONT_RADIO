@@ -42,6 +42,7 @@ export class UsuarioService {
                             }),
                             catchError((err: any) => {
                                 Swal('No fue posible renovar token', err, 'error');
+                                // tslint:disable-next-line: deprecation
                                 return Observable.throw(err);
                              })
                         );
